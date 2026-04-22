@@ -155,92 +155,13 @@
     .hero__badge-top { font-size: .62rem; color: rgba(255,255,255,.4); display: block; line-height: 1; margin-bottom: 2px; }
     .hero__badge-name { font-family: var(--font-display); font-size: .85rem; font-weight: 700; display: block; }
 
-    /* ── Phone mockup ─────────────────────────────────────────────────────── */
-    .hero__visual { display: flex; justify-content: center; align-items: flex-end; }
-    .phone-frame {
-      width: 280px;
-      background: #1a2630;
-      border-radius: 36px 36px 0 0;
-      border: 1.5px solid rgba(255,255,255,.12);
-      border-bottom: none;
-      overflow: hidden;
-      box-shadow: 0 -16px 64px rgba(0,0,0,.5), 0 -4px 20px rgba(0,0,0,.3);
-      position: relative;
+    /* ── Hero visual ─────────────────────────────────────────────────────── */
+    .hero__visual {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      padding-bottom: 0;
     }
-    .phone-status {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 14px 20px 8px;
-      font-size: .65rem; font-weight: 600; color: rgba(255,255,255,.7);
-    }
-    .phone-status-icons { display: flex; gap: 5px; align-items: center; }
-    .phone-body { padding: 0 14px 0; }
-
-    /* App screen styles */
-    .app-header {
-      background: var(--primary);
-      padding: 10px 14px 14px;
-      margin: 0 -14px;
-      display: flex; justify-content: space-between; align-items: flex-start;
-    }
-    .app-label { font-size: .52rem; font-weight: 700; color: rgba(255,255,255,.4); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 2px; }
-    .app-title { font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; color: #fff; letter-spacing: -0.02em; }
-    .app-badge { background: rgba(255,255,255,.15); border-radius: 4px; padding: 2px 7px; font-size: .55rem; font-weight: 700; color: rgba(255,255,255,.7); margin-left: 6px; vertical-align: middle; }
-    .app-avatar { width: 30px; height: 30px; border-radius: 50%; background: var(--primary-dark); border: 1.5px solid rgba(255,255,255,.2); display: flex; align-items: center; justify-content: center; font-size: .6rem; font-weight: 700; color: #fff; }
-    .app-bell { position: relative; }
-    .app-bell-dot { position: absolute; top: -2px; right: -2px; width: 8px; height: 8px; background: #DC2626; border-radius: 50%; border: 1px solid var(--primary); font-size: .45rem; color: #fff; display: flex; align-items: center; justify-content: center; }
-
-    /* Hero chips */
-    .app-chips {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 6px; padding: 10px 0 8px;
-    }
-    .app-chip {
-      background: var(--primary-dark);
-      border: 0.5px solid rgba(255,255,255,.1);
-      border-radius: 9px; padding: 8px 8px;
-    }
-    .app-chip-label { font-size: .5rem; font-weight: 700; color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 3px; }
-    .app-chip-value { font-family: var(--font-display); font-size: 1rem; font-weight: 800; color: #fff; }
-    .app-chip-sub { font-size: .5rem; color: rgba(255,255,255,.3); margin-top: 1px; }
-    .app-chip--green .app-chip-value { color: #4ADE80; }
-    .app-chip--green { background: rgba(22,163,74,.12); border-color: rgba(22,163,74,.2); }
-
-    /* Section label */
-    .app-section-label { font-size: .52rem; font-weight: 700; color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: .1em; padding: 8px 0 5px; }
-
-    /* Project card */
-    .app-project-card {
-      background: var(--primary);
-      border: 0.5px solid rgba(255,255,255,.1);
-      border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 8px;
-    }
-    .app-project-header {
-      display: flex; justify-content: space-between; align-items: flex-start;
-      padding: 10px 12px 8px;
-    }
-    .app-project-name { font-family: var(--font-display); font-size: .9rem; font-weight: 800; color: #fff; }
-    .app-project-client { font-size: .55rem; color: rgba(255,255,255,.4); margin-top: 1px; }
-    .app-tags { display: flex; gap: 4px; }
-    .app-tag { font-size: .48rem; font-weight: 700; border-radius: 4px; padding: 2px 6px; }
-    .app-tag--red { background: rgba(220,38,38,.2); color: #fca5a5; }
-    .app-tag--green { background: rgba(22,163,74,.2); color: #86efac; }
-    .app-project-body { background: rgba(255,255,255,.97); padding: 10px 12px; }
-    .app-cost-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px; }
-    .app-cost-cell { background: var(--bg); border-radius: 7px; padding: 6px 8px; }
-    .app-cost-label { font-size: .5rem; font-weight: 600; color: var(--text-sec); margin-bottom: 2px; }
-    .app-cost-value { font-family: var(--font-display); font-size: .78rem; font-weight: 700; color: var(--text); }
-    .app-cost-cell--total .app-cost-value { color: var(--accent); }
-    .app-progress-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
-    .app-progress-label { font-size: .5rem; color: var(--text-sec); }
-    .app-progress-pct { font-size: .55rem; font-weight: 700; color: var(--text); }
-    .app-progress-bar { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; margin-bottom: 5px; }
-    .app-progress-fill { height: 100%; background: var(--accent); border-radius: 2px; }
-    .app-budget-row { display: flex; justify-content: space-between; }
-    .app-budget-item { font-size: .5rem; color: var(--text-sec); }
-    .app-budget-item span { font-weight: 600; color: var(--text); }
-    .app-detail-link { display: flex; justify-content: center; align-items: center; gap: 4px; padding: 7px; border-top: 0.5px solid var(--border); font-size: .55rem; font-weight: 600; color: var(--text-sec); }
 
     /* ── Stats bar ────────────────────────────────────────────────────────── */
     .stats-bar { background: var(--primary-dark); }
@@ -510,8 +431,8 @@
     @media (max-width: 900px) {
       .hero__inner { grid-template-columns: 1fr; }
       .hero__visual { display: none; }
-      .iphone-frame { width: 220px; }
-      .iphone-frame--sm { width: 180px; }
+      .iphone-wrap--hero { width: 200px; }
+      .iphone-wrap--sm { width: 170px; }
       .product-grid { grid-template-columns: 1fr; }
       .features-grid { grid-template-columns: 1fr 1fr; }
       .pricing-grid { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; }
@@ -528,102 +449,74 @@
     }
 
     /* ── iPhone frame ────────────────────────────────────────────────────── */
+    .iphone-wrap {
+      position: relative;
+      display: inline-block;
+    }
+    .iphone-wrap--hero { width: 280px; }
+    .iphone-wrap--sm   { width: 220px; }
+
     .iphone-frame {
       position: relative;
-      width: 280px;
-      background: #1a1a1e;
-      border-radius: 44px;
-      border: 1.5px solid #3a3a3c;
+      width: 100%;
+      background: linear-gradient(145deg, #2a2a2e, #1a1a1e);
+      border-radius: 46px;
+      padding: 12px 10px;
       box-shadow:
-        0 0 0 1px rgba(255,255,255,.08),
-        inset 0 0 0 1px rgba(255,255,255,.05),
-        0 24px 80px rgba(0,0,0,.6),
-        0 8px 24px rgba(0,0,0,.4);
-      padding: 14px 10px 10px;
+        0 0 0 1.5px #3a3a3c,
+        0 0 0 2.5px #111,
+        inset 0 1px 0 rgba(255,255,255,.08),
+        0 32px 80px rgba(0,0,0,.7),
+        0 8px 24px rgba(0,0,0,.5);
     }
-    .iphone-frame--sm {
-      width: 220px;
-      border-radius: 38px;
-    }
-    .iphone-inner {
-      background: #000;
-      border-radius: 34px;
-      overflow: hidden;
-      position: relative;
-    }
-    .iphone-frame--sm .iphone-inner { border-radius: 28px; }
-    .iphone-notch {
-      position: absolute;
-      top: 0; left: 50%;
-      transform: translateX(-50%);
-      width: 100px; height: 28px;
-      background: #000;
-      border-radius: 0 0 20px 20px;
-      z-index: 10;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .iphone-frame--sm .iphone-notch { width: 80px; height: 22px; }
-    .iphone-camera {
-      width: 10px; height: 10px;
-      background: #1c1c1e;
-      border-radius: 50%;
-      border: 1.5px solid #2c2c2e;
-      margin-top: 8px;
-    }
-    .iphone-frame--sm .iphone-camera { width: 8px; height: 8px; }
-    .iphone-screen {
-      width: 100%;
-      border-radius: 34px;
-      overflow: hidden;
-    }
-    .iphone-frame--sm .iphone-screen { border-radius: 28px; }
-    .iphone-screen img {
-      width: 100%;
-      display: block;
-      border-radius: 34px;
-    }
-    .iphone-frame--sm .iphone-screen img { border-radius: 28px; }
-    .iphone-home-indicator {
-      height: 20px;
-      display: flex; align-items: center; justify-content: center;
-      background: #000;
-    }
-    .iphone-home-indicator::after {
+    .iphone-wrap--sm .iphone-frame { border-radius: 38px; padding: 10px 8px; }
+
+    /* Side buttons — left */
+    .iphone-frame::before {
       content: '';
-      display: block;
-      width: 100px; height: 4px;
-      background: rgba(255,255,255,.3);
-      border-radius: 2px;
-    }
-    .iphone-frame--sm .iphone-home-indicator { height: 16px; }
-    .iphone-frame--sm .iphone-home-indicator::after { width: 80px; height: 3px; }
-    /* Side buttons */
-    .iphone-side {
       position: absolute;
-      top: 0; bottom: 0;
-      display: flex; flex-direction: column; justify-content: flex-start;
-      pointer-events: none;
-    }
-    .iphone-side--left { left: -3px; align-items: flex-end; padding-top: 80px; gap: 12px; }
-    .iphone-side--right { right: -3px; align-items: flex-start; padding-top: 100px; }
-    .iphone-btn-vol {
-      width: 3px; height: 32px;
+      left: -3.5px; top: 100px;
+      width: 3.5px; height: 34px;
       background: #3a3a3c;
       border-radius: 2px 0 0 2px;
+      box-shadow: 0 44px 0 #3a3a3c, 0 -50px 0 0 #3a3a3c, 0 -50px 0 2px #111;
     }
-    .iphone-btn-silent {
-      width: 3px; height: 20px;
-      background: #3a3a3c;
-      border-radius: 2px 0 0 2px;
-      margin-top: -4px;
-    }
-    .iphone-btn-power {
-      width: 3px; height: 48px;
+    /* Side buttons — right (power) */
+    .iphone-frame::after {
+      content: '';
+      position: absolute;
+      right: -3.5px; top: 130px;
+      width: 3.5px; height: 64px;
       background: #3a3a3c;
       border-radius: 0 2px 2px 0;
     }
-    .iphone-frame--sm .iphone-btn-vol { height: 24px; }
-    .iphone-frame--sm .iphone-btn-power { height: 36px; }
+
+    .iphone-screen-wrap {
+      position: relative;
+      background: #000;
+      border-radius: 36px;
+      overflow: hidden;
+    }
+    .iphone-wrap--sm .iphone-screen-wrap { border-radius: 30px; }
+
+    /* Dynamic Island */
+    .iphone-island {
+      position: absolute;
+      top: 10px; left: 50%;
+      transform: translateX(-50%);
+      width: 88px; height: 28px;
+      background: #000;
+      border-radius: 20px;
+      z-index: 10;
+    }
+    .iphone-wrap--sm .iphone-island { width: 72px; height: 22px; top: 8px; }
+
+    .iphone-screen-wrap img {
+      width: 100%;
+      display: block;
+      border-radius: 36px;
+    }
+    .iphone-wrap--sm .iphone-screen-wrap img { border-radius: 30px; }
 
     /* ── Animations ───────────────────────────────────────────────────────── */
     @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
@@ -720,29 +613,16 @@
 
     <!-- Hero — real Dashboard screenshot in iPhone frame -->
     <div class="hero__visual">
-      <div class="iphone-frame">
-        <div class="iphone-side iphone-side--left">
-          <div class="iphone-btn-vol"></div>
-          <div class="iphone-btn-vol"></div>
-          <div class="iphone-btn-silent"></div>
-        </div>
-        <div class="iphone-side iphone-side--right">
-          <div class="iphone-btn-power"></div>
-        </div>
-        <div class="iphone-inner">
-          <div class="iphone-notch">
-            <div class="iphone-camera"></div>
+      <div class="iphone-wrap iphone-wrap--hero">
+        <div class="iphone-frame">
+          <div class="iphone-screen-wrap">
+            <div class="iphone-island"></div>
+            <img src="screenshot-dashboard.jpeg" alt="Norxten Core app — Dashboard" loading="eager">
           </div>
-          <div class="iphone-screen">
-            <img src="screenshot-dashboard.jpeg" alt="Norxten Core app dashboard" loading="eager">
-          </div>
-          <div class="iphone-home-indicator"></div>
         </div>
       </div>
     </div>
   </div>
-</section>
-
 </section>
 
 <!-- Stats bar -->
@@ -822,43 +702,24 @@
         </div>
       </div>
 
-      <!-- Two stacked app screen mockups -->
       <!-- Two real app screenshots in iPhone frames -->
-      <div style="display:flex;flex-direction:column;gap:32px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:24px;align-items:center">
 
-        <div class="iphone-frame iphone-frame--sm">
-          <div class="iphone-side iphone-side--left">
-            <div class="iphone-btn-vol"></div>
-            <div class="iphone-btn-vol"></div>
-            <div class="iphone-btn-silent"></div>
-          </div>
-          <div class="iphone-side iphone-side--right">
-            <div class="iphone-btn-power"></div>
-          </div>
-          <div class="iphone-inner">
-            <div class="iphone-notch"><div class="iphone-camera"></div></div>
-            <div class="iphone-screen">
-              <img src="screenshot-crew.png" alt="Norxten Core crew management">
+        <div class="iphone-wrap iphone-wrap--sm">
+          <div class="iphone-frame">
+            <div class="iphone-screen-wrap">
+              <div class="iphone-island"></div>
+              <img src="screenshot-crew.png" alt="Norxten Core — Crew Management">
             </div>
-            <div class="iphone-home-indicator"></div>
           </div>
         </div>
 
-        <div class="iphone-frame iphone-frame--sm">
-          <div class="iphone-side iphone-side--left">
-            <div class="iphone-btn-vol"></div>
-            <div class="iphone-btn-vol"></div>
-            <div class="iphone-btn-silent"></div>
-          </div>
-          <div class="iphone-side iphone-side--right">
-            <div class="iphone-btn-power"></div>
-          </div>
-          <div class="iphone-inner">
-            <div class="iphone-notch"><div class="iphone-camera"></div></div>
-            <div class="iphone-screen">
-              <img src="screenshot-punch.png" alt="Norxten Core employee punch-in">
+        <div class="iphone-wrap iphone-wrap--sm">
+          <div class="iphone-frame">
+            <div class="iphone-screen-wrap">
+              <div class="iphone-island"></div>
+              <img src="screenshot-punch.png" alt="Norxten Core — Employee Punch-in">
             </div>
-            <div class="iphone-home-indicator"></div>
           </div>
         </div>
 
