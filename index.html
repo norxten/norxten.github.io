@@ -1171,7 +1171,7 @@ const T = {
 };
 
 // ── Lang ──────────────────────────────────────────────────────
-let lang = localStorage.getItem('nx-lang') || (navigator.language||'en').toLowerCase().startsWith('fr') ? 'fr' : 'en';
+let lang = localStorage.getItem('nx-lang') || 'en';
 function setLang(l) {
   lang = l;
   localStorage.setItem('nx-lang', l);
