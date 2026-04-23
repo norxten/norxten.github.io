@@ -76,6 +76,17 @@
   </style>
 </head>
 <body>
+
+<script>
+// Language persistence
+(function() {
+  var saved = localStorage.getItem('nx-lang');
+  if (saved === 'fr') {
+    var page = window.location.pathname.split('/').pop() || 'index.html';
+    window.location.replace('fr/' + page);
+  }
+})();
+</script>
 <nav id="nav">
   <div class="container nav-inner">
     <a class="nav-brand" href="index.html">

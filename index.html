@@ -704,6 +704,17 @@
 </head>
 <body>
 
+<script>
+// Language persistence
+(function() {
+  var saved = localStorage.getItem('nx-lang');
+  if (saved === 'fr') {
+    var page = window.location.pathname.split('/').pop() || 'index.html';
+    window.location.replace('fr/' + page);
+  }
+})();
+</script>
+
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- NAV                                                        -->
 <!-- ══════════════════════════════════════════════════════════ -->
@@ -723,7 +734,7 @@
     </ul>
     <div class="nav-right">
       <div class="lang-toggle">
-        <button class="lang-btn active">EN</button>
+        <button class="lang-btn active" onclick="localStorage.removeItem('nx-lang')">EN</button>
         <button class="lang-btn" onclick="window.location.href='fr/index.html'">FR</button>
       </div>
       <button class="btn-nav" data-i18n="nav_cta">Get started</button>
