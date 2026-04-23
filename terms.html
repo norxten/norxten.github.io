@@ -3,80 +3,203 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Terms of Service — Norxten Technologies Inc.</title>
-  <link rel="stylesheet" href="css/main.css">
+  <title>Terms of Service — Norxten Core</title>
+  <meta name="description" content="Terms of Service for Norxten Core, operated by Norxten Technologies Inc.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', Helvetica, sans-serif; background: #fff; color: #1a2630; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+    :root { --navy:#314657; --navy-dk:#233342; --darkest:#1a2630; --accent:#2D9CDB; --accent-d:#1e85c0; --light-bg:#f7f8fa; --border:rgba(255,255,255,0.10); --mid:rgba(255,255,255,0.55); --max-w:1160px; --nav-h:64px; }
+    .container { width:100%; max-width:var(--max-w); margin:0 auto; padding:0 32px; }
+    #nav { position:fixed; top:0; left:0; right:0; height:var(--nav-h); background:var(--navy); z-index:1000; border-bottom:1px solid var(--border); transition:box-shadow .2s; }
+    #nav.scrolled { box-shadow:0 2px 24px rgba(0,0,0,.35); }
+    .nav-inner { display:flex; align-items:center; height:100%; }
+    .nav-brand { display:flex; align-items:flex-start; flex-direction:column; gap:1px; flex-shrink:0; margin-right:auto; }
+    .nav-brand img { height:28px; filter:brightness(0) invert(1); }
+    .nav-links { display:flex; list-style:none; gap:2px; position:absolute; left:50%; transform:translateX(-50%); }
+    .nav-links a { font-size:.88rem; font-weight:500; color:var(--mid); padding:6px 14px; border-radius:7px; transition:color .15s, background .15s; }
+    .nav-links a:hover { color:#fff; background:rgba(255,255,255,.08); }
+    .nav-right { display:flex; align-items:center; gap:10px; margin-left:auto; }
+    .lang-toggle { display:flex; background:rgba(255,255,255,.07); border:1px solid var(--border); border-radius:7px; overflow:hidden; }
+    .lang-toggle button { font-family:'DM Sans',sans-serif; padding:5px 11px; font-size:.78rem; font-weight:600; color:var(--mid); cursor:pointer; border:none; background:none; transition:all .15s; }
+    .lang-toggle button.active { background:var(--accent); color:#fff; }
+    .btn-nav { font-family:'DM Sans',sans-serif; background:var(--accent); color:#fff; padding:8px 18px; border-radius:8px; font-size:.85rem; font-weight:600; border:none; cursor:pointer; }
+    .page-hero { background:var(--navy); padding:calc(var(--nav-h) + 72px) 0 64px; position:relative; overflow:hidden; }
+    .page-hero::before { content:''; position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px); background-size:48px 48px; pointer-events:none; }
+    .page-hero-eyebrow { font-size:.72rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:16px; position:relative; }
+    .page-hero h1 { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.8rem,4vw,2.6rem); font-weight:800; color:#fff; line-height:1.12; letter-spacing:-0.03em; margin-bottom:12px; position:relative; }
+    .page-hero-sub { font-size:.95rem; color:var(--mid); line-height:1.7; position:relative; }
+    .legal-wrap { max-width:760px; margin:0 auto; padding:64px 32px 80px; }
+    .legal-lang { display:flex; gap:8px; margin-bottom:40px; }
+    .legal-lang a { padding:6px 16px; border-radius:7px; font-size:.82rem; font-weight:600; border:1.5px solid #e0e4e8; color:#6b7a8a; transition:all .15s; }
+    .legal-lang a.active, .legal-lang a:hover { background:var(--navy); color:#fff; border-color:var(--navy); }
+    .legal-body h2 { font-family:'Space Grotesk',sans-serif; font-size:1.05rem; font-weight:700; color:#1a2630; margin:36px 0 10px; padding-bottom:6px; border-bottom:1px solid #e4e7ec; }
+    .legal-body h3 { font-size:.95rem; font-weight:600; color:#1a2630; margin:20px 0 8px; }
+    .legal-body p { font-size:.9rem; color:#4a5568; line-height:1.8; margin-bottom:12px; }
+    .legal-body ul { margin:8px 0 14px 20px; }
+    .legal-body li { font-size:.9rem; color:#4a5568; margin-bottom:6px; line-height:1.7; }
+    .legal-body strong { color:#1a2630; font-weight:600; }
+    .legal-meta { background:var(--light-bg); border:1px solid #e4e7ec; border-radius:10px; padding:16px 20px; margin-bottom:36px; font-size:.85rem; color:#6b7a8a; }
+    .legal-meta strong { color:#1a2630; }
+    #footer { background:var(--darkest); padding:48px 0 28px; }
+    .footer-grid { display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:48px; margin-bottom:36px; }
+    .footer-brand img { height:28px; filter:brightness(0) invert(1); opacity:.7; margin-bottom:14px; }
+    .footer-brand p { font-size:.85rem; color:rgba(255,255,255,.45); line-height:1.7; max-width:220px; }
+    .footer-col h5 { font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.35); margin-bottom:14px; }
+    .footer-col ul { list-style:none; }
+    .footer-col li { margin-bottom:9px; }
+    .footer-col a { font-size:.87rem; color:rgba(255,255,255,.55); transition:color .15s; }
+    .footer-col a:hover { color:#fff; }
+    .footer-bottom { border-top:1px solid rgba(255,255,255,.07); padding-top:22px; font-size:.82rem; color:rgba(255,255,255,.35); }
+    @media(max-width:900px) { .footer-grid { grid-template-columns:1fr 1fr; } }
+    @media(max-width:640px) { .nav-links { display:none; } .container { padding:0 20px; } .footer-grid { grid-template-columns:1fr; } .legal-wrap { padding:40px 20px 60px; } }
+  </style>
 </head>
-<body>
-<div style="padding-top:var(--nav-h)"></div>
-<div class="legal-content">
-  <span class="label">Legal</span>
-  <h1>Terms of Service</h1>
-  <p class="legal-date">Norxten Technologies Inc. — Effective: April 22, 2026</p>
-
-  <p>These Terms of Service ("Terms") govern your use of the Norxten Core application and the norxten.com website (collectively, the "Services") provided by Norxten Technologies Inc. ("Norxten", "we", "us", or "our"), a company incorporated in Quebec, Canada.</p>
-  <p>By creating an account or using our Services, you agree to be bound by these Terms. If you do not agree, do not use the Services.</p>
-
-  <h2>1. Use of Services</h2>
-  <p>You must be at least 18 years old and legally capable of entering into a binding agreement to use our Services. By using our Services, you represent that you meet these requirements.</p>
-  <p>You agree to use the Services only for lawful business purposes and in accordance with these Terms. You may not use the Services to violate any applicable laws or regulations.</p>
-
-  <h2>2. Accounts</h2>
-  <p>You are responsible for maintaining the confidentiality of your account credentials and for all activity that occurs under your account. You agree to notify us immediately at <a href="mailto:support@norxten.com" style="color:var(--blue);">support@norxten.com</a> of any unauthorized use of your account.</p>
-  <p>You are responsible for ensuring that all users you invite to your account comply with these Terms.</p>
-
-  <h2>3. Subscription Plans and Billing</h2>
-  <p>Norxten Core is offered on a subscription basis. Plan details and pricing are available at norxten.com. All prices are in Canadian dollars (CAD) unless otherwise stated.</p>
-  <p>An "active employee" is defined as any worker who clocks in at least once during a billing month. You may add or remove employees at any time; billing is based on the number of active employees in any given month.</p>
-  <p>Annual subscriptions are billed upfront for the full year. Monthly subscriptions are billed at the start of each billing cycle. All fees are non-refundable except as required by applicable law or as expressly stated in these Terms.</p>
-  <p>We reserve the right to change pricing with 30 days' notice. Continued use of the Services after a price change constitutes acceptance of the new pricing.</p>
-
-  <h2>4. Free Trial</h2>
-  <p>We may offer a free trial period for new accounts. At the end of the trial, you will be asked to select a paid plan to continue using the Services. We reserve the right to modify or discontinue trial offers at any time.</p>
-
-  <h2>5. Your Data</h2>
-  <p>You retain ownership of all data you enter into the Services, including employee records, project data, receipts, and financial information. By using the Services, you grant Norxten a limited license to store and process your data solely for the purpose of providing the Services.</p>
-  <p>You are responsible for the accuracy and legality of all data you enter, including employee information and financial records.</p>
-
-  <h2>6. GPS and Location Data</h2>
-  <p>Norxten Core uses GPS location data to validate work sessions. By enabling GPS features, you consent to the collection of location data as described in our Privacy Policy. You are responsible for obtaining any necessary consents from your employees before enabling GPS-based work session validation.</p>
-
-  <h2>7. Acceptable Use</h2>
-  <p>You agree not to:</p>
-  <ul>
-    <li>Attempt to reverse-engineer, decompile, or disassemble any part of the Services</li>
-    <li>Use the Services to store or transmit unlawful, defamatory, or fraudulent content</li>
-    <li>Interfere with or disrupt the integrity or performance of the Services</li>
-    <li>Attempt to gain unauthorized access to any system or network</li>
-    <li>Use the Services on behalf of a competitor for competitive analysis</li>
-  </ul>
-
-  <h2>8. Intellectual Property</h2>
-  <p>All software, interfaces, logos, trademarks, and content comprising the Services are the property of Norxten Technologies Inc. or its licensors. Nothing in these Terms transfers any intellectual property rights to you.</p>
-
-  <h2>9. Disclaimers</h2>
-  <p>The Services are provided "as is" without warranties of any kind, express or implied. We do not warrant that the Services will be uninterrupted, error-free, or completely secure.</p>
-  <p>OCR-based cost capture is provided as a convenience. You are responsible for verifying the accuracy of all captured data before relying on it for financial, payroll, or legal purposes.</p>
-
-  <h2>10. Limitation of Liability</h2>
-  <p>To the maximum extent permitted by applicable law, Norxten Technologies Inc. shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the Services, even if we have been advised of the possibility of such damages.</p>
-  <p>Our total liability to you for any claim arising from these Terms or the Services shall not exceed the total fees paid by you to Norxten in the twelve months preceding the claim.</p>
-
-  <h2>11. Termination</h2>
-  <p>You may cancel your account at any time through the app or by contacting support. We may suspend or terminate your account if you violate these Terms, with or without notice.</p>
-  <p>Upon termination, your access to the Services will cease. We will retain your data for 90 days after termination to allow for export requests, after which it will be deleted.</p>
-
-  <h2>12. Governing Law</h2>
-  <p>These Terms are governed by the laws of the Province of Quebec and the federal laws of Canada applicable therein, without regard to conflict of law principles.</p>
-
-  <h2>13. Changes to Terms</h2>
-  <p>We may update these Terms from time to time. We will notify you of material changes by email or in-app notification. Continued use of the Services after changes are posted constitutes acceptance of the updated Terms.</p>
-
-  <h2>14. Contact</h2>
-  <p>For questions about these Terms, contact:</p>
-  <p><strong>Norxten Technologies Inc.</strong><br>Quebec, Canada<br>Email: <a href="mailto:info@norxten.com" style="color:var(--blue);">info@norxten.com</a></p>
+<body><nav id="nav">
+  <div class="container nav-inner">
+    <a class="nav-brand" href="index.html">
+      <img src="assets/Norxten-Logo-White.png" alt="Norxten" onerror="this.style.display='none'">
+      <span style="font-size:.6rem;font-weight:500;color:rgba(255,255,255,.4);letter-spacing:.06em;font-family:'DM Sans',sans-serif;">Technologies Inc.</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="support.html">Support</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="localStorage.removeItem('nx-lang')">EN</button>
+        <button class="lang-btn" onclick="localStorage.removeItem('nx-lang');window.location.href='fr/terms.html'">FR</button>
+      </div>
+      <button class="btn-nav">Get started</button>
+    </div>
+  </div>
+</nav>
+<div style="background:var(--navy);padding:calc(var(--nav-h) + 72px) 0 64px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;"></div>
+  <div class="container" style="position:relative;">
+    <div style="font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">Legal</div>
+    <h1 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;color:#fff;line-height:1.12;letter-spacing:-0.03em;margin-bottom:12px;">Terms of Service</h1>
+    <p style="font-size:.95rem;color:var(--mid);">Norxten Core &mdash; Norxten Technologies Inc.</p>
+  </div>
 </div>
 
-<script src="js/site.js"></script>
-<script>siteInit('');</script>
-</body>
-</html>
+<div class="legal-wrap">
+  <div class="legal-lang">
+    <a href="terms.html" class="active">EN &mdash; English</a>
+    <a href="fr/terms.html">FR &mdash; Fran&ccedil;ais</a>
+  </div>
+  <div class="legal-meta">
+    <strong>Last Updated:</strong> April 23, 2026 &nbsp;&nbsp; <strong>Effective Date:</strong> April 23, 2026
+  </div>
+  <div class="legal-body">
+
+    <p>These Terms of Service (&ldquo;<strong>Terms</strong>&rdquo;) form a legally binding agreement between you and <strong>Norxten Technologies Inc.</strong> (hereinafter, &ldquo;<strong>Norxten</strong>&rdquo;). If you do not agree to these Terms, do not access or use <strong>Norxten Core</strong>.</p>
+
+    <h2>1. Corporate Status</h2>
+    <p><strong>Norxten</strong> is a federally incorporated Canadian company with an office in Quebec, Canada, and registered in Quebec.</p>
+
+    <h2>2. Business Service; Authority</h2>
+    <p><strong>Norxten Core</strong> is intended primarily for commercial and business use by contractors, construction companies, and similar organizations. If you access or use <strong>Norxten Core</strong> on behalf of a company or organization, you represent and warrant that you have the required authority to bind that entity to these Terms.</p>
+
+    <h2>3. Eligibility</h2>
+    <p>You must be at least 18 years old and legally capable of entering into a binding agreement to create an account or use <strong>Norxten Core</strong>.</p>
+
+    <h2>4. The Service</h2>
+    <p><strong>Norxten Core</strong> is a project management, receipt, labour, crew, and cost management application for general contractors and similar business users.</p>
+
+    <h2>5. Account Registration and Security</h2>
+    <p>You must provide accurate, current, and complete information when creating an account. You are responsible for maintaining the confidentiality of your credentials and for all activity under your account. You must notify <strong>Norxten</strong> promptly of any unauthorized use or security breach at <a href="mailto:support@norxten.com" style="color:var(--accent);">support@norxten.com</a>.</p>
+
+    <h2>6. Customer Data</h2>
+    <p>You retain ownership of all data, content, receipts, invoices, project information, labour records, and other information you upload, submit, or generate through <strong>Norxten Core</strong> (&ldquo;<strong>Customer Data</strong>&rdquo;). You grant <strong>Norxten</strong> a limited right to store, process, and use Customer Data solely to provide, maintain, secure, and improve <strong>Norxten Core</strong>.</p>
+    <p>You represent and warrant that you have all necessary rights, authorizations, permissions, and consents to upload and process Customer Data through <strong>Norxten Core</strong>, including any employee, contractor, GPS, or location data.</p>
+
+    <h2>7. Employee and Workplace Data</h2>
+    <p>If you use <strong>Norxten Core</strong> to collect employee or contractor data, including GPS and location events, work sessions, timekeeping records, or related data, you are solely responsible for providing required workplace notices, obtaining required permissions, and complying with applicable employment, privacy, and labour laws and regulations.</p>
+
+    <h2>8. Subscriptions, Billing, and Cancellation</h2>
+    <p>Access to <strong>Norxten Core</strong> features may require a paid subscription, which may be offered through the Apple App Store, Google Play, or another distribution channel selected by <strong>Norxten</strong>.</p>
+    <p>Subscriptions may renew automatically unless cancelled before the renewal date in accordance with the rules of the platform through which the subscription was purchased. Except as required by applicable law or platform rules, fees are non-refundable and cancellations take effect at the end of the then-current billing period.</p>
+
+    <h2>9. Acceptable Use</h2>
+    <p>You must not use <strong>Norxten Core</strong> for any unlawful, fraudulent, or unauthorized purpose, interfere with the security or operation of the service, reverse engineer or attempt to derive source code, upload malware or harmful code, or scrape or bulk extract data except through authorized features.</p>
+
+    <h2>10. Service Changes</h2>
+    <p><strong>Norxten</strong> may add, modify, suspend, restrict, or discontinue features of <strong>Norxten Core</strong> from time to time. Some features may be plan-limited, platform-limited, or temporarily unavailable.</p>
+
+    <h2>11. Support and Communications</h2>
+    <p><strong>Norxten</strong> may send service-related, transactional, legal, operational, or security communications by in-app notice, email, push notification, or other reasonable means.</p>
+
+    <h2>12. Suspension and Termination</h2>
+    <p><strong>Norxten</strong> may suspend, restrict, or terminate access to <strong>Norxten Core</strong> immediately, with or without notice, if <strong>Norxten</strong> reasonably believes you violated these Terms, your use poses a legal or security risk, payment is overdue, or suspension is necessary to protect <strong>Norxten</strong>, users, or third parties.</p>
+
+    <h2>13. Exports, Reports, and Archive Data</h2>
+    <p><strong>Norxten Core</strong> may provide report, export, archive, CSV, PDF, and similar output features depending on the plan and feature availability. You are responsible for exporting and preserving your own records where necessary for business, accounting, tax, legal, or compliance purposes.</p>
+
+    <h2>14. Third-Party Services</h2>
+    <p><strong>Norxten Core</strong> may integrate with or depend on third-party products and services, including app stores, cloud infrastructure, OCR/AI providers, notification providers, analytics/monitoring tools, and subscription/billing providers. <strong>Norxten</strong> is not responsible for third-party products or services except to the extent required by law.</p>
+
+    <h2>15. Intellectual Property</h2>
+    <p><strong>Norxten Core</strong>, including its software, design, workflows, interfaces, content, branding, and related technology, is owned by <strong>Norxten</strong> or its licensors and is protected by applicable intellectual property laws. Except for the limited rights expressly granted in these Terms, no rights are granted to you by implication or otherwise.</p>
+
+    <h2>16. Feedback</h2>
+    <p>If you provide feedback, suggestions, or feature requests regarding <strong>Norxten Core</strong>, you grant <strong>Norxten</strong> a worldwide, perpetual, irrevocable, royalty-free right to use and exploit that feedback without restriction or compensation.</p>
+
+    <h2>17. Privacy</h2>
+    <p>Use of <strong>Norxten Core</strong> is also subject to the <a href="privacy.html" style="color:var(--accent);">Norxten Core Privacy Policy</a>.</p>
+
+    <h2>18. No Professional Advice</h2>
+    <p><strong>Norxten Core</strong> and any outputs generated through it, including OCR results, extracted data, calculations, flags, reports, alerts, or exports, are provided for operational convenience and information purposes only. <strong>Norxten</strong> does not provide legal, accounting, payroll, tax, employment, safety, or professional advice. You are strictly responsible for reviewing, verifying, and correcting all data before relying on it for financial, tax, payroll, project, or business purposes.</p>
+
+    <h2>19. Disclaimer of Warranties</h2>
+    <p>To the maximum extent permitted by applicable law, <strong>Norxten Core</strong> is provided &ldquo;as is&rdquo; and &ldquo;as available&rdquo; without warranties of any kind, whether express, implied, or statutory, including warranties of merchantability, fitness for a particular purpose, accuracy, or non-infringement. <strong>Norxten</strong> does not warrant that <strong>Norxten Core</strong> will be uninterrupted, error-free, secure, or that any particular feature or output will be available or accurate.</p>
+
+    <h2>20. Limitation of Liability</h2>
+    <p>To the maximum extent permitted by applicable law, <strong>Norxten</strong> will not be liable for any indirect, incidental, special, consequential, exemplary, or punitive damages, including loss of profits, data, business, goodwill, or other intangible losses, arising out of or relating to <strong>Norxten Core</strong> or these Terms.</p>
+    <p><strong>Norxten&rsquo;s</strong> total aggregate liability will not exceed the greater of: (1) the total amounts paid by you to <strong>Norxten</strong> for <strong>Norxten Core</strong> in the 12 months immediately preceding the event giving rise to the claim; or (2) <strong>CAD $500</strong>.</p>
+
+    <h2>21. Indemnity</h2>
+    <p>You agree to defend, indemnify, and hold harmless <strong>Norxten</strong>, its affiliates, and its directors, officers, employees, and agents from and against claims, liabilities, losses, damages, and expenses arising out of or relating to your Customer Data, your breach of these Terms, your unlawful or unauthorized use of <strong>Norxten Core</strong>, or your violation of applicable law or third-party rights.</p>
+
+    <h2>22. Governing Law and Forum</h2>
+    <p>These Terms are governed by the laws of the Province of Quebec and the federal laws of Canada applicable therein, without regard to conflict-of-laws principles. Subject to applicable law, you and <strong>Norxten</strong> irrevocably attorn to the exclusive jurisdiction of the courts of <strong>Montreal, Quebec, Canada</strong>.</p>
+
+    <h2>23. Changes to These Terms</h2>
+    <p><strong>Norxten</strong> may update these Terms from time to time. If material changes are made, <strong>Norxten</strong> may provide notice by updating the &ldquo;Last Updated&rdquo; date, posting notice in <strong>Norxten Core</strong>, or sending an email. Your continued use of <strong>Norxten Core</strong> after updated Terms become effective constitutes acceptance of the updated Terms to the extent permitted by law.</p>
+
+    <h2>24. Assignment</h2>
+    <p>You may not assign or transfer these Terms without <strong>Norxten&rsquo;s</strong> prior written consent. <strong>Norxten</strong> may assign these Terms in connection with a merger, acquisition, reorganization, or sale of assets.</p>
+
+    <h2>25. Severability and Entire Agreement</h2>
+    <p>If any provision of these Terms is held invalid or unenforceable, the remaining provisions will remain in effect. These Terms, together with the Privacy Policy and any additional feature-specific terms presented by <strong>Norxten</strong>, constitute the entire agreement between you and <strong>Norxten</strong> regarding <strong>Norxten Core</strong>.</p>
+
+    <h2>26. Contact</h2>
+    <p><strong>Norxten Technologies Inc.</strong><br>
+    Email: <a href="mailto:legal@norxten.com" style="color:var(--accent);">legal@norxten.com</a></p>
+
+  </div>
+</div>
+<footer id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/Norxten-Logo-White.png" alt="Norxten" onerror="this.outerHTML='<span style=&quot;font-size:1.1rem;font-weight:700;color:#fff;font-family:Space Grotesk,sans-serif;&quot;>Norxten</span>'">
+        <p>Building practical software for general contractors.</p>
+      </div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h5>Product</h5><ul><li><a href="products.html">Products</a></li><li><a href="norxten-core.html">Norxten Core app</a></li><li><a href="support.html">Support</a></li></ul></div>
+      <div class="footer-col"><h5>Legal</h5><ul><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li><li><a href="fr/privacy.html">Politique de confidentialité</a></li><li><a href="fr/terms.html">Conditions d'utilisation</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">© 2026 Norxten Technologies Inc. All rights reserved.</div>
+  </div>
+</footer><script>
+window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', scrollY > 10); }, { passive: true });
+</script></body></html>

@@ -3,74 +3,226 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy — Norxten Technologies Inc.</title>
-  <link rel="stylesheet" href="css/main.css">
+  <title>Privacy Policy — Norxten Core</title>
+  <meta name="description" content="Privacy Policy for Norxten Core, operated by Norxten Technologies Inc.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', Helvetica, sans-serif; background: #fff; color: #1a2630; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+    :root { --navy:#314657; --navy-dk:#233342; --darkest:#1a2630; --accent:#2D9CDB; --accent-d:#1e85c0; --light-bg:#f7f8fa; --border:rgba(255,255,255,0.10); --mid:rgba(255,255,255,0.55); --max-w:1160px; --nav-h:64px; }
+    .container { width:100%; max-width:var(--max-w); margin:0 auto; padding:0 32px; }
+    #nav { position:fixed; top:0; left:0; right:0; height:var(--nav-h); background:var(--navy); z-index:1000; border-bottom:1px solid var(--border); transition:box-shadow .2s; }
+    #nav.scrolled { box-shadow:0 2px 24px rgba(0,0,0,.35); }
+    .nav-inner { display:flex; align-items:center; height:100%; }
+    .nav-brand { display:flex; align-items:flex-start; flex-direction:column; gap:1px; flex-shrink:0; margin-right:auto; }
+    .nav-brand img { height:28px; filter:brightness(0) invert(1); }
+    .nav-links { display:flex; list-style:none; gap:2px; position:absolute; left:50%; transform:translateX(-50%); }
+    .nav-links a { font-size:.88rem; font-weight:500; color:var(--mid); padding:6px 14px; border-radius:7px; transition:color .15s, background .15s; }
+    .nav-links a:hover { color:#fff; background:rgba(255,255,255,.08); }
+    .nav-right { display:flex; align-items:center; gap:10px; margin-left:auto; }
+    .lang-toggle { display:flex; background:rgba(255,255,255,.07); border:1px solid var(--border); border-radius:7px; overflow:hidden; }
+    .lang-toggle button { font-family:'DM Sans',sans-serif; padding:5px 11px; font-size:.78rem; font-weight:600; color:var(--mid); cursor:pointer; border:none; background:none; transition:all .15s; }
+    .lang-toggle button.active { background:var(--accent); color:#fff; }
+    .btn-nav { font-family:'DM Sans',sans-serif; background:var(--accent); color:#fff; padding:8px 18px; border-radius:8px; font-size:.85rem; font-weight:600; border:none; cursor:pointer; }
+    .page-hero { background:var(--navy); padding:calc(var(--nav-h) + 72px) 0 64px; position:relative; overflow:hidden; }
+    .page-hero::before { content:''; position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px); background-size:48px 48px; pointer-events:none; }
+    .page-hero-eyebrow { font-size:.72rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:16px; position:relative; }
+    .page-hero h1 { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.8rem,4vw,2.6rem); font-weight:800; color:#fff; line-height:1.12; letter-spacing:-0.03em; margin-bottom:12px; position:relative; }
+    .page-hero-sub { font-size:.95rem; color:var(--mid); line-height:1.7; position:relative; }
+    .legal-wrap { max-width:760px; margin:0 auto; padding:64px 32px 80px; }
+    .legal-lang { display:flex; gap:8px; margin-bottom:40px; }
+    .legal-lang a { padding:6px 16px; border-radius:7px; font-size:.82rem; font-weight:600; border:1.5px solid #e0e4e8; color:#6b7a8a; transition:all .15s; }
+    .legal-lang a.active, .legal-lang a:hover { background:var(--navy); color:#fff; border-color:var(--navy); }
+    .legal-body h2 { font-family:'Space Grotesk',sans-serif; font-size:1.05rem; font-weight:700; color:#1a2630; margin:36px 0 10px; padding-bottom:6px; border-bottom:1px solid #e4e7ec; }
+    .legal-body h3 { font-size:.95rem; font-weight:600; color:#1a2630; margin:20px 0 8px; }
+    .legal-body p { font-size:.9rem; color:#4a5568; line-height:1.8; margin-bottom:12px; }
+    .legal-body ul { margin:8px 0 14px 20px; }
+    .legal-body li { font-size:.9rem; color:#4a5568; margin-bottom:6px; line-height:1.7; }
+    .legal-body strong { color:#1a2630; font-weight:600; }
+    .legal-meta { background:var(--light-bg); border:1px solid #e4e7ec; border-radius:10px; padding:16px 20px; margin-bottom:36px; font-size:.85rem; color:#6b7a8a; }
+    .legal-meta strong { color:#1a2630; }
+    #footer { background:var(--darkest); padding:48px 0 28px; }
+    .footer-grid { display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:48px; margin-bottom:36px; }
+    .footer-brand img { height:28px; filter:brightness(0) invert(1); opacity:.7; margin-bottom:14px; }
+    .footer-brand p { font-size:.85rem; color:rgba(255,255,255,.45); line-height:1.7; max-width:220px; }
+    .footer-col h5 { font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.35); margin-bottom:14px; }
+    .footer-col ul { list-style:none; }
+    .footer-col li { margin-bottom:9px; }
+    .footer-col a { font-size:.87rem; color:rgba(255,255,255,.55); transition:color .15s; }
+    .footer-col a:hover { color:#fff; }
+    .footer-bottom { border-top:1px solid rgba(255,255,255,.07); padding-top:22px; font-size:.82rem; color:rgba(255,255,255,.35); }
+    @media(max-width:900px) { .footer-grid { grid-template-columns:1fr 1fr; } }
+    @media(max-width:640px) { .nav-links { display:none; } .container { padding:0 20px; } .footer-grid { grid-template-columns:1fr; } .legal-wrap { padding:40px 20px 60px; } }
+  </style>
 </head>
-<body>
-<div style="padding-top:var(--nav-h)"></div>
-<div class="legal-content">
-  <span class="label">Legal</span>
-  <h1>Privacy Policy</h1>
-  <p class="legal-date">Norxten Technologies Inc. — Effective: April 22, 2026</p>
-
-  <p>Norxten Technologies Inc. ("Norxten", "we", "us", or "our") is committed to protecting the privacy of users of our products and website. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use Norxten Core or visit norxten.com.</p>
-  <p>By using our services, you agree to the collection and use of information in accordance with this policy. If you do not agree, please do not use our services.</p>
-
-  <h2>1. Information We Collect</h2>
-  <h3>Account Information</h3>
-  <p>When you create a Norxten account, we collect your name, email address, and organization name. You may also provide a phone number and billing information.</p>
-  <h3>Employee and Crew Data</h3>
-  <p>If you use Norxten Core to manage workers, you may enter employee names, roles, and work schedules. This data is entered by you and is under your control.</p>
-  <h3>Location Data</h3>
-  <p>Norxten Core uses GPS to validate work sessions. Location data is collected only when a user actively clocks in or clocks out. We do not continuously track device location in the background.</p>
-  <h3>Usage Data</h3>
-  <p>We collect information about how you interact with our app and website, including pages visited, features used, device type, operating system, and app version. This data helps us improve the product.</p>
-  <h3>Financial and Project Data</h3>
-  <p>Cost data, receipts, invoice images, and project budgets that you enter into Norxten Core are stored securely and are accessible only to authorized users within your account.</p>
-
-  <h2>2. How We Use Your Information</h2>
-  <ul>
-    <li>To provide and operate the Norxten Core application</li>
-    <li>To validate work sessions using GPS coordinates</li>
-    <li>To process OCR on receipts and invoices you submit</li>
-    <li>To generate project reports and dashboards</li>
-    <li>To send transactional emails (account confirmations, billing receipts)</li>
-    <li>To respond to support requests</li>
-    <li>To improve our products through aggregated, anonymized analytics</li>
-    <li>To comply with applicable law</li>
-  </ul>
-  <p>We do not sell your personal information to third parties.</p>
-
-  <h2>3. Data Storage and Security</h2>
-  <p>Your data is stored on secure cloud infrastructure. We use industry-standard encryption for data in transit (TLS) and at rest. Access to production data is strictly limited to authorized personnel.</p>
-  <p>While we take reasonable precautions, no method of transmission over the internet is 100% secure. We cannot guarantee absolute security.</p>
-
-  <h2>4. Data Retention</h2>
-  <p>We retain your account data for as long as your account is active or as needed to provide services. If you close your account, we will delete your personal data within 90 days, except where we are required to retain it by law.</p>
-
-  <h2>5. Sharing of Information</h2>
-  <p>We do not sell, trade, or rent your personal information. We may share data with:</p>
-  <ul>
-    <li><strong>Service providers</strong> who assist us in operating our platform (e.g., cloud hosting, payment processing, analytics), under strict confidentiality agreements.</li>
-    <li><strong>Legal authorities</strong> if required by applicable law, court order, or to protect the rights and safety of Norxten or its users.</li>
-  </ul>
-
-  <h2>6. Your Rights</h2>
-  <p>Depending on your province or country of residence, you may have rights to access, correct, or delete your personal data. To exercise these rights, contact us at <a href="mailto:privacy@norxten.com" style="color:var(--blue);">privacy@norxten.com</a> or <a href="mailto:info@norxten.com" style="color:var(--blue);">info@norxten.com</a>.</p>
-  <p>Quebec residents: This policy is intended to comply with Quebec's Law 25 (Act respecting the protection of personal information in the private sector).</p>
-
-  <h2>7. Children's Privacy</h2>
-  <p>Norxten Core is designed for business use by adults. We do not knowingly collect personal information from individuals under the age of 16. If you believe we have inadvertently collected such information, please contact us immediately.</p>
-
-  <h2>8. Changes to This Policy</h2>
-  <p>We may update this Privacy Policy from time to time. We will notify you of significant changes by email or through a notice in the app. Continued use of our services after changes are posted constitutes your acceptance of the updated policy.</p>
-
-  <h2>9. Contact Us</h2>
-  <p>If you have questions or concerns about this Privacy Policy, please contact:</p>
-  <p><strong>Norxten Technologies Inc.</strong><br>Quebec, Canada<br>Email: <a href="mailto:info@norxten.com" style="color:var(--blue);">info@norxten.com</a></p>
+<body><nav id="nav">
+  <div class="container nav-inner">
+    <a class="nav-brand" href="index.html">
+      <img src="assets/Norxten-Logo-White.png" alt="Norxten" onerror="this.style.display='none'">
+      <span style="font-size:.6rem;font-weight:500;color:rgba(255,255,255,.4);letter-spacing:.06em;font-family:'DM Sans',sans-serif;">Technologies Inc.</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="support.html">Support</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="localStorage.removeItem('nx-lang')">EN</button>
+        <button class="lang-btn" onclick="localStorage.removeItem('nx-lang');window.location.href='fr/privacy.html'">FR</button>
+      </div>
+      <button class="btn-nav">Get started</button>
+    </div>
+  </div>
+</nav>
+<div style="background:var(--navy);padding:calc(var(--nav-h) + 72px) 0 64px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;"></div>
+  <div class="container" style="position:relative;">
+    <div style="font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">Legal</div>
+    <h1 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;color:#fff;line-height:1.12;letter-spacing:-0.03em;margin-bottom:12px;">Privacy Policy</h1>
+    <p style="font-size:.95rem;color:var(--mid);">Norxten Core &mdash; Norxten Technologies Inc.</p>
+  </div>
 </div>
 
-<script src="js/site.js"></script>
-<script>siteInit('');</script>
-</body>
-</html>
+<div class="legal-wrap">
+  <div class="legal-lang">
+    <a href="privacy.html" class="active">EN &mdash; English</a>
+    <a href="fr/privacy.html">FR &mdash; Fran&ccedil;ais</a>
+  </div>
+  <div class="legal-meta">
+    <strong>Last Updated:</strong> April 23, 2026 &nbsp;&nbsp; <strong>Effective Date:</strong> April 23, 2026
+  </div>
+  <div class="legal-body">
+
+    <h2>1. Who We Are</h2>
+    <p><strong>Norxten Technologies Inc.</strong> (hereinafter, &ldquo;<strong>Norxten</strong>&rdquo;) is a federally incorporated Canadian company with an office in Quebec, Canada, and registered in Quebec.</p>
+    <p><strong>Norxten Core</strong> is the mobile application, related web pages, backend services, and associated platform features operated by <strong>Norxten</strong> for general contractors and similar business users.</p>
+    <p>This Privacy Policy explains how <strong>Norxten</strong> collects, uses, discloses, stores, protects, and otherwise processes personal information in connection with <strong>Norxten Core</strong>.</p>
+    <p>For privacy questions, requests, or complaints, contact: <strong>Privacy Officer</strong> &mdash; <a href="mailto:privacy@norxten.com" style="color:var(--accent);">privacy@norxten.com</a></p>
+
+    <h2>2. Scope</h2>
+    <p>This Privacy Policy applies to personal information collected:</p>
+    <ul>
+      <li>when account owners, employees, and other users access or use <strong>Norxten Core</strong></li>
+      <li>when Customer organizations create or administer accounts</li>
+      <li>when users upload receipts, invoices, project data, labour/session data, or related records</li>
+      <li>when users contact support or interact with <strong>Norxten Core</strong></li>
+      <li>through service providers used to operate <strong>Norxten Core</strong></li>
+    </ul>
+    <p>This Privacy Policy does not apply to third-party websites, app stores, payment platforms, or third-party services that have their own privacy notices.</p>
+
+    <h2>3. Business Service Context</h2>
+    <p><strong>Norxten Core</strong> is a business software product. In many cases, the organization that subscribes to and administers <strong>Norxten Core</strong> determines what employee, contractor, project, receipt, and location data is entered into the platform.</p>
+    <ul>
+      <li>the subscribing company or organization (the &ldquo;<strong>Customer</strong>&rdquo;) is responsible for ensuring it has the legal authority to collect and provide the relevant data and to use <strong>Norxten Core</strong> in compliance with applicable law, workplace obligations, and internal policies</li>
+      <li><strong>Norxten</strong> processes personal information in order to provide, secure, support, maintain, and improve <strong>Norxten Core</strong></li>
+    </ul>
+
+    <h2>4. Personal Information We Collect</h2>
+    <h3>A. Account and Identity Information</h3>
+    <ul><li>name, email address, phone number, company name, account role, profile details</li></ul>
+    <h3>B. Project and Financial Information</h3>
+    <ul><li>project names, addresses, budgets, dates, cost and labour records</li><li>receipt and invoice images, OCR-extracted text and structured fields</li><li>vendor names, dates, subtotals, totals, tax data, descriptions</li></ul>
+    <h3>C. Workforce and Session Information</h3>
+    <ul><li>employee invitation and account administration data</li><li>work session, travel session, and time records</li><li>punch-in, punch-out, travel, and arrival event records</li></ul>
+    <h3>D. Location Information</h3>
+    <ul><li>GPS/location data collected at specific workflow events such as punch-in, punch-out, travel start, and arrival confirmations, where enabled and permitted on the device</li></ul>
+    <h3>E. Technical and Device Information</h3>
+    <ul><li>device type, operating system, app version, push notification token, authentication/session information, error logs, crash information, diagnostic information</li></ul>
+    <h3>F. Support and Communication Information</h3>
+    <ul><li>support requests, feedback, communications with <strong>Norxten</strong>, troubleshooting details and attachments</li></ul>
+
+    <h2>5. How We Use Personal Information</h2>
+    <p><strong>Norxten</strong> may use personal information to:</p>
+    <ul>
+      <li>provide, operate, and maintain <strong>Norxten Core</strong></li>
+      <li>authenticate users and manage accounts, memberships, and subscriptions</li>
+      <li>process receipts and invoices, including OCR and related parsing/extraction workflows</li>
+      <li>calculate labour costs, overtime, budgets, schedules, and project financials</li>
+      <li>generate project reports, exports, archives, and administrative records</li>
+      <li>manage project, crew, and session workflows</li>
+      <li>send push notifications, alerts, and account/service communications</li>
+      <li>troubleshoot issues, monitor performance, detect abuse, and improve security</li>
+      <li>develop, test, improve, and support <strong>Norxten Core</strong></li>
+      <li>comply with law, enforce agreements, and protect rights, property, and safety</li>
+    </ul>
+
+    <h2>6. Location Data</h2>
+    <p><strong>Norxten Core</strong> may collect precise location data at specific work-related events, such as punch-in, punch-out, travel start, and arrival confirmations, in order to validate the integrity of the related work session or attendance record.</p>
+    <p>Based on the current product design, <strong>Norxten Core</strong> is not intended to continuously track a user&rsquo;s location in the background.</p>
+    <p>If <strong>Norxten Core</strong> is used by an employer or another organization, that organization is responsible for ensuring any required workplace notices, permissions, consents, or authorizations are provided under applicable law.</p>
+
+    <h2>7. Plans, Roles, and Product Features</h2>
+    <p><strong>Norxten Core</strong> supports two user roles: <strong>owner</strong> and <strong>employee</strong>. It offers plan-based access including <strong>Starter</strong>, <strong>Field</strong>, and <strong>Pro</strong>, as well as trial and grace access periods.</p>
+
+    <h2>8. When We Share Personal Information</h2>
+    <h3>A. Within the Customer Organization</h3>
+    <p>To authorized users within the same Customer organization, subject to the role and permissions structure of <strong>Norxten Core</strong>.</p>
+    <h3>B. To Service Providers</h3>
+    <p>To vendors and service providers that help operate <strong>Norxten Core</strong>, including providers of cloud hosting and storage, database infrastructure, OCR or AI-assisted document processing, push notification delivery, subscription and billing management, app store purchase processing, analytics, monitoring, diagnostics, and support tools. These may include Supabase, OCR/AI processing providers, RevenueCat, Apple, Google, and Firebase.</p>
+    <h3>C. For Legal, Security, and Safety Reasons</h3>
+    <p>Where required or permitted by law, including to comply with legal obligations, court orders, or lawful requests, and to investigate suspected fraud, abuse, or security incidents.</p>
+    <h3>D. Business Transactions</h3>
+    <p>In connection with a merger, acquisition, financing, sale of assets, reorganization, or similar business transaction, subject to appropriate confidentiality and legal safeguards.</p>
+    <p><strong>Norxten does not sell personal information.</strong></p>
+
+    <h2>9. Cross-Border Processing</h2>
+    <p><strong>Norxten</strong> and its service providers may process or store personal information in Canada, the United States, or other jurisdictions where <strong>Norxten</strong> or its service providers operate. Where required, <strong>Norxten</strong> uses contractual, organizational, and technical safeguards in connection with cross-border processing.</p>
+
+    <h2>10. Safeguards</h2>
+    <p><strong>Norxten</strong> uses administrative, technical, contractual, and organizational safeguards designed to protect personal information against unauthorized access, disclosure, loss, misuse, or alteration. These may include encryption in transit, access controls, role-based restrictions, session/authentication controls, logging and monitoring, and limited internal access on a need-to-know basis. No method of transmission or storage is completely secure.</p>
+
+    <h2>11. Retention</h2>
+    <p><strong>Norxten</strong> retains personal information for as long as reasonably necessary for the purposes described in this Privacy Policy, including to provide <strong>Norxten Core</strong>, maintain operational and legal records, and comply with legal obligations. Deletion requests remain subject to legal, backup, security, dispute-resolution, and operational retention exceptions.</p>
+
+    <h2>12. Your Rights</h2>
+    <p>Subject to applicable law and verification of identity or authority, you may have the right to:</p>
+    <ul>
+      <li>request access to personal information held by <strong>Norxten</strong></li>
+      <li>request correction of inaccurate personal information</li>
+      <li>withdraw consent where withdrawal is legally available</li>
+      <li>request deletion, subject to lawful exceptions</li>
+      <li>request a copy of your personal information in a structured, machine-readable format</li>
+      <li>file a complaint with an applicable privacy regulator</li>
+    </ul>
+    <p>To exercise a privacy right, contact: <a href="mailto:privacy@norxten.com" style="color:var(--accent);">privacy@norxten.com</a></p>
+
+    <h2>13. Security Incidents</h2>
+    <p>If <strong>Norxten</strong> becomes aware of a security incident involving personal information, <strong>Norxten</strong> may investigate, mitigate, document, and notify affected persons, Customers, regulators, law enforcement, or other parties as required or permitted by applicable law.</p>
+
+    <h2>14. Children</h2>
+    <p><strong>Norxten Core</strong> is a business application and is not intended for children under 18.</p>
+
+    <h2>15. Changes to This Privacy Policy</h2>
+    <p><strong>Norxten</strong> may update this Privacy Policy from time to time. We will post the updated version and update the &ldquo;Last Updated&rdquo; date. Where required, we may provide additional notice.</p>
+
+    <h2>16. Contact</h2>
+    <p><strong>Privacy Officer</strong><br>
+    <strong>Norxten Technologies Inc.</strong><br>
+    Email: <a href="mailto:privacy@norxten.com" style="color:var(--accent);">privacy@norxten.com</a></p>
+
+  </div>
+</div>
+<footer id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/Norxten-Logo-White.png" alt="Norxten" onerror="this.outerHTML='<span style=&quot;font-size:1.1rem;font-weight:700;color:#fff;font-family:Space Grotesk,sans-serif;&quot;>Norxten</span>'">
+        <p>Building practical software for general contractors.</p>
+      </div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h5>Product</h5><ul><li><a href="products.html">Products</a></li><li><a href="norxten-core.html">Norxten Core app</a></li><li><a href="support.html">Support</a></li></ul></div>
+      <div class="footer-col"><h5>Legal</h5><ul><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li><li><a href="fr/privacy.html">Politique de confidentialité</a></li><li><a href="fr/terms.html">Conditions d'utilisation</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">© 2026 Norxten Technologies Inc. All rights reserved.</div>
+  </div>
+</footer><script>
+window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', scrollY > 10); }, { passive: true });
+</script></body></html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conditions d'utilisation — Norxten Core</title>
+  <meta name="description" content="Conditions d'utilisation de Norxten Core, exploité par Technologies Norxten Inc.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', Helvetica, sans-serif; background: #fff; color: #1a2630; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+    :root { --navy:#314657; --navy-dk:#233342; --darkest:#1a2630; --accent:#2D9CDB; --accent-d:#1e85c0; --light-bg:#f7f8fa; --border:rgba(255,255,255,0.10); --mid:rgba(255,255,255,0.55); --max-w:1160px; --nav-h:64px; }
+    .container { width:100%; max-width:var(--max-w); margin:0 auto; padding:0 32px; }
+    #nav { position:fixed; top:0; left:0; right:0; height:var(--nav-h); background:var(--navy); z-index:1000; border-bottom:1px solid var(--border); transition:box-shadow .2s; }
+    #nav.scrolled { box-shadow:0 2px 24px rgba(0,0,0,.35); }
+    .nav-inner { display:flex; align-items:center; height:100%; }
+    .nav-brand { display:flex; align-items:flex-start; flex-direction:column; gap:1px; flex-shrink:0; margin-right:auto; }
+    .nav-brand img { height:28px; filter:brightness(0) invert(1); }
+    .nav-links { display:flex; list-style:none; gap:2px; position:absolute; left:50%; transform:translateX(-50%); }
+    .nav-links a { font-size:.88rem; font-weight:500; color:var(--mid); padding:6px 14px; border-radius:7px; transition:color .15s, background .15s; }
+    .nav-links a:hover { color:#fff; background:rgba(255,255,255,.08); }
+    .nav-right { display:flex; align-items:center; gap:10px; margin-left:auto; }
+    .lang-toggle { display:flex; background:rgba(255,255,255,.07); border:1px solid var(--border); border-radius:7px; overflow:hidden; }
+    .lang-toggle button { font-family:'DM Sans',sans-serif; padding:5px 11px; font-size:.78rem; font-weight:600; color:var(--mid); cursor:pointer; border:none; background:none; transition:all .15s; }
+    .lang-toggle button.active { background:var(--accent); color:#fff; }
+    .btn-nav { font-family:'DM Sans',sans-serif; background:var(--accent); color:#fff; padding:8px 18px; border-radius:8px; font-size:.85rem; font-weight:600; border:none; cursor:pointer; }
+    .page-hero { background:var(--navy); padding:calc(var(--nav-h) + 72px) 0 64px; position:relative; overflow:hidden; }
+    .page-hero::before { content:''; position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px); background-size:48px 48px; pointer-events:none; }
+    .page-hero-eyebrow { font-size:.72rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:16px; position:relative; }
+    .page-hero h1 { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.8rem,4vw,2.6rem); font-weight:800; color:#fff; line-height:1.12; letter-spacing:-0.03em; margin-bottom:12px; position:relative; }
+    .page-hero-sub { font-size:.95rem; color:var(--mid); line-height:1.7; position:relative; }
+    .legal-wrap { max-width:760px; margin:0 auto; padding:64px 32px 80px; }
+    .legal-lang { display:flex; gap:8px; margin-bottom:40px; }
+    .legal-lang a { padding:6px 16px; border-radius:7px; font-size:.82rem; font-weight:600; border:1.5px solid #e0e4e8; color:#6b7a8a; transition:all .15s; }
+    .legal-lang a.active, .legal-lang a:hover { background:var(--navy); color:#fff; border-color:var(--navy); }
+    .legal-body h2 { font-family:'Space Grotesk',sans-serif; font-size:1.05rem; font-weight:700; color:#1a2630; margin:36px 0 10px; padding-bottom:6px; border-bottom:1px solid #e4e7ec; }
+    .legal-body h3 { font-size:.95rem; font-weight:600; color:#1a2630; margin:20px 0 8px; }
+    .legal-body p { font-size:.9rem; color:#4a5568; line-height:1.8; margin-bottom:12px; }
+    .legal-body ul { margin:8px 0 14px 20px; }
+    .legal-body li { font-size:.9rem; color:#4a5568; margin-bottom:6px; line-height:1.7; }
+    .legal-body strong { color:#1a2630; font-weight:600; }
+    .legal-meta { background:var(--light-bg); border:1px solid #e4e7ec; border-radius:10px; padding:16px 20px; margin-bottom:36px; font-size:.85rem; color:#6b7a8a; }
+    .legal-meta strong { color:#1a2630; }
+    #footer { background:var(--darkest); padding:48px 0 28px; }
+    .footer-grid { display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:48px; margin-bottom:36px; }
+    .footer-brand img { height:28px; filter:brightness(0) invert(1); opacity:.7; margin-bottom:14px; }
+    .footer-brand p { font-size:.85rem; color:rgba(255,255,255,.45); line-height:1.7; max-width:220px; }
+    .footer-col h5 { font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.35); margin-bottom:14px; }
+    .footer-col ul { list-style:none; }
+    .footer-col li { margin-bottom:9px; }
+    .footer-col a { font-size:.87rem; color:rgba(255,255,255,.55); transition:color .15s; }
+    .footer-col a:hover { color:#fff; }
+    .footer-bottom { border-top:1px solid rgba(255,255,255,.07); padding-top:22px; font-size:.82rem; color:rgba(255,255,255,.35); }
+    @media(max-width:900px) { .footer-grid { grid-template-columns:1fr 1fr; } }
+    @media(max-width:640px) { .nav-links { display:none; } .container { padding:0 20px; } .footer-grid { grid-template-columns:1fr; } .legal-wrap { padding:40px 20px 60px; } }
+  </style>
+</head>
+<body><nav id="nav">
+  <div class="container nav-inner">
+    <a class="nav-brand" href="../index.html">
+      <img src="../assets/Norxten-Logo-White.png" alt="Norxten" onerror="this.style.display='none'">
+      <span style="font-size:.6rem;font-weight:500;color:rgba(255,255,255,.4);letter-spacing:.06em;font-family:'DM Sans',sans-serif;">Technologies Norxten</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Accueil</a></li>
+      <li><a href="about.html">À propos</a></li>
+      <li><a href="products.html">Produits</a></li>
+      <li><a href="support.html">Assistance</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button class="lang-btn" onclick="localStorage.removeItem('nx-lang');window.location.href='../terms.html'">EN</button>
+        <button class="lang-btn active">FR</button>
+      </div>
+      <button class="btn-nav">Commencer</button>
+    </div>
+  </div>
+</nav>
+<script>localStorage.setItem('nx-lang','fr');</script>
+<div style="background:var(--navy);padding:calc(var(--nav-h) + 72px) 0 64px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;"></div>
+  <div class="container" style="position:relative;">
+    <div style="font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">Légal</div>
+    <h1 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;color:#fff;line-height:1.12;letter-spacing:-0.03em;margin-bottom:12px;">Conditions d’utilisation</h1>
+    <p style="font-size:.95rem;color:var(--mid);">Norxten Core — Technologies Norxten Inc.</p>
+  </div>
+</div>
+
+<div class="legal-wrap">
+  <div class="legal-lang">
+    <a href="../terms.html">EN — English</a>
+    <a href="terms.html" class="active">FR — Français</a>
+  </div>
+  <div class="legal-meta">
+    <strong>Dernière mise à jour :</strong> 23 avril 2026 &nbsp;&nbsp; <strong>Date d’entrée en vigueur :</strong> 23 avril 2026
+  </div>
+  <div class="legal-body">
+
+    <p>Les présentes Conditions d’utilisation (« <strong>Conditions</strong> ») constituent une entente juridiquement contraignante entre vous et <strong>Technologies Norxten Inc.</strong> (ci-après, « <strong>Norxten</strong> »). Si vous n’acceptez pas les présentes Conditions, n’accédez pas à <strong>Norxten Core</strong> et ne l’utilisez pas.</p>
+
+    <h2>1. Statut de la société</h2>
+    <p><strong>Norxten</strong> est une société canadienne constituée sous le régime fédéral, ayant un bureau au Québec, Canada, et immatriculée au Québec.</p>
+
+    <h2>2. Service d’affaires; autorité</h2>
+    <p><strong>Norxten Core</strong> est destiné principalement à un usage commercial et d’affaires par des entrepreneurs, entreprises de construction et organisations similaires. Si vous accédez à <strong>Norxten Core</strong> pour le compte d’une société, vous déclarez avoir l’autorité requise pour lier cette entité aux présentes Conditions.</p>
+
+    <h2>3. Admissibilité</h2>
+    <p>Vous devez avoir au moins 18 ans et être légalement capable de conclure une entente exécutoire pour créer un compte ou utiliser <strong>Norxten Core</strong>.</p>
+
+    <h2>4. Le service</h2>
+    <p><strong>Norxten Core</strong> est une application de gestion de projets, de reçus, de main-d’œuvre, d’équipes et de coûts pour les entrepreneurs généraux et autres utilisateurs d’affaires similaires.</p>
+
+    <h2>5. Inscription et sécurité du compte</h2>
+    <p>Vous devez fournir des renseignements exacts et complets lors de la création d’un compte. Vous êtes responsable de la confidentialité de vos identifiants et de toute activité effectuée sous votre compte.</p>
+
+    <h2>6. Données du client</h2>
+    <p>Vous conservez la propriété de toutes les données que vous téléversez ou générez dans <strong>Norxten Core</strong> (« <strong>Données du client</strong> »). Vous accordez à <strong>Norxten</strong> un droit limité de stocker et traiter ces données uniquement pour fournir et améliorer <strong>Norxten Core</strong>.</p>
+
+    <h2>7. Données sur les employés</h2>
+    <p>Si vous utilisez <strong>Norxten Core</strong> pour recueillir des données sur les employés, notamment des données GPS ou de localisation, vous êtes seul responsable de la fourniture des avis requis en milieu de travail et du respect des lois applicables.</p>
+
+    <h2>8. Abonnements, facturation et annulation</h2>
+    <p>L’accès aux fonctionnalités de <strong>Norxten Core</strong> peut nécessiter un abonnement payant offert par l’App Store Apple, Google Play ou un autre canal de distribution. Les abonnements peuvent se renouveler automatiquement. Sauf disposition contraire du droit applicable, les frais ne sont pas remboursables.</p>
+
+    <h2>9. Utilisation acceptable</h2>
+    <p>Vous ne devez pas utiliser <strong>Norxten Core</strong> à des fins illégales, frauduleuses ou non autorisées, ni interférer avec la sécurité ou le fonctionnement du service, ni procéder à l’ingénierie inverse du code source.</p>
+
+    <h2>10. Modifications du service</h2>
+    <p><strong>Norxten</strong> peut ajouter, modifier, suspendre ou supprimer des fonctionnalités de <strong>Norxten Core</strong> de temps à autre.</p>
+
+    <h2>11. Suspension et résiliation</h2>
+    <p><strong>Norxten</strong> peut suspendre ou résilier l’accès à <strong>Norxten Core</strong> immédiatement si <strong>Norxten</strong> estime raisonnablement que vous avez violé les présentes Conditions ou que votre utilisation présente un risque légal ou de sécurité.</p>
+
+    <h2>12. Propriété intellectuelle</h2>
+    <p><strong>Norxten Core</strong>, notamment ses logiciels, sa conception, ses flux de travail, ses interfaces, son contenu et sa marque, est la propriété de <strong>Norxten</strong> ou de ses concédants de licence.</p>
+
+    <h2>13. Confidentialité</h2>
+    <p>L’utilisation de <strong>Norxten Core</strong> est également régie par la <a href="privacy.html" style="color:var(--accent);">Politique de confidentialité de Norxten Core</a>.</p>
+
+    <h2>14. Absence de conseils professionnels</h2>
+    <p><strong>Norxten Core</strong> et ses résultats sont fournis à des fins de commodité opérationnelle uniquement. <strong>Norxten</strong> ne fournit pas de conseils juridiques, comptables, fiscaux, de paie ou professionnels. Vous êtes strictement responsable de la vérification et de la correction de toutes les données avant de vous y fier.</p>
+
+    <h2>15. Exclusion de garanties</h2>
+    <p>Dans toute la mesure permise par le droit applicable, <strong>Norxten Core</strong> est fourni « tel quel » et « selon disponibilité » sans garantie d’aucune sorte.</p>
+
+    <h2>16. Limitation de responsabilité</h2>
+    <p>La responsabilité totale cumulative de <strong>Norxten</strong> ne dépassera pas le plus élevé des montants suivants : (1) les sommes totales payées à <strong>Norxten</strong> au cours des 12 mois précédant l’événement donnant lieu à la réclamation; ou (2) <strong>500 $ CAD</strong>.</p>
+
+    <h2>17. Droit applicable et tribunal compétent</h2>
+    <p>Les présentes Conditions sont régies par les lois de la province de Québec et les lois fédérales du Canada qui s’y appliquent. Vous et <strong>Norxten</strong> reconnaissez la compétence exclusive des tribunaux de <strong>Montréal, Québec, Canada</strong>.</p>
+
+    <h2>18. Modifications aux présentes Conditions</h2>
+    <p><strong>Norxten</strong> peut modifier les présentes Conditions de temps à autre. Votre utilisation continue de <strong>Norxten Core</strong> après l’entrée en vigueur des Conditions mises à jour constitue votre acceptation de celles-ci.</p>
+
+    <h2>19. Contact</h2>
+    <p><strong>Technologies Norxten Inc.</strong><br>
+    Courriel : <a href="mailto:legal@norxten.com" style="color:var(--accent);">legal@norxten.com</a></p>
+
+  </div>
+</div>
+<footer id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="../assets/Norxten-Logo-White.png" alt="Norxten" onerror="this.outerHTML='<span style=&quot;font-size:1.1rem;font-weight:700;color:#fff;font-family:Space Grotesk,sans-serif;&quot;>Norxten</span>'">
+        <p>Des logiciels pratiques pour les entrepreneurs généraux.</p>
+      </div>
+      <div class="footer-col"><h5>Entreprise</h5><ul><li><a href="../index.html">Accueil</a></li><li><a href="about.html">À propos</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h5>Produit</h5><ul><li><a href="products.html">Produits</a></li><li><a href="norxten-core.html">Application Norxten Core</a></li><li><a href="support.html">Assistance</a></li></ul></div>
+      <div class="footer-col"><h5>Légal</h5><ul><li><a href="../privacy.html">Privacy Policy</a></li><li><a href="../terms.html">Terms of Service</a></li><li><a href="privacy.html">Politique de confidentialité</a></li><li><a href="terms.html">Conditions d'utilisation</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">© 2026 Technologies Norxten. Tous droits réservés.</div>
+  </div>
+</footer><script>
+window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', scrollY > 10); }, { passive: true });
+</script></body></html>
