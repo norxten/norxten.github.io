@@ -723,7 +723,7 @@
     </ul>
     <div class="nav-right">
       <div class="lang-toggle">
-        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn active">EN</button>
         <button class="lang-btn" onclick="window.location.href='fr/index.html'">FR</button>
       </div>
       <button class="btn-nav" data-i18n="nav_cta">Get started</button>
@@ -1090,61 +1090,7 @@
 <!-- ══════════════════════════════════════════════════════════ -->
 <script>
 // ── Translations ─────────────────────────────────────────────
-const T = {
-  en: {
-    nav_home:"Home", nav_about:"About Us", nav_products:"Products",
-    nav_support:"Support", nav_contact:"Contact", nav_cta:"Get started",
-    hero_eyebrow:"Norxten Technologies Inc.",
-    hero_h1:'Instant visibility into project costs, crew hours, and field activity.',
-    hero_sub:"Norxten Core gives general contractors a clearer view of receipts, labour, and project performance — whenever they need it.",
-    hero_cta1:"Explore Norxten Core", hero_cta2:"See pricing",
-    store_coming:"Coming soon on",
-    stat1:"Day free trial\nNo credit card required",
-    stat2:"OCR accuracy\non receipts & invoices",
-    stat3:"Both platforms\nOne subscription",
-    feat1_title:"Job cost tracking", feat1_desc:"See exactly what every job costs as it happens — labour, materials, and subcontractors in one place.",
-    feat2_title:"Crew cost visibility", feat2_desc:"Know your real labour cost per project, not just hours worked. Track against your budget automatically.",
-    feat3_title:"Receipt & invoice capture", feat3_desc:"Snap a photo. OCR reads the vendor, amount, and date. Cost lands in the right project immediately.",
-    feat4_title:"Missing invoice alerts", feat4_desc:"The Norxten Core app flags expected invoices that haven't arrived — so nothing falls through the cracks.",
-    feat5_title:"Crew management & GPS validation", feat5_desc:"Clock-in and clock-out validated by GPS location. Know who worked, where, and for how long.",
-    feat6_title:"Project closure reports", feat6_desc:"When a job closes, get a clean PDF summary of all costs, hours, and performance vs. budget (Pro plan).",
-    billing_mo:"Monthly",
-  },
-  fr: {
-    nav_home:"Accueil", nav_about:"À propos", nav_products:"Produits",
-    nav_support:"Assistance", nav_contact:"Contact", nav_cta:"Commencer",
-    hero_eyebrow:"Norxten Technologies Inc.",
-    hero_h1:"Sachez exactement ce que coûtent vos projets. En temps réel.",
-    hero_sub:"Norxten Technologies Inc. développe des logiciels pour les entrepreneurs généraux. L'application Norxten Core vous donne une visibilité instantanée sur les coûts de chantier, les heures d'équipe et la performance des projets — depuis votre téléphone.",
-    hero_cta1:"Découvrir Norxten Core", hero_cta2:"Voir les tarifs",
-    store_coming:"Bientôt disponible sur",
-    stat1:"Jours d'essai gratuit\nSans carte de crédit",
-    stat2:"Précision OCR\nsur les reçus de chantier",
-    stat3:"Les deux plateformes\nUn seul abonnement",
-    feat1_title:"Suivi des coûts de chantier", feat1_desc:"Voyez exactement ce que coûte chaque projet en temps réel — main-d'œuvre, matériaux et sous-traitants réunis.",
-    feat2_title:"Visibilité des coûts d'équipe", feat2_desc:"Connaissez votre coût de main-d'œuvre réel par projet, pas seulement les heures travaillées.",
-    feat3_title:"Capture de reçus et factures", feat3_desc:"Prenez une photo. L'OCR lit le fournisseur, le montant et la date. Le coût arrive dans le bon projet immédiatement.",
-    feat4_title:"Alertes de factures manquantes", feat4_desc:"L'application Norxten Core signale les factures attendues qui ne sont pas arrivées.",
-    feat5_title:"Gestion d'équipe et validation GPS", feat5_desc:"Pointage validé par localisation GPS. Sachez qui a travaillé, où et combien de temps.",
-    feat6_title:"Rapports de clôture de projet", feat6_desc:"À la clôture d'un chantier, obtenez un résumé PDF de tous les coûts et heures (plan Pro).",
-    billing_mo:"Mensuel",
-  }
-};
-
-// ── Lang ──────────────────────────────────────────────────────
-let lang = localStorage.getItem('nx-lang') || 'en';
-function setLang(l) {
-  lang = l;
-  localStorage.setItem('nx-lang', l);
-  document.documentElement.lang = l;
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const k = el.dataset.i18n;
-    if (T[l][k]) el.textContent = T[l][k];
-  });
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === l));
-}
-document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
-setLang(lang);
+// EN page
 
 // ── Nav scroll ────────────────────────────────────────────────
 window.addEventListener('scroll', () => {

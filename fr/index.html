@@ -390,19 +390,6 @@ updatePrices();
 window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', scrollY > 10); }, { passive: true });
 document.querySelectorAll('.faq-q').forEach(q => { q.addEventListener('click', () => q.closest('.faq-item').classList.toggle('open')); });
 // EN button links to equivalent EN page
-const enMap = {
-  'about.html': '../about.html',
-  'contact.html': '../contact.html',
-  'support.html': '../support.html',
-  'products.html': '../products.html',
-  'norxten-core.html': '../norxten-core.html',
-  'index.html': '../index.html',
-  'privacy.html': '../privacy.html',
-  'terms.html': '../terms.html',
-};
-const curPage = window.location.pathname.split('/').pop() || 'index.html';
-const enBtn = document.querySelector('.lang-btn:not(.active)');
-if (enBtn) enBtn.onclick = () => window.location.href = enMap[curPage] || '../index.html';
 </script>
 </body>
 </html>
