@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Norxten &#8212; Visibilité instantanée sur les coûts de projet</title>
+  <meta name="description" content="L'application Norxten Core donne aux entrepreneurs généraux une visibilité en temps réel sur les coûts de chantier, les heures d'équipe et la performance des projets.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', Helvetica, sans-serif; background: #fff; color: #1a2630; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+    :root { --navy:#314657; --navy-dk:#233342; --darkest:#1a2630; --accent:#2D9CDB; --accent-d:#1e85c0; --light-bg:#f7f8fa; --border:rgba(255,255,255,0.10); --mid:rgba(255,255,255,0.55); --sub:rgba(255,255,255,0.38); --max-w:1160px; --nav-h:64px; }
+    .container { width:100%; max-width:var(--max-w); margin:0 auto; padding:0 32px; }
+    .label { display:inline-block; font-size:.72rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; }
+    #nav { position:fixed; top:0; left:0; right:0; height:var(--nav-h); background:var(--navy); z-index:1000; border-bottom:1px solid var(--border); transition:box-shadow .2s; }
+    #nav.scrolled { box-shadow:0 2px 24px rgba(0,0,0,.35); }
+    .nav-inner { display:flex; align-items:center; height:100%; }
+    .nav-brand { display:flex; align-items:flex-start; flex-direction:column; gap:1px; flex-shrink:0; margin-right:auto; }
+    .nav-brand img { height:28px; filter:brightness(0) invert(1); }
+    .nav-links { display:flex; list-style:none; gap:2px; position:absolute; left:50%; transform:translateX(-50%); }
+    .nav-links a { font-size:.88rem; font-weight:500; color:var(--mid); padding:6px 14px; border-radius:7px; transition:color .15s, background .15s; }
+    .nav-links a:hover, .nav-links a.active { color:#fff; background:rgba(255,255,255,.08); }
+    .nav-right { display:flex; align-items:center; gap:10px; margin-left:auto; }
+    .lang-toggle { display:flex; background:rgba(255,255,255,.07); border:1px solid var(--border); border-radius:7px; overflow:hidden; }
+    .lang-toggle button { font-family:'DM Sans',sans-serif; padding:5px 11px; font-size:.78rem; font-weight:600; color:var(--sub); cursor:pointer; border:none; background:none; transition:all .15s; }
+    .lang-toggle button.active { background:var(--accent); color:#fff; }
+    .btn-nav { font-family:'DM Sans',sans-serif; background:var(--accent); color:#fff; padding:8px 18px; border-radius:8px; font-size:.85rem; font-weight:600; border:none; cursor:pointer; transition:background .15s; }
+    .btn-nav:hover { background:var(--accent-d); }
+    .page-hero { background:var(--navy); padding:calc(var(--nav-h) + 72px) 0 64px; position:relative; overflow:hidden; }
+    .page-hero::before { content:''; position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px); background-size:48px 48px; pointer-events:none; }
+    .page-hero-eyebrow { font-size:.72rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:16px; position:relative; }
+    .page-hero h1 { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.8rem,4vw,2.8rem); font-weight:800; color:#fff; line-height:1.12; letter-spacing:-0.03em; margin-bottom:16px; position:relative; }
+    .page-hero h1 em { font-style:normal; color:var(--accent); }
+    .page-hero-sub { font-size:1.05rem; color:var(--mid); line-height:1.7; max-width:560px; position:relative; }
+    .section { padding:80px 0; }
+    .section h2 { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.5rem,3vw,2.1rem); font-weight:800; letter-spacing:-0.03em; color:#1a2630; margin-bottom:14px; }
+    .section p { font-size:.95rem; color:#6b7a8a; line-height:1.8; margin-bottom:16px; }
+    .contact-list { display:flex; flex-direction:column; gap:16px; }
+    .contact-card { background:#fff; border:1.5px solid #e0e4e8; border-radius:14px; padding:24px 28px; display:flex; gap:20px; align-items:flex-start; transition:box-shadow .2s; }
+    .contact-card:hover { box-shadow:0 4px 20px rgba(0,0,0,.08); }
+    .contact-icon { width:44px; height:44px; border-radius:10px; background:var(--light-bg); display:flex; align-items:center; justify-content:center; font-size:1.2rem; flex-shrink:0; }
+    .contact-card h3 { font-family:'Space Grotesk',sans-serif; font-size:.95rem; font-weight:700; color:#1a2630; margin-bottom:4px; }
+    .contact-card p { font-size:.875rem; color:#6b7a8a; margin-bottom:8px; line-height:1.5; }
+    .contact-card a { font-size:.875rem; font-weight:600; color:var(--accent); }
+    .faq-list { display:flex; flex-direction:column; gap:12px; }
+    .faq-item { background:#fff; border:1px solid #e0e4e8; border-radius:12px; overflow:hidden; }
+    .faq-q { padding:18px 22px; font-size:.93rem; font-weight:600; color:#1a2630; cursor:pointer; display:flex; justify-content:space-between; align-items:center; user-select:none; }
+    .faq-q::after { content:'+'; font-size:1.2rem; color:#9ca3af; }
+    .faq-item.open .faq-q::after { content:'-'; }
+    .faq-a { display:none; padding:0 22px 18px; font-size:.875rem; color:#6b7a8a; line-height:1.7; }
+    .faq-item.open .faq-a { display:block; }
+    .feat-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:40px; }
+    .feat-card { background:var(--light-bg); border:1px solid #e0e4e8; border-radius:14px; padding:24px 20px; transition:border-color .2s, transform .2s; }
+    .feat-card:hover { border-color:var(--accent); transform:translateY(-2px); }
+    .feat-card-icon { width:40px; height:40px; background:var(--navy); border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:14px; font-size:1.1rem; }
+    .feat-card h3 { font-family:'Space Grotesk',sans-serif; font-size:.9rem; font-weight:700; margin-bottom:6px; color:#1a2630; }
+    .feat-card p { font-size:.825rem; color:#6b7a8a; line-height:1.6; margin-bottom:0; }
+    .info-cards { display:flex; flex-direction:column; gap:14px; }
+    .info-card { background:var(--light-bg); border:1px solid #e0e4e8; border-radius:12px; padding:18px 22px; }
+    .ic-label { font-size:.72rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#8a94a0; margin-bottom:5px; }
+    .ic-val { font-size:.93rem; font-weight:600; color:#1a2630; }
+    .ic-val a { color:var(--accent); }
+    .two-col { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; }
+    #footer { background:var(--darkest); padding:64px 0 36px; }
+    .footer-grid { display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:48px; margin-bottom:48px; }
+    .footer-brand img { height:28px; filter:brightness(0) invert(1); opacity:.7; margin-bottom:14px; }
+    .footer-brand p { font-size:.85rem; color:rgba(255,255,255,.45); line-height:1.7; max-width:220px; }
+    .footer-col h5 { font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.35); margin-bottom:16px; }
+    .footer-col ul { list-style:none; }
+    .footer-col li { margin-bottom:10px; }
+    .footer-col a { font-size:.87rem; color:rgba(255,255,255,.55); transition:color .15s; }
+    .footer-col a:hover { color:#fff; }
+    .footer-bottom { border-top:1px solid rgba(255,255,255,.07); padding-top:28px; font-size:.82rem; color:rgba(255,255,255,.35); }
+    @media(max-width:900px) { .footer-grid { grid-template-columns:1fr 1fr; gap:32px; } .feat-grid { grid-template-columns:1fr 1fr; } .two-col { grid-template-columns:1fr; gap:40px; } }
+    @media(max-width:640px) { .nav-links { display:none; } .container { padding:0 20px; } .footer-grid { grid-template-columns:1fr; } .feat-grid { grid-template-columns:1fr; } }
+
+    .hero { background:var(--navy); padding:calc(var(--nav-h) + 80px) 0 80px; position:relative; overflow:hidden; isolation:isolate; }
+    .hero::before { content:''; position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px); background-size:48px 48px; pointer-events:none; }
+    .hero-grid { display:grid; grid-template-columns:1fr 380px; gap:64px; align-items:center; position:relative; z-index:1; }
+    .hero h1 { font-family:'Space Grotesk',sans-serif; font-size:clamp(2.2rem,4.5vw,3.2rem); font-weight:800; color:#fff; line-height:1.1; letter-spacing:-0.03em; margin-bottom:22px; }
+    .hero h1 em { font-style:normal; color:var(--accent); }
+    .hero-sub { font-size:1.05rem; line-height:1.75; color:var(--mid); margin-bottom:36px; max-width:500px; }
+    .hero-eyebrow { font-size:.72rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:20px; }
+    .hero-actions { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:16px; }
+    .btn-primary { font-family:'DM Sans',sans-serif; background:var(--accent); color:#fff; padding:13px 28px; border-radius:9px; font-size:.95rem; font-weight:600; border:none; cursor:pointer; transition:background .15s; display:inline-block; }
+    .btn-primary:hover { background:var(--accent-d); }
+    .btn-secondary { font-family:'DM Sans',sans-serif; background:transparent; color:#fff; padding:13px 28px; border-radius:9px; font-size:.95rem; font-weight:600; border:1.5px solid rgba(255,255,255,.2); cursor:pointer; display:inline-block; transition:border-color .15s; }
+    .btn-secondary:hover { border-color:rgba(255,255,255,.5); }
+    .hero-note { font-size:.78rem; color:rgba(255,255,255,.35); }
+    .store-badges { display:flex; gap:12px; flex-wrap:wrap; margin-top:24px; }
+    .store-badge { display:flex; align-items:center; gap:10px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); padding:10px 16px; border-radius:10px; color:#fff; }
+    .store-text .store-sub { font-size:.68rem; opacity:.55; display:block; margin-bottom:1px; }
+    .store-text .store-name { font-size:.88rem; font-weight:700; display:block; }
+    .iphone { position:relative; width:280px; flex-shrink:0; animation:floatY 5s ease-in-out infinite; }
+    .iphone-body { background:#1c1c1e; border-radius:50px; padding:14px; box-shadow:0 0 0 1.5px #3a3a3c, 0 0 0 3px #2a2a2c, 0 32px 80px rgba(0,0,0,.7); position:relative; }
+    .iphone-body::before { content:''; position:absolute; left:-3.5px; top:96px; width:3.5px; height:30px; background:#2e2e30; border-radius:2px 0 0 2px; box-shadow:0 40px 0 #2e2e30,0 72px 0 #2e2e30; }
+    .iphone-body::after { content:''; position:absolute; right:-3.5px; top:120px; width:3.5px; height:64px; background:#2e2e30; border-radius:0 2px 2px 0; }
+    .iphone-screen-wrap { background:#000; border-radius:38px; overflow:hidden; position:relative; }
+    .iphone-screen { position:relative; width:100%; aspect-ratio:393/852; overflow:hidden; }
+    .iphone-screen img { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; object-position:top; display:block; }
+    .dynamic-island { position:absolute; top:12px; left:50%; transform:translateX(-50%); width:88px; height:28px; background:#000; border-radius:20px; z-index:10; }
+    .iphone-sheen { position:absolute; inset:0; border-radius:38px; background:linear-gradient(135deg,rgba(255,255,255,.06) 0%,transparent 50%); pointer-events:none; z-index:11; }
+    .stats-bar { background:var(--navy-dk); border-top:1px solid rgba(255,255,255,.06); border-bottom:1px solid rgba(255,255,255,.06); padding:22px 0; }
+    .stats-inner { display:grid; grid-template-columns:repeat(3,1fr); }
+    .stat-item { display:flex; align-items:center; gap:16px; padding:0 40px; }
+    .stat-item+.stat-item { border-left:1px solid rgba(255,255,255,.07); }
+    .stat-num { font-family:'Space Grotesk',sans-serif; font-size:1.8rem; font-weight:800; color:#fff; line-height:1; flex-shrink:0; }
+    .stat-label { font-size:.85rem; color:var(--mid); line-height:1.4; }
+    .product-section { background:var(--light-bg); padding:100px 0; }
+    .product-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+    .product-section h2 { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.8rem,3vw,2.4rem); font-weight:800; letter-spacing:-0.03em; color:#1a2630; margin-bottom:12px; }
+    .product-section .section-sub { font-size:.95rem; color:#6b7a8a; margin-bottom:48px; max-width:440px; }
+    .feature-list { display:flex; flex-direction:column; }
+    .feature-item { display:flex; gap:20px; align-items:flex-start; padding:18px 0; border-bottom:1px solid #e8ecf0; opacity:1; }
+    .feature-item:last-child { border-bottom:none; }
+    .feat-num { font-family:'Space Grotesk',sans-serif; font-size:.78rem; font-weight:800; color:var(--accent); opacity:.7; flex-shrink:0; width:28px; margin-top:2px; }
+    .feat-text h4 { font-size:.97rem; font-weight:600; color:#1a2630; margin-bottom:4px; }
+    .feat-text p { font-size:.85rem; color:#6b7a8a; line-height:1.6; }
+    .phones-stack { position:relative; height:560px; display:flex; justify-content:center; }
+    .phone-back { position:absolute; right:0; top:30px; width:220px; transform:rotate(4deg); filter:drop-shadow(0 20px 40px rgba(0,0,0,.18)); }
+    .phone-front { position:absolute; left:0; top:0; width:230px; filter:drop-shadow(0 28px 56px rgba(0,0,0,.22)); }
+    .phone-mini .iphone-body { background:#1c1c1e; border-radius:40px; padding:10px; box-shadow:0 0 0 1.5px #3a3a3c,0 0 0 2.5px #2a2a2c; }
+    .phone-mini .iphone-body::before { top:76px; height:24px; box-shadow:0 32px 0 #2e2e30,0 56px 0 #2e2e30; }
+    .phone-mini .iphone-body::after { top:96px; height:50px; }
+    .phone-mini .iphone-screen-wrap { border-radius:32px; }
+    .phone-mini .dynamic-island { width:72px; height:22px; top:9px; }
+    .pricing-section { background:#fff; padding:100px 0; }
+    .pricing-section h2 { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.8rem,3vw,2.4rem); font-weight:800; letter-spacing:-0.03em; color:#1a2630; margin-bottom:10px; text-align:center; }
+    .pricing-section .section-sub { text-align:center; color:#6b7a8a; font-size:.95rem; margin-bottom:40px; }
+    .toggle-group { display:flex; background:#f0f2f5; border-radius:9px; overflow:hidden; border:1px solid #e0e4e8; }
+    .toggle-group button { font-family:'DM Sans',sans-serif; padding:8px 16px; font-size:.83rem; font-weight:600; color:#8a94a0; cursor:pointer; border:none; background:none; transition:all .15s; }
+    .toggle-group button.active { background:var(--navy); color:#fff; }
+    .save-pill { background:#dcfce7; color:#166534; font-size:.7rem; font-weight:700; padding:2px 8px; border-radius:99px; }
+    .pricing-roi { background:linear-gradient(135deg,#eef7fd,#f0f8ff); border:1px solid #c0dff0; border-radius:14px; padding:20px 28px; margin:0 auto 40px; max-width:680px; text-align:center; }
+    .pricing-roi p { font-size:.93rem; color:#314657; font-weight:500; line-height:1.6; }
+    .pricing-roi strong { color:var(--accent); }
+    .pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; align-items:start; }
+    .plan-card { border:1.5px solid #e0e4e8; border-radius:16px; padding:32px 28px; background:#fff; position:relative; opacity:1; transition:box-shadow .2s; }
+    .plan-card:hover { box-shadow:0 8px 32px rgba(0,0,0,.1); }
+    .plan-card.featured { border-color:var(--accent); box-shadow:0 0 0 3px rgba(45,156,219,.1),0 8px 32px rgba(45,156,219,.15); }
+    .plan-badge { position:absolute; top:-13px; left:50%; transform:translateX(-50%); background:var(--accent); color:#fff; font-size:.7rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:4px 14px; border-radius:99px; white-space:nowrap; }
+    .plan-tier { font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin-bottom:4px; }
+    .plan-card h3 { font-family:'Space Grotesk',sans-serif; font-size:1.25rem; font-weight:700; color:#1a2630; margin-bottom:8px; }
+    .plan-desc { font-size:.85rem; color:#8a94a0; margin-bottom:24px; min-height:38px; }
+    .plan-price { margin-bottom:6px; }
+    .plan-price .sym { font-size:1rem; font-weight:600; color:#6b7a8a; vertical-align:top; margin-top:5px; display:inline-block; }
+    .plan-price .amt { font-family:'Space Grotesk',sans-serif; font-size:2.4rem; font-weight:800; color:#1a2630; line-height:1; }
+    .plan-price .per { font-size:.83rem; color:#a0aab4; }
+    .plan-annual { font-size:.8rem; color:#a0aab4; margin-bottom:24px; min-height:18px; }
+    .plan-divider { border:none; border-top:1px solid #eef0f2; margin:20px 0; }
+    .plan-features { list-style:none; display:flex; flex-direction:column; gap:10px; margin-bottom:28px; }
+    .plan-features li { display:flex; align-items:flex-start; gap:9px; font-size:.87rem; color:#4a5568; }
+    .plan-features li svg { flex-shrink:0; margin-top:2px; width:14px; height:14px; stroke:var(--accent); fill:none; stroke-width:2.5; }
+    .plan-cta { width:100%; padding:12px; border-radius:9px; font-family:'DM Sans',sans-serif; font-size:.9rem; font-weight:600; cursor:pointer; transition:all .15s; }
+    .plan-cta-outline { background:transparent; color:var(--navy); border:1.5px solid #d0d7de; }
+    .plan-cta-outline:hover { border-color:var(--navy); background:#f7f8fa; }
+    .plan-cta-solid { background:var(--accent); color:#fff; border:none; }
+    .plan-cta-solid:hover { background:var(--accent-d); }
+    .pricing-faq { margin-top:48px; display:grid; grid-template-columns:repeat(3,1fr); gap:24px; border-top:1px solid #eef0f2; padding-top:40px; }
+    .faq-item h4 { font-size:.9rem; font-weight:600; color:#1a2630; margin-bottom:6px; }
+    .faq-item p { font-size:.84rem; color:#6b7a8a; line-height:1.65; }
+    @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+    @media(max-width:1000px){ .hero-grid{grid-template-columns:1fr} .iphone{display:none} .product-grid{grid-template-columns:1fr} .phones-stack{display:none} }
+    @media(max-width:760px){ .nav-links{display:none} .stats-inner{grid-template-columns:1fr} .stat-item+.stat-item{border-left:none;border-top:1px solid rgba(255,255,255,.07)} .stat-item{padding:14px 0} .pricing-grid{grid-template-columns:1fr;max-width:400px;margin:0 auto} .pricing-faq{grid-template-columns:1fr} }
+  </style>
+</head>
+<body><nav id="nav">
+  <div class="container nav-inner">
+    <a class="nav-brand" href="../index.html">
+      <img src="../assets/Norxten-Logo-White.png" alt="Norxten" onerror="this.style.display='none'">
+      <span style="font-size:.6rem;font-weight:500;color:rgba(255,255,255,.4);letter-spacing:.06em;font-family:'DM Sans',sans-serif;">Technologies Norxten</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html"  class="active">Accueil</a></li>
+      <li><a href="../about.html" >À propos</a></li>
+      <li><a href="../products.html" >Produits</a></li>
+      <li><a href="../support.html" >Assistance</a></li>
+      <li><a href="../contact.html" >Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button class="lang-btn" onclick="window.location.href='../index.html'">EN</button>
+        <button class="lang-btn active">FR</button>
+      </div>
+      <button class="btn-nav">Commencer</button>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <p class="hero-eyebrow">Technologies Norxten</p>
+        <h1>Visibilité instantanée sur les coûts de projet,<br>les heures d&#39;équipe et <em>l&#39;activité sur le terrain.</em></h1>
+        <p class="hero-sub">Norxten Core offre aux entrepreneurs généraux une vue plus claire sur les reçus, la main-d&#39;&#339;uvre et la performance des projets &#8212; quand ils en ont besoin.</p>
+        <div class="hero-actions">
+          <a href="norxten-core.html" class="btn-primary">D&#233;couvrir l&#39;application Norxten Core</a>
+          <a href="index.html#pricing" class="btn-secondary">Voir les tarifs</a>
+        </div>
+        <p class="hero-note">Essai gratuit de 14 jours &#183; Aucune carte de cr&#233;dit requise</p>
+        <div class="store-badges">
+          <div class="store-badge"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg><div class="store-text"><span class="store-sub">Bient&#244;t disponible sur</span><span class="store-name">App Store</span></div></div>
+          <div class="store-badge"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M3.18 23.76c.3.17.64.22.99.14l13.24-7.46-2.76-2.77-11.47 10.09zM.48 1.16C.18 1.48 0 1.96 0 2.59v18.82c0 .63.18 1.11.48 1.43l.08.07 10.54-10.54v-.25L.56 1.09l-.08.07zM20.55 10.3l-2.84-1.6-3.1 3.1 3.1 3.1 2.87-1.62c.82-.46.82-1.22-.03-1.98zM3.18.24l13.24 7.46-2.76 2.76L2.19.37c.3-.17.65-.2.99-.13z"/></svg><div class="store-text"><span class="store-sub">Bient&#244;t disponible sur</span><span class="store-name">Google Play</span></div></div>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:center;align-items:center;">
+        <div class="iphone">
+          <div class="iphone-body">
+            <div class="iphone-screen-wrap">
+              <div class="iphone-screen">
+                <img src="../screenshot-dashboard.jpeg" alt="Application Norxten Core" onerror="this.style.display='none'">
+              </div>
+              <div class="dynamic-island"></div>
+              <div class="iphone-sheen"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-inner">
+      <div class="stat-item"><div class="stat-num">14</div><div class="stat-label">Jours d&#39;essai gratuit<br>Sans carte de cr&#233;dit</div></div>
+      <div class="stat-item"><div class="stat-num">92%</div><div class="stat-label">Pr&#233;cision OCR<br>sur les re&#231;us et factures</div></div>
+      <div class="stat-item"><div class="stat-num" style="font-size:1.3rem;">iOS + Android</div><div class="stat-label">Les deux plateformes<br>Un seul abonnement</div></div>
+    </div>
+  </div>
+</div>
+
+<section class="product-section" id="product">
+  <div class="container">
+    <div class="product-grid">
+      <div>
+        <span class="label">Notre produit</span>
+        <h2>L&#39;application Norxten Core</h2>
+        <p class="section-sub">Con&#231;ue pour les entrepreneurs g&#233;n&#233;raux qui ont besoin de savoir &#8212; maintenant &#8212; ce que co&#251;te vraiment un projet.</p>
+        <div class="feature-list">
+          <div class="feature-item"><div class="feat-num">01</div><div class="feat-text"><h4>Suivi des co&#251;ts de chantier</h4><p>Voyez exactement ce que co&#251;te chaque projet en temps r&#233;el &#8212; main-d&#39;&#339;uvre, mat&#233;riaux et sous-traitants r&#233;unis.</p></div></div>
+          <div class="feature-item"><div class="feat-num">02</div><div class="feat-text"><h4>Visibilit&#233; des co&#251;ts d&#39;&#233;quipe</h4><p>Co&#251;t de main-d&#39;&#339;uvre r&#233;el par projet, par employ&#233; &#8212; avec calcul automatique des heures suppl&#233;mentaires.</p></div></div>
+          <div class="feature-item"><div class="feat-num">03</div><div class="feat-text"><h4>Capture de re&#231;us et factures</h4><p>Prenez une photo. L&#39;OCR lit le fournisseur, le montant et la date. Le co&#251;t arrive dans le bon projet imm&#233;diatement.</p></div></div>
+          <div class="feature-item"><div class="feat-num">04</div><div class="feat-text"><h4>Gestion d&#39;&#233;quipe et validation GPS</h4><p>Pointage valid&#233; par localisation GPS. Sachez qui a travaill&#233;, o&#249; et combien de temps.</p></div></div>
+          <div class="feature-item"><div class="feat-num">05</div><div class="feat-text"><h4>Rapports de cl&#244;ture de projet</h4><p>&#192; la cl&#244;ture d&#39;un chantier, obtenez un r&#233;sum&#233; PDF complet de tous les co&#251;ts et heures.</p></div></div>
+        </div>
+      </div>
+      <div class="phones-stack">
+        <div class="phone-back phone-mini"><div class="iphone-body"><div class="iphone-screen-wrap"><div class="iphone-screen" style="aspect-ratio:393/852;"><img src="../screenshot-punch.png" alt="Pointage" onerror="this.style.display='none'"></div><div class="dynamic-island"></div><div class="iphone-sheen"></div></div></div></div>
+        <div class="phone-front phone-mini"><div class="iphone-body"><div class="iphone-screen-wrap"><div class="iphone-screen" style="aspect-ratio:393/852;"><img src="../screenshot-crew.png" alt="&#201;quipe" onerror="this.style.display='none'"></div><div class="dynamic-island"></div><div class="iphone-sheen"></div></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing-section" id="pricing">
+  <div class="container">
+    <span class="label" style="display:block;text-align:center;">Tarifs</span>
+    <h2>Simple. Sans frais cach&#233;s.</h2>
+    <p class="section-sub">Essai gratuit de 14 jours sur le plan Terrain. Aucune carte de cr&#233;dit requise.</p>
+    <div style="display:flex;justify-content:center;margin-bottom:24px;">
+      <div class="toggle-group" id="billing-toggle">
+        <button class="active" data-val="mo">Mensuel</button>
+        <button data-val="yr">Annuel <span class="save-pill">2 mois offerts</span></button>
+      </div>
+    </div>
+    <div class="pricing-roi">
+      <p>La plupart des clients d&#233;butent avec le plan <strong>Terrain</strong>. Une heure d&#39;&#233;quipe r&#233;cup&#233;r&#233;e ou une facture manquante retrouv&#233;e couvre g&#233;n&#233;ralement le premier mois.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="plan-card">
+        <div class="plan-tier">D&#233;butant</div>
+        <h3>D&#233;butant</h3>
+        <p class="plan-desc">Pour les petites &#233;quipes d&#233;butant avec la gestion num&#233;rique des co&#251;ts.</p>
+        <div class="plan-price"><span class="sym" id="s-sym">$</span><span class="amt" id="s-amt">49.99</span><span class="per" id="s-per">/mois</span></div>
+        <div class="plan-annual" id="s-ann">&nbsp;</div>
+        <hr class="plan-divider">
+        <ul class="plan-features">
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Jusqu&#39;&#224; 5 employ&#233;s actifs</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>30 scans OCR / mois</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Validation GPS des sessions</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Suivi des co&#251;ts de projet</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Rapports de projet de base</li>
+        </ul>
+        <button class="plan-cta plan-cta-outline">Commencer l&#39;essai</button>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-badge">Le plus populaire</div>
+        <div class="plan-tier">Terrain</div>
+        <h3>Terrain</h3>
+        <p class="plan-desc">Le plan principal pour les chantiers actifs et les &#233;quipes en croissance.</p>
+        <div class="plan-price"><span class="sym" id="f-sym">$</span><span class="amt" id="f-amt">89.99</span><span class="per" id="f-per">/mois</span></div>
+        <div class="plan-annual" id="f-ann">&nbsp;</div>
+        <hr class="plan-divider">
+        <ul class="plan-features">
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Jusqu&#39;&#224; 15 employ&#233;s actifs</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Scans OCR illimit&#233;s</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Validation GPS des sessions</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Suivi complet des co&#251;ts et budgets</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Rapports complets de projet</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Assistance prioritaire</li>
+        </ul>
+        <button class="plan-cta plan-cta-solid">Commencer l&#39;essai</button>
+      </div>
+      <div class="plan-card">
+        <div class="plan-tier">Pro</div>
+        <h3>Pro</h3>
+        <p class="plan-desc">Pour les grandes op&#233;rations n&#233;cessitant une &#233;chelle illimit&#233;e et des exports avanc&#233;s.</p>
+        <div class="plan-price"><span class="sym" id="p-sym">$</span><span class="amt" id="p-amt">189.99</span><span class="per" id="p-per">/mois</span></div>
+        <div class="plan-annual" id="p-ann">&nbsp;</div>
+        <hr class="plan-divider">
+        <ul class="plan-features">
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Employ&#233;s actifs illimit&#233;s</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Scans OCR illimit&#233;s</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Export PDF pour tous les rapports</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Archive des projets termin&#233;s</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Rapports de cl&#244;ture de projet</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Assistance prioritaire</li>
+        </ul>
+        <button class="plan-cta plan-cta-outline">Commencer l&#39;essai</button>
+      </div>
+    </div>
+    <div class="pricing-faq">
+      <div class="faq-item"><h4>Qu&#39;est-ce qu&#39;un employ&#233; actif?</h4><p>Toute personne qui pointe au moins une fois durant le mois de facturation. Ajoutez ou retirez des employ&#233;s &#224; tout moment.</p></div>
+      <div class="faq-item"><h4>Puis-je changer de plan?</h4><p>Oui, &#224; tout moment. Les mises &#224; niveau prennent effet imm&#233;diatement. Les r&#233;trogradations s&#39;appliquent au prochain cycle.</p></div>
+      <div class="faq-item"><h4>Qu&#39;inclut l&#39;essai gratuit?</h4><p>Acc&#232;s complet au plan Terrain pendant 14 jours. Aucune carte de cr&#233;dit requise pour commencer.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--light-bg);padding:80px 0;text-align:center;">
+  <div class="container">
+    <div style="max-width:520px;margin:0 auto;background:#fff;border:1px solid #e0e4e8;border-radius:18px;padding:48px 36px;box-shadow:0 4px 24px rgba(0,0,0,.07);">
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:1.7rem;font-weight:800;letter-spacing:-0.02em;color:#1a2630;margin-bottom:12px;">Besoin d&#39;aide?</h2>
+      <p style="font-size:.92rem;color:#6b7a8a;margin-bottom:24px;line-height:1.7;">Notre &#233;quipe est disponible pour toutes les questions relatives &#224; l&#39;application Norxten Core.</p>
+      <a href="support.html" style="display:inline-block;background:var(--accent);color:#fff;padding:12px 28px;border-radius:9px;font-weight:600;font-size:.9rem;margin-bottom:12px;">Aller au support</a><br>
+      <a href="mailto:support@norxten.com" style="font-size:1rem;font-weight:700;color:var(--accent);">support@norxten.com</a>
+    </div>
+  </div>
+</section>
+<footer id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="../assets/Norxten-Logo-White.png" alt="Norxten" onerror="this.outerHTML='<span style=&quot;font-size:1.1rem;font-weight:700;color:#fff;font-family:Space Grotesk,sans-serif;&quot;>Norxten</span>'">
+        <p>Des logiciels pratiques pour les entrepreneurs généraux et les entreprises de terrain.</p>
+      </div>
+      <div class="footer-col"><h5>Entreprise</h5><ul><li><a href="../index.html">Accueil</a></li><li><a href="about.html">À propos</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h5>Produit</h5><ul><li><a href="products.html">Produits</a></li><li><a href="norxten-core.html">Application Norxten Core</a></li><li><a href="support.html">Assistance</a></li><li><a href="../index.html#pricing">Tarifs</a></li></ul></div>
+      <div class="footer-col"><h5>Légal</h5><ul><li><a href="privacy.html">Politique de confidentialité</a></li><li><a href="terms.html">Conditions d'utilisation</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">&#169; 2026 Technologies Norxten. Tous droits réservés.</div>
+  </div>
+</footer>
+<script>
+const PRICES = { starter:{mo:49.99,yr:499.90}, field:{mo:89.99,yr:899.90}, pro:{mo:189.99,yr:1899.90} };
+let billing = 'mo';
+function updatePrices() {
+  const isYr = billing === 'yr';
+  [['s','starter'],['f','field'],['p','pro']].forEach(([id,tier]) => {
+    const p = PRICES[tier];
+    document.getElementById(id+'-sym').textContent = '$';
+    if (isYr) {
+      document.getElementById(id+'-amt').textContent = p.yr.toFixed(2);
+      document.getElementById(id+'-per').textContent = '/an';
+      document.getElementById(id+'-ann').textContent = 'Économisez $' + ((p.mo*12)-p.yr).toFixed(2) + ' — 2 mois offerts';
+    } else {
+      document.getElementById(id+'-amt').textContent = p.mo.toFixed(2);
+      document.getElementById(id+'-per').textContent = '/mois';
+      document.getElementById(id+'-ann').textContent = ' ';
+    }
+  });
+}
+document.querySelectorAll('#billing-toggle button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    billing = btn.dataset.val;
+    document.querySelectorAll('#billing-toggle button').forEach(b => b.classList.toggle('active', b.dataset.val === billing));
+    updatePrices();
+  });
+});
+updatePrices();
+</script>
+<script>
+window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', scrollY > 10); }, { passive: true });
+document.querySelectorAll('.faq-q').forEach(q => { q.addEventListener('click', () => q.closest('.faq-item').classList.toggle('open')); });
+// EN button links to equivalent EN page
+const enMap = {
+  'about.html': '../about.html',
+  'contact.html': '../contact.html',
+  'support.html': '../support.html',
+  'products.html': '../products.html',
+  'norxten-core.html': '../norxten-core.html',
+  'index.html': '../index.html',
+  'privacy.html': '../privacy.html',
+  'terms.html': '../terms.html',
+};
+const curPage = window.location.pathname.split('/').pop() || 'index.html';
+const enBtn = document.querySelector('.lang-btn:not(.active)');
+if (enBtn) enBtn.onclick = () => window.location.href = enMap[curPage] || '../index.html';
+</script>
+</body>
+</html>
