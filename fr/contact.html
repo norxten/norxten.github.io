@@ -126,7 +126,7 @@
     </ul>
     <div class="nav-right">
       <div class="lang-toggle">
-        <button class="lang-btn" onclick="window.location.href='../contact.html'">EN</button>
+        <button class="lang-btn" onclick="localStorage.removeItem('nx-lang');window.location.href='../contact.html'">EN</button>
         <button class="lang-btn active">FR</button>
       </div>
       <button class="btn-nav">Commencer</button>
@@ -217,6 +217,4 @@ if (form) {
 }
 const enMap = {'contact.html':'../contact.html','index.html':'../index.html'};
 const curPage = window.location.pathname.split('/').pop() || 'index.html';
-const enBtn = document.querySelector('.lang-btn:not(.active)');
-if (enBtn) enBtn.onclick = () => window.location.href = enMap[curPage] || '../index.html';
 </script></body></html>
