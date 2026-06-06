@@ -7,7 +7,7 @@
   <meta name="description" content="Field cost control for general contractors. Track receipts, crew hours, and project costs from the field. Real job cost visibility before closeout. Free on iOS and Android.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     /* ── Reset & Base ─────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -361,7 +361,7 @@
       align-items: center;
     }
     .product-section h2 {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: clamp(1.8rem, 3vw, 2.4rem);
       font-weight: 800; letter-spacing: -0.03em;
       color: #1a2630; margin-bottom: 12px;
@@ -700,6 +700,48 @@
       .container { padding: 0 20px; }
       .hero { padding: calc(var(--nav-h) + 48px) 0 48px; }
       .hero h1 { font-size: 2rem; }
+    }
+    /* ── Sticky Mobile Bar ───────────────────────────────────── */
+    .sticky-mobile-bar {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: var(--navy-dk);
+      border-top: 1px solid rgba(255,255,255,0.10);
+      padding: 12px 20px;
+      z-index: 999;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .sticky-mobile-bar p {
+      font-size: .82rem;
+      color: rgba(255,255,255,0.65);
+      margin: 0;
+      line-height: 1.3;
+    }
+    .sticky-mobile-bar strong {
+      color: #fff;
+      display: block;
+      font-size: .9rem;
+    }
+    .sticky-bar-btn {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--accent);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: .88rem;
+      font-weight: 600;
+      white-space: nowrap;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    @media (max-width: 768px) {
+      .sticky-mobile-bar { display: flex; }
+      body { padding-bottom: 72px; }
     }
   </style>
     <!-- PostHog Web Analytics -->
@@ -1182,6 +1224,21 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 
 document.querySelectorAll('.feature-item, .plan-card').forEach(el => observer.observe(el));
+// ── Sticky bar device-aware link ──────────────────────────────
+(function() {
+  var btn = document.getElementById('sticky-bar-btn');
+  if (!btn) return;
+  var ua = navigator.userAgent || '';
+  if (/android/i.test(ua)) {
+    btn.href = 'https://play.google.com/store/apps/details?id=com.norxten.core';
+    if (window.posthog) btn.onclick = function(){ posthog.capture('app_store_click', {platform: 'android', location: 'sticky_bar'}); };
+  }
+})();
 </script>
+  <!-- Sticky Mobile Download Bar -->
+  <div class="sticky-mobile-bar" id="sticky-bar">
+    <p><strong>Norxten Core</strong>14-day free trial · No credit card required</p>
+    <a id="sticky-bar-btn" href="https://apps.apple.com/us/app/norxten-core/id6763566449" target="_blank" rel="noopener" class="sticky-bar-btn" onclick="if(window.posthog){posthog.capture('app_store_click', {platform: 'ios', location: 'sticky_bar'})}">Start Free Trial</a>
+  </div>
 </body>
 </html>
