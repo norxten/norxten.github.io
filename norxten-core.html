@@ -74,6 +74,23 @@
     .store-text .store-name { font-size:.88rem; font-weight:700; display:block; line-height:1; }
     .hero-note { font-size:.78rem; color:rgba(255,255,255,.35); }
 
+    /* ── HERO GRID ───────────────────────────────────────────── */
+    .hero-grid { display:grid; grid-template-columns:1fr 340px; gap:64px; align-items:center; }
+    .hero-phone-wrap { display:flex; justify-content:center; align-items:center; }
+    .hero-phone { position:relative; width:280px; flex-shrink:0; }
+    .hero-phone-body {
+      background:#1c1c1e; border-radius:50px; padding:14px;
+      box-shadow:0 0 0 1.5px #3a3a3c, 0 0 0 3px #2a2a2c,
+      inset 0 0 0 1px rgba(255,255,255,.06),
+      0 32px 80px rgba(0,0,0,.7), 0 8px 20px rgba(0,0,0,.4);
+    }
+    .hero-phone-screen { border-radius:38px; overflow:hidden; position:relative; background:#000; aspect-ratio:9/19.5; }
+    .hero-phone-screen iframe { width:100%; height:100%; border:none; display:block; }
+    .hero-phone-notch {
+      position:absolute; top:14px; left:50%; transform:translateX(-50%);
+      width:90px; height:28px; background:#1c1c1e; border-radius:0 0 18px 18px; z-index:10;
+    }
+    @media(max-width:900px) { .hero-grid { grid-template-columns:1fr; } .hero-phone-wrap { display:none; } }
     /* ── PAIN BLOCKS ──────────────────────────────────────────── */
     .pain-section { padding:80px 0; background:#fff; }
     .pain-section-header { text-align:center; margin-bottom:56px; }
@@ -217,6 +234,8 @@
 <!-- HERO -->
 <section class="page-hero">
   <div class="container">
+    <div class="hero-grid">
+    <div>
     <p class="page-hero-eyebrow">Norxten Core App</p>
     <h1>The field cost control app<br><em>built for general contractors.</em></h1>
     <p class="page-hero-sub">Receipts go missing. Crew hours drift. Costs pile up quietly. Norxten Core tracks all of it from the field in real time — so you know where your margin stands before the job is done, not after.</p>
@@ -235,6 +254,18 @@
       </a>
     </div>
     <p class="hero-note">14-day free trial &nbsp;·&nbsp; No credit card required &nbsp;·&nbsp; Cancel anytime, no questions</p>
+    </div>
+    <div class="hero-phone-wrap">
+      <div class="hero-phone">
+        <div class="hero-phone-notch"></div>
+        <div class="hero-phone-body">
+          <div class="hero-phone-screen">
+            <iframe src="https://www.youtube.com/embed/1_JpOw9uEQw?autoplay=1&mute=1&loop=1&playlist=1_JpOw9uEQw&controls=0&playsinline=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
   </div>
 </section>
 
