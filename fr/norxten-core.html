@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Norxten Core — Application de gestion de projets pour entrepreneurs généraux</title>
-  <meta name="description" content="L'application Norxten Core donne aux entrepreneurs généraux un contrôle en temps réel sur les coûts, l'équipe et la performance des projets.">
+  <title>Norxten Core — L'application de contrôle des coûts de chantier pour entrepreneurs généraux</title>
+  <meta name="description" content="Norxten Core aide les entrepreneurs généraux à suivre les reçus, les heures de l'équipe et les coûts de projet depuis le terrain en temps réel. Protège ta marge avant la fermeture du chantier.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -17,11 +17,36 @@
     :root { --navy:#314657; --navy-dk:#233342; --darkest:#1a2630; --accent:#2D9CDB; --accent-d:#1e85c0; --light-bg:#f7f8fa; --border:rgba(255,255,255,0.10); --mid:rgba(255,255,255,0.55); --sub:rgba(255,255,255,0.38); --max-w:1160px; --nav-h:64px; }
     .container { width:100%; max-width:var(--max-w); margin:0 auto; padding:0 32px; }
     .label { display:inline-block; font-size:.72rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; }
-    #nav { position:fixed; top:0; left:0; right:0; height:var(--nav-h); background:var(--navy); z-index:1000; border-bottom:1px solid var(--border); transition:box-shadow .2s; }
+
+    /* ── Announcement Bar ─────────────────────────────────────── */
+    #announce-bar {
+      background: var(--accent);
+      color: #fff;
+      text-align: center;
+      padding: 9px 48px 9px 16px;
+      font-size: .82rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1002;
+      height: 40px;
+    }
+    #announce-bar a { color: #fff; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+    #announce-bar .announce-close {
+      position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+      background: none; border: none; color: #fff; font-size: 1.1rem;
+      cursor: pointer; opacity: .7; line-height: 1; font-family: 'DM Sans', sans-serif;
+    }
+    #announce-bar .announce-close:hover { opacity: 1; }
+    @media (max-width: 768px) { #announce-bar { display: none; } }
+
+    /* ── NAV ──────────────────────────────────────────────────── */
+    #nav { position:fixed; top:40px; left:0; right:0; height:var(--nav-h); background:var(--navy); z-index:1000; border-bottom:1px solid var(--border); transition:box-shadow .2s, top .2s; }
     #nav.scrolled { box-shadow:0 2px 24px rgba(0,0,0,.35); }
     .nav-inner { display:flex; align-items:center; height:100%; }
     .nav-brand { display:flex; align-items:flex-start; flex-direction:column; gap:1px; flex-shrink:0; margin-right:auto; }
-    .nav-brand img { height:28px;  }
+    .nav-brand img { height:28px; }
     .nav-links { display:flex; list-style:none; gap:2px; position:absolute; left:50%; transform:translateX(-50%); }
     .nav-links a { font-size:.88rem; font-weight:500; color:var(--mid); padding:6px 14px; border-radius:7px; transition:color .15s, background .15s; }
     .nav-links a:hover, .nav-links a.active { color:#fff; background:rgba(255,255,255,.08); }
@@ -29,46 +54,104 @@
     .lang-toggle { display:flex; background:rgba(255,255,255,.07); border:1px solid var(--border); border-radius:7px; overflow:hidden; }
     .lang-toggle button { font-family:'DM Sans',sans-serif; padding:5px 11px; font-size:.78rem; font-weight:600; color:var(--sub); cursor:pointer; border:none; background:none; transition:all .15s; }
     .lang-toggle button.active { background:var(--accent); color:#fff; }
-    .btn-nav { font-family:'DM Sans',sans-serif; background:var(--accent); color:#fff; padding:8px 18px; border-radius:8px; font-size:.85rem; font-weight:600; border:none; cursor:pointer; transition:background .15s; }
-    .btn-nav:hover { background:var(--accent-d); }
-    .page-hero { background:var(--navy); padding:calc(var(--nav-h) + 72px) 0 64px; position:relative; overflow:hidden; }
+
+    /* ── HERO ─────────────────────────────────────────────────── */
+    .page-hero { background:var(--navy); padding:calc(var(--nav-h) + 40px + 72px) 0 64px; position:relative; overflow:hidden; }
     .page-hero::before { content:''; position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px); background-size:48px 48px; pointer-events:none; }
     .page-hero-eyebrow { font-size:.72rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:16px; position:relative; }
     .page-hero h1 { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.8rem,4vw,2.8rem); font-weight:800; color:#fff; line-height:1.12; letter-spacing:-0.03em; margin-bottom:16px; position:relative; }
     .page-hero h1 em { font-style:normal; color:var(--accent); }
-    .page-hero-sub { font-size:1.05rem; color:var(--mid); line-height:1.7; max-width:560px; position:relative; }
-    .section { padding:80px 0; }
-    .section h2 { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.5rem,3vw,2.1rem); font-weight:800; letter-spacing:-0.03em; color:#1a2630; margin-bottom:14px; }
-    .section p { font-size:.95rem; color:#6b7a8a; line-height:1.8; margin-bottom:16px; }
-    .contact-list { display:flex; flex-direction:column; gap:16px; }
-    .contact-card { background:#fff; border:1.5px solid #e0e4e8; border-radius:14px; padding:24px 28px; display:flex; gap:20px; align-items:flex-start; transition:box-shadow .2s; }
-    .contact-card:hover { box-shadow:0 4px 20px rgba(0,0,0,.08); }
-    .contact-icon { width:44px; height:44px; border-radius:10px; background:var(--light-bg); display:flex; align-items:center; justify-content:center; font-size:1.2rem; flex-shrink:0; }
-    .contact-card h3 { font-family:'Space Grotesk',sans-serif; font-size:.95rem; font-weight:700; color:#1a2630; margin-bottom:4px; }
-    .contact-card p { font-size:.875rem; color:#6b7a8a; margin-bottom:8px; line-height:1.5; }
-    .contact-card a { font-size:.875rem; font-weight:600; color:var(--accent); }
-    .faq-list { display:flex; flex-direction:column; gap:12px; }
-    .faq-item { background:#fff; border:1px solid #e0e4e8; border-radius:12px; overflow:hidden; }
-    .faq-q { padding:18px 22px; font-size:.93rem; font-weight:600; color:#1a2630; cursor:pointer; display:flex; justify-content:space-between; align-items:center; user-select:none; }
-    .faq-q::after { content:'+'; font-size:1.2rem; color:#9ca3af; }
-    .faq-item.open .faq-q::after { content:'-'; }
-    .faq-a { display:none; padding:0 22px 18px; font-size:.875rem; color:#6b7a8a; line-height:1.7; }
-    .faq-item.open .faq-a { display:block; }
-    .feat-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:40px; }
-    .feat-card { background:var(--light-bg); border:1px solid #e0e4e8; border-radius:14px; padding:24px 20px; transition:border-color .2s, transform .2s; }
+    .page-hero-sub { font-size:1.05rem; color:var(--mid); line-height:1.7; max-width:580px; position:relative; margin-bottom:32px; }
+    .hero-actions { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:20px; }
+    .btn-primary { font-family:'DM Sans',sans-serif; background:var(--accent); color:#fff; padding:13px 28px; border-radius:9px; font-size:.95rem; font-weight:600; border:none; cursor:pointer; box-shadow:0 4px 16px rgba(45,156,219,.35); transition:background .15s, transform .15s; text-decoration:none; display:inline-block; }
+    .btn-primary:hover { background:var(--accent-d); transform:translateY(-2px); }
+    .btn-secondary { font-family:'DM Sans',sans-serif; background:transparent; color:#fff; padding:13px 28px; border-radius:9px; font-size:.95rem; font-weight:600; border:1.5px solid rgba(255,255,255,.2); cursor:pointer; transition:border-color .15s, background .15s; text-decoration:none; display:inline-block; }
+    .btn-secondary:hover { border-color:rgba(255,255,255,.5); background:rgba(255,255,255,.06); }
+    .store-badges { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:16px; }
+    .store-badge { display:flex; align-items:center; gap:10px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); padding:10px 16px; border-radius:10px; color:#fff; font-family:'DM Sans',sans-serif; transition:background .15s; }
+    .store-badge:hover { background:rgba(255,255,255,.12); }
+    .store-text .store-sub { font-size:.68rem; opacity:.55; display:block; margin-bottom:1px; }
+    .store-text .store-name { font-size:.88rem; font-weight:700; display:block; line-height:1; }
+    .hero-note { font-size:.78rem; color:rgba(255,255,255,.35); }
+
+    /* ── PAIN BLOCKS ──────────────────────────────────────────── */
+    .pain-section { padding:80px 0; background:#fff; }
+    .pain-section-header { text-align:center; margin-bottom:56px; }
+    .pain-section-header h2 { font-family:'Plus Jakarta Sans',sans-serif; font-size:clamp(1.6rem,3vw,2.2rem); font-weight:800; color:#1a2630; margin-bottom:12px; letter-spacing:-0.02em; }
+    .pain-section-header p { font-size:1rem; color:#6b7a8a; max-width:520px; margin:0 auto; line-height:1.7; }
+    .pain-blocks { display:grid; grid-template-columns:repeat(3,1fr); gap:32px; }
+    .pain-block { background:var(--light-bg); border-radius:16px; overflow:hidden; border:1px solid #e0e4e8; transition:transform .2s, box-shadow .2s; }
+    .pain-block:hover { transform:translateY(-4px); box-shadow:0 12px 32px rgba(0,0,0,.08); }
+    .pain-block-screen { height:220px; overflow:hidden; position:relative; background:#1a2630; }
+    .pain-block-screen img { width:100%; height:100%; object-fit:cover; object-position:top center; }
+    .pain-block-body { padding:24px; }
+    .pain-block-num { font-size:.68rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin-bottom:8px; }
+    .pain-block h3 { font-family:'Plus Jakarta Sans',sans-serif; font-size:1rem; font-weight:700; color:#1a2630; margin-bottom:8px; }
+    .pain-block p { font-size:.875rem; color:#6b7a8a; line-height:1.65; margin:0; }
+
+    /* ── FEATURE GRID ─────────────────────────────────────────── */
+    .feat-section { padding:80px 0; background:var(--light-bg); }
+    .feat-section-header { margin-bottom:48px; }
+    .feat-section-header h2 { font-family:'Plus Jakarta Sans',sans-serif; font-size:clamp(1.6rem,3vw,2.2rem); font-weight:800; color:#1a2630; margin-bottom:10px; letter-spacing:-0.02em; }
+    .feat-section-header p { font-size:1rem; color:#6b7a8a; max-width:480px; line-height:1.7; }
+    .feat-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+    .feat-card { background:#fff; border:1px solid #e0e4e8; border-radius:14px; padding:24px 20px; transition:border-color .2s, transform .2s; }
     .feat-card:hover { border-color:var(--accent); transform:translateY(-2px); }
     .feat-card-icon { width:40px; height:40px; background:var(--navy); border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:14px; font-size:1.1rem; }
-    .feat-card h3 { font-family:'Space Grotesk',sans-serif; font-size:.9rem; font-weight:700; margin-bottom:6px; color:#1a2630; }
-    .feat-card p { font-size:.825rem; color:#6b7a8a; line-height:1.6; margin-bottom:0; }
-    .info-cards { display:flex; flex-direction:column; gap:14px; }
-    .info-card { background:var(--light-bg); border:1px solid #e0e4e8; border-radius:12px; padding:18px 22px; }
-    .ic-label { font-size:.72rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#8a94a0; margin-bottom:5px; }
-    .ic-val { font-size:.93rem; font-weight:600; color:#1a2630; }
-    .ic-val a { color:var(--accent); }
-    .two-col { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; }
+    .feat-card h3 { font-family:'Plus Jakarta Sans',sans-serif; font-size:.9rem; font-weight:700; margin-bottom:6px; color:#1a2630; }
+    .feat-card p { font-size:.825rem; color:#6b7a8a; line-height:1.6; margin:0; }
+
+    /* ── PRICING ──────────────────────────────────────────────── */
+    .pricing-section { padding:80px 0; background:#fff; }
+    .pricing-header { text-align:center; margin-bottom:40px; }
+    .pricing-header h2 { font-family:'Plus Jakarta Sans',sans-serif; font-size:clamp(1.6rem,3vw,2.2rem); font-weight:800; color:#1a2630; margin-bottom:10px; letter-spacing:-0.02em; }
+    .pricing-header p { font-size:1rem; color:#6b7a8a; }
+    .pricing-controls { display:flex; justify-content:center; margin-bottom:16px; }
+    .toggle-group { display:flex; background:var(--light-bg); border:1px solid #e0e4e8; border-radius:10px; padding:4px; gap:4px; }
+    .toggle-group button { font-family:'DM Sans',sans-serif; padding:8px 20px; border-radius:7px; border:none; background:none; font-size:.88rem; font-weight:600; color:#6b7a8a; cursor:pointer; transition:all .15s; }
+    .toggle-group button.active { background:#fff; color:#1a2630; box-shadow:0 1px 4px rgba(0,0,0,.1); }
+    .save-pill { background:#e8f7f0; color:#0f6e56; font-size:.72rem; font-weight:700; padding:2px 8px; border-radius:20px; margin-left:6px; }
+    .pricing-roi { text-align:center; margin-bottom:32px; font-size:.88rem; color:#6b7a8a; background:var(--light-bg); border-radius:10px; padding:12px 24px; max-width:560px; margin-left:auto; margin-right:auto; border-left:3px solid var(--accent); }
+    .pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    .plan-card { background:#fff; border:1.5px solid #e0e4e8; border-radius:16px; padding:28px 24px; position:relative; transition:box-shadow .2s; }
+    .plan-card.featured { border-color:var(--accent); box-shadow:0 8px 32px rgba(45,156,219,.15); }
+    .plan-tier { font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#9ca3af; margin-bottom:8px; }
+    .plan-badge { display:inline-block; background:var(--accent); color:#fff; font-size:.72rem; font-weight:700; padding:3px 12px; border-radius:20px; margin-bottom:8px; }
+    .plan-name { font-family:'Plus Jakarta Sans',sans-serif; font-size:1.3rem; font-weight:800; color:#1a2630; margin-bottom:6px; }
+    .plan-price-wrap { margin-bottom:6px; }
+    .plan-amount { font-family:'Space Grotesk',sans-serif; font-size:2rem; font-weight:800; color:#1a2630; }
+    .plan-per { font-size:.85rem; color:#9ca3af; }
+    .plan-annual { font-size:.78rem; color:#6b7a8a; margin-bottom:20px; min-height:18px; }
+    .plan-desc { font-size:.875rem; color:#6b7a8a; margin-bottom:20px; line-height:1.6; }
+    .plan-features { list-style:none; display:flex; flex-direction:column; gap:10px; margin-bottom:28px; }
+    .plan-features li { display:flex; align-items:flex-start; gap:10px; font-size:.875rem; color:#1a2630; }
+    .plan-features li svg { flex-shrink:0; margin-top:2px; color:var(--accent); }
+    .plan-cta { display:block; text-align:center; padding:12px; border-radius:9px; font-family:'DM Sans',sans-serif; font-size:.9rem; font-weight:700; cursor:pointer; transition:all .15s; text-decoration:none; }
+    .plan-cta-solid { background:var(--accent); color:#fff; border:none; }
+    .plan-cta-solid:hover { background:var(--accent-d); }
+    .plan-cta-outline { background:transparent; color:var(--accent); border:1.5px solid var(--accent); }
+    .plan-cta-outline:hover { background:rgba(45,156,219,.06); }
+
+    /* ── FINAL CTA ────────────────────────────────────────────── */
+    .final-cta { background:var(--navy); padding:80px 0; text-align:center; position:relative; overflow:hidden; }
+    .final-cta::before { content:''; position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px); background-size:48px 48px; pointer-events:none; }
+    .final-cta h2 { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.6rem,3vw,2.4rem); font-weight:800; color:#fff; margin-bottom:12px; letter-spacing:-0.02em; position:relative; }
+    .final-cta p { font-size:1rem; color:var(--mid); margin-bottom:28px; position:relative; }
+    .final-btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:16px; position:relative; }
+    .final-note { font-size:.78rem; color:rgba(255,255,255,.35); position:relative; }
+
+    /* ── SUPPORT ──────────────────────────────────────────────── */
+    .support-section { padding:64px 0; background:var(--light-bg); text-align:center; }
+    .support-card { max-width:480px; margin:0 auto; background:#fff; border:1px solid #e0e4e8; border-radius:18px; padding:40px 36px; }
+    .support-card h2 { font-family:'Plus Jakarta Sans',sans-serif; font-size:1.3rem; font-weight:800; color:#1a2630; margin-bottom:10px; }
+    .support-card p { font-size:.9rem; color:#6b7a8a; margin-bottom:24px; line-height:1.7; }
+    .support-card .btn-support { display:inline-block; background:var(--accent); color:#fff; padding:11px 24px; border-radius:9px; font-weight:600; font-size:.875rem; margin-bottom:14px; }
+    .support-card .support-email { font-size:.95rem; font-weight:700; color:var(--accent); }
+
+    /* ── FOOTER ───────────────────────────────────────────────── */
     #footer { background:var(--darkest); padding:64px 0 36px; }
     .footer-grid { display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:48px; margin-bottom:48px; }
-    .footer-brand img { height:28px;  opacity:.7; margin-bottom:14px; }
+    .footer-brand img { height:28px; opacity:.7; margin-bottom:14px; }
     .footer-brand p { font-size:.85rem; color:rgba(255,255,255,.45); line-height:1.7; max-width:220px; }
     .footer-col h5 { font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.35); margin-bottom:16px; }
     .footer-col ul { list-style:none; }
@@ -76,46 +159,42 @@
     .footer-col a { font-size:.87rem; color:rgba(255,255,255,.55); transition:color .15s; }
     .footer-col a:hover { color:#fff; }
     .footer-bottom { border-top:1px solid rgba(255,255,255,.07); padding-top:28px; font-size:.82rem; color:rgba(255,255,255,.35); }
-    @media(max-width:900px) { .footer-grid { grid-template-columns:1fr 1fr; gap:32px; } .feat-grid { grid-template-columns:1fr 1fr; } .two-col { grid-template-columns:1fr; gap:40px; } }
-    @media(max-width:640px) { .nav-links { display:none; } .container { padding:0 20px; } .footer-grid { grid-template-columns:1fr; } .feat-grid { grid-template-columns:1fr; } }
 
-    .feat-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:40px; }
-    .feat-card { background:var(--light-bg); border:1px solid #e0e4e8; border-radius:14px; padding:24px 20px; transition:border-color .2s,transform .2s; }
-    .feat-card:hover { border-color:var(--accent); transform:translateY(-2px); }
-    .feat-card-icon { width:40px; height:40px; background:var(--navy); border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:14px; font-size:1.1rem; }
-    .feat-card h3 { font-family:'Space Grotesk',sans-serif; font-size:.9rem; font-weight:700; margin-bottom:6px; color:#1a2630; }
-    .feat-card p { font-size:.825rem; color:#6b7a8a; line-height:1.6; margin-bottom:0; }
-    @media(max-width:760px){ .feat-grid{grid-template-columns:1fr 1fr} }
-    @media(max-width:480px){ .feat-grid{grid-template-columns:1fr} }
+    /* ── RESPONSIVE ───────────────────────────────────────────── */
+    @media(max-width:900px) { .pain-blocks { grid-template-columns:1fr; } .feat-grid { grid-template-columns:1fr 1fr; } .pricing-grid { grid-template-columns:1fr; } .footer-grid { grid-template-columns:1fr 1fr; gap:32px; } }
+    @media(max-width:640px) { .nav-links { display:none; } .container { padding:0 20px; } .footer-grid { grid-template-columns:1fr; } .feat-grid { grid-template-columns:1fr; } .hero-actions { flex-direction:column; } }
   </style>
-    <!-- PostHog Web Analytics -->
-    <script>
-        !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+" (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-        posthog.init('phc_tFRpFPYPtydbMqpQVYctamjbVKjmSPxBMRYPqiKZZ5yL', {
-            api_host: 'https://us.i.posthog.com',
-            person_profiles: 'always',
-            capture_pageview: true,
-            capture_pageleave: true,
-        })
-    </script>
-  <link rel="icon" type="image/x-icon" href="../favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <!-- PostHog Web Analytics -->
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+" (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_tFRpFPYPtydbMqpQVYctamjbVKjmSPxBMRYPqiKZZ5yL', { api_host: 'https://us.i.posthog.com', person_profiles: 'always', capture_pageview: true, capture_pageleave: true })
+  </script>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 </head>
 <body>
-<script>localStorage.setItem("nx-lang","fr");</script><nav id="nav">
+<script>localStorage.setItem('nx-lang','fr');</script>
+
+<div id="announce-bar">
+  <a href="https://apps.apple.com/app/id6763566449" onclick="if(window.posthog){posthog.capture('app_store_click', {platform: 'ios', location: 'announce_bar'})}">Commence ton essai gratuit de 14 jours</a>
+  &nbsp;·&nbsp; Aucune carte de crédit requise &nbsp;·&nbsp; iOS et Android &nbsp;·&nbsp; Annule en tout temps, sans questions
+  <button class="announce-close" id="announce-close-btn" aria-label="Fermer">&#x2715;</button>
+</div>
+
+<nav id="nav">
   <div class="container nav-inner">
-    <a class="nav-brand" href="../index.html">
+    <a class="nav-brand" href="index.html" style="display:flex;align-items:center;gap:10px;flex-direction:column;align-items:flex-start;gap:1px;">
       <img src="../assets/Norxten-Logo-White.png" alt="Norxten" onerror="this.style.display='none'">
-      <span style="font-size:.6rem;font-weight:500;color:rgba(255,255,255,.4);letter-spacing:.06em;font-family:'DM Sans',sans-serif;">Technologies Norxten</span>
+      <span style="font-size:.6rem;font-weight:500;color:rgba(255,255,255,.4);letter-spacing:.06em;font-family:'DM Sans',sans-serif;">Technologies Inc.</span>
     </a>
     <ul class="nav-links">
-      <li><a href="../index.html" >Accueil</a></li>
-      <li><a href="../about.html" >À propos</a></li>
-      <li><a href="../norxten-core.html" >Produits</a></li>
-      <li><a href="../support.html" >Assistance</a></li>
-      <li><a href="../contact.html" >Contact</a></li>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="about.html">À propos</a></li>
+      <li><a href="norxten-core.html" class="active">Produits</a></li>
+      <li><a href="support.html">Support</a></li>
+      <li><a href="contact.html">Contact</a></li>
     </ul>
     <div class="nav-right">
       <div class="lang-toggle">
@@ -125,74 +204,255 @@
     </div>
   </div>
 </nav>
+
+<!-- HERO -->
 <section class="page-hero">
   <div class="container">
-    <p class="page-hero-eyebrow">Application Norxten Core</p>
-    <h1>L&#39;application de gestion de projets <em>con&#231;ue pour le terrain.</em></h1>
-    <p class="page-hero-sub">Suivi de la main-d&#39;&#339;uvre en temps r&#233;el, capture de re&#231;us par IA, gestion d&#39;&#233;quipe et rapports de projet &#8212; dans une seule application mobile con&#231;ue pour les entrepreneurs g&#233;n&#233;raux.</p>
-    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;">
-      <a href="https://apps.apple.com/us/app/norxten-core/id6763566449" target="_blank" rel="noopener" style="background:rgba(0,0,0,.3);color:#fff;padding:10px 18px;border-radius:9px;font-weight:600;font-size:.875rem;border:1px solid rgba(255,255,255,.15);">&#63743; T&#233;l&#233;charger sur l'App Store</a>
-      <a href="#" style="background:rgba(0,0,0,.3);color:#fff;padding:10px 18px;border-radius:9px;font-weight:600;font-size:.875rem;border:1px solid rgba(255,255,255,.15);">&#9658; Bient&#244;t sur Google Play</a>
+    <p class="page-hero-eyebrow">L'application Norxten Core</p>
+    <h1>L'application de contrôle des coûts de chantier <em>conçue pour les entrepreneurs généraux.</em></h1>
+    <p class="page-hero-sub">Les reçus se perdent. Les heures flottent. Les coûts s'accumulent en douce. Norxten Core suit tout ça directement sur le terrain et en temps réel — pour que tu connaisses ta marge pendant que le chantier roule, pas après.</p>
+    <div class="hero-actions">
+      <a href="https://apps.apple.com/app/id6763566449" class="btn-primary" onclick="if(window.posthog){posthog.capture('app_store_click', {platform: 'ios', location: 'norxten_core_hero'})}">Commence ton essai gratuit</a>
+      <a href="#pricing" class="btn-secondary">Voir les prix</a>
     </div>
-    <p style="font-size:.78rem;color:rgba(255,255,255,.35);margin-top:14px;">Essai gratuit de 14 jours &#183; Aucune carte de cr&#233;dit requise</p>
+    <div class="store-badges">
+      <a class="store-badge" href="https://apps.apple.com/app/id6763566449" onclick="if(window.posthog){posthog.capture('app_store_click', {platform: 'ios', location: 'norxten_core_badge'})}">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        <div class="store-text"><span class="store-sub">Télécharger dans l'</span><span class="store-name">App Store</span></div>
+      </a>
+      <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.norxten.core" target="_blank" rel="noopener" onclick="if(window.posthog){posthog.capture('app_store_click', {platform: 'android', location: 'norxten_core_badge'})}">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M3.18 23.76c.3.17.64.22.99.14l13.24-7.46-2.76-2.77-11.47 10.09zM.48 1.16C.18 1.48 0 1.96 0 2.59v18.82c0 .63.18 1.11.48 1.43l.08.07 10.54-10.54v-.25L.56 1.09l-.08.07zM20.55 10.3l-2.84-1.6-3.1 3.1 3.1 3.1 2.87-1.62c.82-.46.82-1.22-.03-1.98zM3.18.24l13.24 7.46-2.76 2.76L2.19.37c.3-.17.65-.2.99-.13z"/></svg>
+        <div class="store-text"><span class="store-sub">Disponible sur</span><span class="store-name">Google Play</span></div>
+      </a>
+    </div>
+    <p class="hero-note">Essai gratuit de 14 jours &nbsp;·&nbsp; Aucune carte de crédit requise &nbsp;·&nbsp; Annule en tout temps, sans questions</p>
   </div>
 </section>
-<section class="section" style="background:var(--light-bg);">
+
+<!-- THREE PAIN BLOCKS WITH SCREENSHOTS -->
+<section class="pain-section">
   <div class="container">
-    <span class="label">Fonctionnalit&#233;s principales</span>
-    <h2>Tout en une seule application.</h2>
-    <p style="max-width:520px;margin-bottom:0;">Sans feuilles de calcul. Sans papier. Sans incertitude.</p>
+    <div class="pain-section-header">
+      <span class="label">Trois problèmes majeurs. Une seule application.</span>
+      <h2>Là où les entrepreneurs perdent de la marge chaque semaine.</h2>
+      <p>Chacun de ces problèmes arrive en douce, sur chaque projet, jusqu'à ce que la fermeture du chantier dévoile les dommages.</p>
+    </div>
+    <div class="pain-blocks">
+      <div class="pain-block">
+        <div class="pain-block-screen">
+          <img src="../assets/03_receipt_ai_scan_preview.png" alt="Numérisation de reçus par IA dans Norxten Core" loading="lazy">
+        </div>
+        <div class="pain-block-body">
+          <div class="pain-block-num">01 — Reçus</div>
+          <h3>Photo. L'IA extrait. Confirme.</h3>
+          <p>Pointe ta caméra vers n'importe quel reçu ou facture. Le fournisseur, le total et les taxes sont extraits automatiquement. Attribué au bon projet en un seul clic. Pas de saisie manuelle. Pas de papier perdu.</p>
+        </div>
+      </div>
+      <div class="pain-block">
+        <div class="pain-block-screen">
+          <img src="../assets/1A1AD2ED-0DD6-432C-AD81-FAA3B3E08462.png" alt="Gestion d'équipe dans Norxten Core" loading="lazy">
+        </div>
+        <div class="pain-block-body">
+          <div class="pain-block-num">02 — Équipe</div>
+          <h3>Sache qui est sur le chantier. En direct.</h3>
+          <p>Punch par code QR avec validation GPS à chaque événement. Vois chaque membre de l'équipe, leur projet actif et depuis combien de temps ils sont punchés — en direct sur ton téléphone.</p>
+        </div>
+      </div>
+      <div class="pain-block">
+        <div class="pain-block-screen">
+          <img src="../assets/01_owner_dashboard_cost_overview.png" alt="Tableau de bord des coûts de projet dans Norxten Core" loading="lazy">
+        </div>
+        <div class="pain-block-body">
+          <div class="pain-block-num">03 — Coûts</div>
+          <h3>Connais ta marge avant la fermeture.</h3>
+          <p>Main-d'œuvre, matériaux, frais généraux et totaux cumulatifs par projet — mis à jour à la seconde où un reçu est numérisé ou qu'un quart de travail se termine. Exporte en CSV et envoie le tout à ton comptable.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE GRID -->
+<section class="feat-section">
+  <div class="container">
+    <div class="feat-section-header">
+      <span class="label">Toutes les fonctionnalités</span>
+      <h2>Tout au même endroit.</h2>
+      <p>Pas de feuilles de calcul. Pas de papier. Pas de devinettes.</p>
+    </div>
     <div class="feat-grid">
-      <div class="feat-card"><div class="feat-card-icon">&#128248;</div><h3>Scan de re&#231;us et factures par IA</h3><p>Pointez votre cam&#233;ra sur n&#39;importe quel re&#231;u. L&#39;OCR extrait le fournisseur, les montants et les taxes automatiquement.</p></div>
-      <div class="feat-card"><div class="feat-card-icon">&#128119;</div><h3>Gestion d&#39;&#233;quipe</h3><p>Invitez des employ&#233;s, assignez-les &#224; des projets. Pointage QR avec v&#233;rification GPS &#224; chaque session.</p></div>
-      <div class="feat-card"><div class="feat-card-icon">&#9201;</div><h3>Suivi de la main-d&#39;&#339;uvre et des heures suppl.</h3><p>Calcul automatique des HS par employ&#233;, par jour. Co&#251;t r&#233;el de main-d&#39;&#339;uvre par projet &#8212; mis &#224; jour en temps r&#233;el.</p></div>
-      <div class="feat-card"><div class="feat-card-icon">&#128200;</div><h3>Suivi des co&#251;ts de chantier</h3><p>Voyez le co&#251;t total &#8212; mat&#233;riaux, main-d&#39;&#339;uvre, frais g&#233;n&#233;raux &#8212; mis &#224; jour d&#232;s qu&#39;un re&#231;u est scann&#233;.</p></div>
-      <div class="feat-card"><div class="feat-card-icon">&#128179;</div><h3>Budget vs r&#233;el</h3><p>D&#233;finissez les budgets initiaux. Enregistrez les r&#233;visions s&#233;par&#233;ment. Recevez des alertes avant de d&#233;passer le budget.</p></div>
-      <div class="feat-card"><div class="feat-card-icon">&#128203;</div><h3>Rapports de cl&#244;ture de projet</h3><p>PDF et CSV &#224; la fin du projet &#8212; ventilation compl&#232;te des co&#251;ts, marge b&#233;n&#233;ficiaire, r&#233;sum&#233; de main-d&#39;&#339;uvre.</p></div>
-      <div class="feat-card"><div class="feat-card-icon">&#128205;</div><h3>Validation GPS</h3><p>Les coordonn&#233;es GPS captur&#233;es au pointage v&#233;rifient la pr&#233;sence sur site. Signalez et examinez les exceptions.</p></div>
-      <div class="feat-card"><div class="feat-card-icon">&#129534;</div><h3>Gestion TPS/TVQ</h3><p>Support int&#233;gr&#233; pour les taxes canadiennes. TPS et TVQ extraites et suivies s&#233;par&#233;ment par re&#231;u.</p></div>
-      <div class="feat-card"><div class="feat-card-icon">&#128276;</div><h3>Notifications intelligentes</h3><p>Alertes de d&#233;passement de budget, avertissements de calendrier et &#233;v&#233;nements de pointage &#8212; tous configurables.</p></div>
+      <div class="feat-card"><div class="feat-card-icon">&#128248;</div><h3>Numérisation de reçus et factures par IA</h3><p>L'OCR et l'IA extraient le fournisseur, les montants et les taxes automatiquement. Pas de saisie manuelle.</p></div>
+      <div class="feat-card"><div class="feat-card-icon">&#128119;</div><h3>Punch d'entrée/sortie avec GPS</h3><p>Les membres de l'équipe punchent directement depuis l'application. La validation GPS confirme leur présence sur le chantier à chaque événement.</p></div>
+      <div class="feat-card"><div class="feat-card-icon">&#9201;</div><h3>Feuilles de temps en temps réel</h3><p>Chaque punch est enregistré instantanément. Vois les heures en direct par employé et par projet, mises à jour au fur et à mesure que le travail avance.</p></div>
+      <div class="feat-card"><div class="feat-card-icon">&#128200;</div><h3>Tableau de bord des coûts de projet</h3><p>Matériaux, main-d'œuvre, frais généraux — mis à jour dès qu'un reçu est soumis ou qu'un quart de travail se termine.</p></div>
+      <div class="feat-card"><div class="feat-card-icon">&#128179;</div><h3>Budget vs Réel</h3><p>Fixe tes budgets. Enregistre les révisions. Reçois des alertes avant de dépasser les limites.</p></div>
+      <div class="feat-card"><div class="feat-card-icon">&#128203;</div><h3>Rapports de fermeture</h3><p>PDF et CSV prêts à la fin du projet — ventilation des coûts, marge, résumé de la main-d'œuvre — le tout prêt à être partagé.</p></div>
+      <div class="feat-card"><div class="feat-card-icon">&#128205;</div><h3>Suivi des heures et du temps supplémentaire</h3><p>Calcul automatique des heures supplémentaires par employé. Le vrai coût de la main-d'œuvre par projet, en temps réel.</p></div>
+      <div class="feat-card"><div class="feat-card-icon">&#129534;</div><h3>Gestion des taxes canadiennes</h3><p>La TPS, la TVP, la TVH et la TVQ sont extraites et suivies séparément pour chaque reçu, peu importe la province où tu travailles.</p></div>
+      <div class="feat-card"><div class="feat-card-icon">&#128276;</div><h3>Notifications intelligentes</h3><p>Alertes de dépassement de budget, avertissements d'horaire et alertes de punch d'équipe — le tout entièrement configurable.</p></div>
     </div>
   </div>
 </section>
-<section class="section" style="background:#fff;text-align:center;">
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
   <div class="container">
-    <div style="max-width:520px;margin:0 auto;background:var(--light-bg);border:1px solid #e0e4e8;border-radius:18px;padding:48px 36px;box-shadow:0 4px 24px rgba(0,0,0,.06);">
-      <h2 style="margin-bottom:12px;">Des questions sur l&#39;application Norxten Core?</h2>
-      <p style="margin-bottom:24px;">Notre &#233;quipe de support est pr&#234;te &#224; vous aider. Contactez-nous et nous r&#233;pondrons rapidement.</p>
-      <a href="support.html" style="display:inline-block;background:var(--accent);color:#fff;padding:12px 28px;border-radius:9px;font-weight:600;font-size:.9rem;margin-bottom:14px;">Aller au support</a><br>
-      <a href="mailto:support@norxten.com" style="font-size:1rem;font-weight:700;color:var(--accent);">support@norxten.com</a>
+    <div class="pricing-header">
+      <span class="label">Tarification</span>
+      <h2>Tarification transparente.</h2>
+      <p>Des forfaits simples. Pas de contrat. Annule en tout temps, sans questions.</p>
+    </div>
+    <div class="pricing-controls">
+      <div class="toggle-group" id="billing-toggle">
+        <button class="active" data-val="mo">Mensuel</button>
+        <button data-val="yr">Annuel <span class="save-pill">2 mois gratuits</span></button>
+      </div>
+    </div>
+    <div class="pricing-roi">
+      La plupart des entrepreneurs commencent avec le forfait <strong>Field</strong>. S'il te permet d'éviter quelques heures oubliées ou de retrouver un seul reçu perdu, il est vite rentabilisé.
+    </div>
+    <div class="pricing-grid">
+      <div class="plan-card">
+        <div class="plan-tier">Starter</div>
+        <div class="plan-name">Starter</div>
+        <div class="plan-price-wrap"><span class="plan-amount" id="s-amt">49.99</span><span class="plan-per"> CAD/mo</span></div>
+        <div class="plan-annual" id="s-ann"></div>
+        <p class="plan-desc">Pour les petites équipes qui commencent avec le contrôle numérique des coûts.</p>
+        <ul class="plan-features">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Jusqu'à 5 employés et 3 projets actifs</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>30 numérisations de reçus par OCR / mois</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Punch par code QR avec validation GPS</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Suivi des coûts de projet et du budget</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Feuilles de temps de base et résumé CSV</li>
+        </ul>
+        <a href="https://apps.apple.com/app/id6763566449" class="plan-cta plan-cta-outline" onclick="if(window.posthog){posthog.capture('app_store_click', {platform: 'ios', location: 'pricing_starter_core_page'})}">Commencer</a>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-badge">Le plus populaire</div>
+        <div class="plan-name">Field</div>
+        <div class="plan-price-wrap"><span class="plan-amount" id="f-amt">89.99</span><span class="plan-per"> CAD/mo</span></div>
+        <div class="plan-annual" id="f-ann"></div>
+        <p class="plan-desc">Le forfait principal pour les chantiers actifs et les équipes en croissance.</p>
+        <ul class="plan-features">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Jusqu'à 15 employés et 8 projets actifs</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Numérisation de reçus par OCR illimitée</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Suivi des déplacements entre les chantiers</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Calcul du temps supplémentaire et exportation CSV</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Historique détaillé des reçus après la fermeture du projet</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>CSV de fermeture détaillé et alertes de budget</li>
+        </ul>
+        <a href="https://apps.apple.com/app/id6763566449" class="plan-cta plan-cta-solid" onclick="if(window.posthog){posthog.capture('app_store_click', {platform: 'ios', location: 'pricing_field_core_page'})}">Commencer</a>
+      </div>
+      <div class="plan-card">
+        <div class="plan-tier">Pro</div>
+        <div class="plan-name">Pro</div>
+        <div class="plan-price-wrap"><span class="plan-amount" id="p-amt">189.99</span><span class="plan-per"> CAD/mo</span></div>
+        <div class="plan-annual" id="p-ann"></div>
+        <p class="plan-desc">Pour les entreprises de plus grande envergure qui ont besoin d'une capacité illimitée et d'exportations avancées.</p>
+        <ul class="plan-features">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Employés et projets actifs illimités</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Rapports professionnels de fermeture de projet en PDF</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Support prioritaire</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Toutes les fonctionnalités Field incluses</li>
+        </ul>
+        <a href="https://apps.apple.com/app/id6763566449" class="plan-cta plan-cta-outline" onclick="if(window.posthog){posthog.capture('app_store_click', {platform: 'ios', location: 'pricing_pro_core_page'})}">Commencer</a>
+      </div>
     </div>
   </div>
 </section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="container">
+    <h2>Protège ta marge avant qu'elle ne s'échappe.</h2>
+    <p>Commence ton essai gratuit de 14 jours. Aucune carte de crédit requise. Annule en tout temps.</p>
+    <div class="final-btns">
+      <a href="https://apps.apple.com/app/id6763566449" class="btn-primary" onclick="if(window.posthog){posthog.capture('app_store_click', {platform: 'ios', location: 'norxten_core_final_cta'})}">Télécharger dans l'App Store</a>
+      <a href="https://play.google.com/store/apps/details?id=com.norxten.core" target="_blank" rel="noopener" class="btn-secondary" onclick="if(window.posthog){posthog.capture('app_store_click', {platform: 'android', location: 'norxten_core_final_cta'})}">Disponible sur Google Play</a>
+    </div>
+    <p class="final-note">iOS et Android &nbsp;·&nbsp; Gratuit pendant 14 jours &nbsp;·&nbsp; Aucune carte de crédit requise</p>
+  </div>
+</section>
+
+<!-- SUPPORT -->
+<section class="support-section">
+  <div class="container">
+    <div class="support-card">
+      <h2>Des questions sur Norxten Core?</h2>
+      <p>Notre équipe de support est prête à t'aider avec ton compte, ta facturation ou n'importe quelle fonctionnalité. Contacte-nous et nous te répondrons rapidement.</p>
+      <a href="support.html" class="btn-support">Visiter le support</a><br>
+      <a href="mailto:support@norxten.com" class="support-email">support@norxten.com</a>
+    </div>
+  </div>
+</section>
+
 <footer id="footer">
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
         <img src="../assets/Norxten-Logo-White.png" alt="Norxten" onerror="this.outerHTML='<span style=&quot;font-size:1.1rem;font-weight:700;color:#fff;font-family:Space Grotesk,sans-serif;&quot;>Norxten</span>'">
-        <p>Des logiciels pratiques pour les entrepreneurs généraux et les entreprises de terrain.</p>
+        <p>Développer des logiciels pratiques pour les entrepreneurs généraux et les entreprises de terrain.</p>
       </div>
-      <div class="footer-col"><h5>Entreprise</h5><ul><li><a href="../index.html">Accueil</a></li><li><a href="about.html">À propos</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-      <div class="footer-col"><h5>Produit</h5><ul><li><a href="../norxten-core.html">Produits</a></li><li><a href="norxten-core.html">Application Norxten Core</a></li><li><a href="support.html">Assistance</a></li><li><a href="../index.html#pricing">Tarifs</a></li></ul></div>
+      <div class="footer-col"><h5>Entreprise</h5><ul><li><a href="index.html">Accueil</a></li><li><a href="about.html">À propos</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h5>Produit</h5><ul><li><a href="norxten-core.html">Produits</a></li><li><a href="norxten-core.html">Application Norxten Core</a></li><li><a href="support.html">Support</a></li><li><a href="../index.html#pricing">Tarifs</a></li></ul></div>
       <div class="footer-col"><h5>Légal</h5><ul><li><a href="privacy.html">Politique de confidentialité</a></li><li><a href="terms.html">Conditions d'utilisation</a></li></ul></div>
     </div>
-    <div class="footer-bottom">&#169; 2026 Technologies Norxten. Tous droits réservés.</div>
+    <div class="footer-bottom">&#169; 2026 Technologies Norxten Inc. Tous droits réservés.</div>
   </div>
-</footer><script>
+</footer>
+
+<script>
 window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', scrollY > 10); }, { passive: true });
-document.querySelectorAll('.faq-q').forEach(q => { q.addEventListener('click', () => q.closest('.faq-item').classList.toggle('open')); });
-// EN button links to equivalent EN page
-const enMap = {
-  'about.html': '../about.html',
-  'contact.html': '../contact.html',
-  'support.html': '../support.html',
-  'products.html': '../norxten-core.html',
-  'norxten-core.html': '../norxten-core.html',
-  'index.html': '../index.html',
-  'privacy.html': '../privacy.html',
-  'terms.html': '../terms.html',
-};
-const curPage = window.location.pathname.split('/').pop() || 'index.html';
+
+// Pricing toggle
+const prices = { starter: {mo:49.99, yr:499.99}, field: {mo:89.99, yr:899.99}, pro: {mo:189.99, yr:999.99} };
+let billing = 'mo';
+function updatePrices() {
+  const s = prices.starter, f = prices.field, p = prices.pro;
+  if (billing === 'yr') {
+    document.getElementById('s-amt').textContent = (s.yr/12).toFixed(2);
+    document.getElementById('f-amt').textContent = (f.yr/12).toFixed(2);
+    document.getElementById('p-amt').textContent = (p.yr/12).toFixed(2);
+    document.getElementById('s-ann').textContent = 'Facturé annuellement — $' + s.yr.toFixed(2) + '/an · Économise $' + ((s.mo*12)-s.yr).toFixed(2) + ' — 2 mois gratuits';
+    document.getElementById('f-ann').textContent = 'Facturé annuellement — $' + f.yr.toFixed(2) + '/an · Économise $' + ((f.mo*12)-f.yr).toFixed(2) + ' — 2 mois gratuits';
+    document.getElementById('p-ann').textContent = 'Facturé annuellement — $' + p.yr.toFixed(2) + '/an · Économise $' + ((p.mo*12)-p.yr).toFixed(2) + ' — 2 mois gratuits';
+  } else {
+    document.getElementById('s-amt').textContent = s.mo.toFixed(2);
+    document.getElementById('f-amt').textContent = f.mo.toFixed(2);
+    document.getElementById('p-amt').textContent = p.mo.toFixed(2);
+    document.getElementById('s-ann').textContent = '';
+    document.getElementById('f-ann').textContent = '';
+    document.getElementById('p-ann').textContent = '';
+  }
+}
+document.querySelectorAll('#billing-toggle button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    billing = btn.dataset.val;
+    document.querySelectorAll('#billing-toggle button').forEach(b => b.classList.toggle('active', b.dataset.val === billing));
+    updatePrices();
+  });
+});
+updatePrices();
+
+// Announcement bar dismiss
+(function() {
+  if (sessionStorage.getItem('announce-dismissed')) {
+    var bar = document.getElementById('announce-bar');
+    if (bar) bar.style.display = 'none';
+    var nav = document.getElementById('nav');
+    if (nav) nav.style.top = '0';
+  }
+  var closeBtn = document.getElementById('announce-close-btn');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', function() {
+      var bar = document.getElementById('announce-bar');
+      if (bar) bar.style.display = 'none';
+      var nav = document.getElementById('nav');
+      if (nav) nav.style.top = '0';
+      sessionStorage.setItem('announce-dismissed', '1');
+    });
+  }
+})();
 </script>
 </body>
 </html>
