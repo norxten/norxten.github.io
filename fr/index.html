@@ -782,12 +782,16 @@
     .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
     .hamburger.open span:nth-child(2) { opacity:0; }
     .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
-    .mobile-menu { display:none; position:fixed; top:calc(var(--nav-h) + 40px); left:0; right:0; background:var(--navy-dk); z-index:999; padding:16px 0; border-bottom:1px solid var(--border); box-shadow:0 8px 24px rgba(0,0,0,.3); }
+    .mobile-menu { display:none; position:fixed; top:calc(var(--nav-h) + 40px); left:0; right:0; background:var(--navy-dk); z-index:1001; padding:16px 0; border-bottom:1px solid var(--border); box-shadow:0 8px 24px rgba(0,0,0,.3); }
     .mobile-menu.open { display:block; }
     .mobile-menu a { display:block; padding:12px 24px; font-size:.95rem; font-weight:500; color:var(--mid); transition:color .15s, background .15s; }
     .mobile-menu a:hover, .mobile-menu a.active { color:#fff; background:rgba(255,255,255,.06); }
     .mobile-menu .mobile-menu-cta { margin:12px 24px 0; display:block; background:var(--accent); color:#fff; padding:12px 20px; border-radius:9px; font-weight:700; font-size:.9rem; text-align:center; }
-    @media(max-width:640px) { .hamburger { display:flex; } }
+    @media(max-width:760px) { .hamburger { display:flex; } }
+    @media (max-width: 768px) {
+      #nav { top: 0; }
+      .mobile-menu { top: var(--nav-h); }
+    }
     .hero-mobile-video { display:none; }
     @media(max-width:900px) {
       .hero-mobile-video { display:block; margin:24px 0 0; border-radius:16px; overflow:hidden; position:relative; padding-bottom:177.78%; height:0; background:#000; }
@@ -843,6 +847,9 @@ localStorage.setItem('nx-lang', 'fr');
         <button class="lang-btn" onclick="localStorage.removeItem('nx-lang');window.location.href='../index.html'">EN</button>
         <button class="lang-btn active">FR</button>
       </div>
+      <button class="hamburger" id="hamburger-btn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </nav>
@@ -1281,6 +1288,31 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 
 document.querySelectorAll('.feature-item, .plan-card').forEach(el => observer.observe(el));
+// ── Hamburger menu ────────────────────────────────────────────
+(function() {
+  var btn = document.getElementById('hamburger-btn');
+  var menu = document.getElementById('mobile-menu');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var open = !menu.classList.contains('open');
+    btn.classList.toggle('open', open);
+    menu.classList.toggle('open', open);
+  });
+  document.addEventListener('click', function(e) {
+    if (!menu.classList.contains('open')) return;
+    if (!btn.contains(e.target) && !menu.contains(e.target)) {
+      btn.classList.remove('open');
+      menu.classList.remove('open');
+    }
+  });
+  menu.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      btn.classList.remove('open');
+      menu.classList.remove('open');
+    });
+  });
+})();
 // ── Announcement bar dismiss ──────────────────────────────────
 (function() {
   if (sessionStorage.getItem('announce-dismissed')) {
