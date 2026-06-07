@@ -106,6 +106,17 @@
     @media (max-width: 768px) {
       #announce-bar { display: none; }
     }
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:6px; }
+    .hamburger span { display:block; width:22px; height:2px; background:#fff; border-radius:2px; transition:all .25s; }
+    .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display:none; position:fixed; top:calc(var(--nav-h) + 40px); left:0; right:0; background:var(--navy-dk); z-index:999; padding:16px 0; border-bottom:1px solid var(--border); box-shadow:0 8px 24px rgba(0,0,0,.3); }
+    .mobile-menu.open { display:block; }
+    .mobile-menu a { display:block; padding:12px 24px; font-size:.95rem; font-weight:500; color:var(--mid); transition:color .15s, background .15s; }
+    .mobile-menu a:hover, .mobile-menu a.active { color:#fff; background:rgba(255,255,255,.06); }
+    .mobile-menu .mobile-menu-cta { margin:12px 24px 0; display:block; background:var(--accent); color:#fff; padding:12px 20px; border-radius:9px; font-weight:700; font-size:.9rem; text-align:center; }
+    @media(max-width:640px) { .hamburger { display:flex; } }
   </style>
     <!-- PostHog Web Analytics -->
     <script>
@@ -151,6 +162,14 @@
     </div>
   </div>
 </nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Accueil</a>
+  <a href="about.html">A propos</a>
+  <a href="norxten-core.html">Produits</a>
+  <a href="support.html" class="active">Support</a>
+  <a href="contact.html">Contact</a>
+  <a href="https://apps.apple.com/app/id6763566449" class="mobile-menu-cta">Commence ton essai gratuit</a>
+</div>
 
 <section class="page-hero">
   <div class="container">
@@ -218,6 +237,23 @@ document.querySelectorAll('.faq-q').forEach(q => { q.addEventListener('click', (
       var nav = document.getElementById('nav');
       if (nav) nav.style.top = '0';
       sessionStorage.setItem('announce-dismissed', '1');
+    });
+  }
+})();
+
+(function() {
+  var btn = document.getElementById('hamburger-btn');
+  var menu = document.getElementById('mobile-menu');
+  if (btn && menu) {
+    btn.addEventListener('click', function() {
+      btn.classList.toggle('open');
+      menu.classList.toggle('open');
+    });
+    document.addEventListener('click', function(e) {
+      if (!btn.contains(e.target) && !menu.contains(e.target)) {
+        btn.classList.remove('open');
+        menu.classList.remove('open');
+      }
     });
   }
 })();

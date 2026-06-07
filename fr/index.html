@@ -777,6 +777,22 @@
     @media (max-width: 768px) {
       #announce-bar { display: none; }
     }
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:6px; }
+    .hamburger span { display:block; width:22px; height:2px; background:#fff; border-radius:2px; transition:all .25s; }
+    .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display:none; position:fixed; top:calc(var(--nav-h) + 40px); left:0; right:0; background:var(--navy-dk); z-index:999; padding:16px 0; border-bottom:1px solid var(--border); box-shadow:0 8px 24px rgba(0,0,0,.3); }
+    .mobile-menu.open { display:block; }
+    .mobile-menu a { display:block; padding:12px 24px; font-size:.95rem; font-weight:500; color:var(--mid); transition:color .15s, background .15s; }
+    .mobile-menu a:hover, .mobile-menu a.active { color:#fff; background:rgba(255,255,255,.06); }
+    .mobile-menu .mobile-menu-cta { margin:12px 24px 0; display:block; background:var(--accent); color:#fff; padding:12px 20px; border-radius:9px; font-weight:700; font-size:.9rem; text-align:center; }
+    @media(max-width:640px) { .hamburger { display:flex; } }
+    .hero-mobile-video { display:none; }
+    @media(max-width:900px) {
+      .hero-mobile-video { display:block; margin:24px 0 0; border-radius:16px; overflow:hidden; position:relative; padding-bottom:177.78%; height:0; background:#000; }
+      .hero-mobile-video iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:none; }
+    }
   </style>
     <!-- PostHog Web Analytics -->
     <script>
@@ -830,6 +846,14 @@ localStorage.setItem('nx-lang', 'fr');
     </div>
   </div>
 </nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html" class="active">Accueil</a>
+  <a href="about.html">A propos</a>
+  <a href="norxten-core.html">Produits</a>
+  <a href="support.html">Support</a>
+  <a href="contact.html">Contact</a>
+  <a href="https://apps.apple.com/app/id6763566449" class="mobile-menu-cta">Commence ton essai gratuit</a>
+</div>
 
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- HERO                                                       -->
@@ -881,6 +905,9 @@ localStorage.setItem('nx-lang', 'fr');
           </a>
         </div>
         <p class="hero-trial-note">Essai gratuit de 14 jours &nbsp;·&nbsp; Aucune carte de crédit requise &nbsp;·&nbsp; iOS et Android &nbsp;·&nbsp; Annule en tout temps, sans questions</p>
+        <div class="hero-mobile-video">
+          <iframe src="https://www.youtube.com/embed/1_JpOw9uEQw?autoplay=1&mute=1&loop=1&playlist=1_JpOw9uEQw&controls=0&playsinline=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
       </div>
 
       <!-- Right: iPhone 15 Pro -->
@@ -889,10 +916,7 @@ localStorage.setItem('nx-lang', 'fr');
           <div class="iphone-body">
             <div class="iphone-screen-wrap">
               <div class="iphone-screen">
-                <div class="iphone-screen-placeholder" id="hero-placeholder" style="display:none">
-                  <span>screenshot-dashboard.jpeg</span>
-                </div>
-                <img src="../assets/screenshot-dashboard.jpeg" alt="Tableau de bord Norxten Core" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:top;" onerror="this.style.display='none';document.getElementById('hero-placeholder').style.display='flex'">
+                <iframe src="https://www.youtube.com/embed/1_JpOw9uEQw?autoplay=1&mute=1&loop=1&playlist=1_JpOw9uEQw&controls=0&playsinline=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;"></iframe>
               </div>
               <div class="dynamic-island"></div>
               <div class="iphone-statusbar"></div>
