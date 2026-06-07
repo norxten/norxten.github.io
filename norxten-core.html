@@ -82,8 +82,12 @@
     .pain-blocks { display:grid; grid-template-columns:repeat(3,1fr); gap:32px; }
     .pain-block { background:var(--light-bg); border-radius:16px; overflow:hidden; border:1px solid #e0e4e8; transition:transform .2s, box-shadow .2s; }
     .pain-block:hover { transform:translateY(-4px); box-shadow:0 12px 32px rgba(0,0,0,.08); }
-    .pain-block-screen { height:220px; overflow:hidden; position:relative; background:#1a2630; }
-    .pain-block-screen img { width:100%; height:100%; object-fit:cover; object-position:top center; }
+    .pain-block-screen { padding:24px 32px 0; background:#e8edf0; display:flex; justify-content:center; align-items:flex-end; min-height:340px; }
+    .pain-block-phone { position:relative; width:200px; flex-shrink:0; }
+    .pain-block-phone-body { background:#1c1c1e; border-radius:36px; padding:10px; box-shadow:0 0 0 1.5px #3a3a3c, 0 0 0 3px #2a2a2c, 0 20px 60px rgba(0,0,0,.4); }
+    .pain-block-phone-screen { border-radius:28px; overflow:hidden; width:100%; }
+    .pain-block-phone-screen img { width:100%; height:auto; display:block; }
+    .pain-block-notch { position:absolute; top:10px; left:50%; transform:translateX(-50%); width:60px; height:10px; background:#1c1c1e; border-radius:5px; z-index:2; }
     .pain-block-body { padding:24px; }
     .pain-block-num { font-size:.68rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin-bottom:8px; }
     .pain-block h3 { font-family:'Plus Jakarta Sans',sans-serif; font-size:1rem; font-weight:700; color:#1a2630; margin-bottom:8px; }
@@ -245,7 +249,14 @@
     <div class="pain-blocks">
       <div class="pain-block">
         <div class="pain-block-screen">
-          <img src="assets/03_receipt_ai_scan_preview.png" alt="AI receipt scanning in Norxten Core" loading="lazy">
+          <div class="pain-block-phone">
+            <div class="pain-block-notch"></div>
+            <div class="pain-block-phone-body">
+              <div class="pain-block-phone-screen">
+                <img src="assets/03_receipt_ai_scan_preview.png" alt="AI receipt scanning in Norxten Core" loading="lazy">
+              </div>
+            </div>
+          </div>
         </div>
         <div class="pain-block-body">
           <div class="pain-block-num">01 — Receipts</div>
@@ -255,7 +266,14 @@
       </div>
       <div class="pain-block">
         <div class="pain-block-screen">
-          <img src="assets/1A1AD2ED-0DD6-432C-AD81-FAA3B3E08462.png" alt="Crew management in Norxten Core" loading="lazy">
+          <div class="pain-block-phone">
+            <div class="pain-block-notch"></div>
+            <div class="pain-block-phone-body">
+              <div class="pain-block-phone-screen">
+                <img src="assets/1A1AD2ED-0DD6-432C-AD81-FAA3B3E08462.png" alt="Crew management in Norxten Core" loading="lazy">
+              </div>
+            </div>
+          </div>
         </div>
         <div class="pain-block-body">
           <div class="pain-block-num">02 — Crew</div>
@@ -265,7 +283,14 @@
       </div>
       <div class="pain-block">
         <div class="pain-block-screen">
-          <img src="assets/01_owner_dashboard_cost_overview.png" alt="Project cost dashboard in Norxten Core" loading="lazy">
+          <div class="pain-block-phone">
+            <div class="pain-block-notch"></div>
+            <div class="pain-block-phone-body">
+              <div class="pain-block-phone-screen">
+                <img src="assets/01_owner_dashboard_cost_overview.png" alt="Project cost dashboard in Norxten Core" loading="lazy">
+              </div>
+            </div>
+          </div>
         </div>
         <div class="pain-block-body">
           <div class="pain-block-num">03 — Costs</div>
