@@ -1,0 +1,28 @@
+# Norxten Core
+
+> Norxten Core is a B2B field cost control mobile app for general contractors.
+> It provides OCR receipt and invoice scanning with project assignment, GPS
+> crew punch-in/out with real-time labour visibility, and multi-project status
+> tracking (on budget/over budget/on schedule/due soon).
+
+Norxten Core is built by Norxten Technologies Inc., a Canadian company based
+in Quebec. The app is available on iOS and Android with a 14-day free trial,
+no credit card required.
+
+## Product
+
+- [Norxten Core](https://norxten.com/norxten-core.html): Product overview, 
+  features, and pricing
+- [Pricing](https://norxten.com/norxten-core.html#pricing): Starter ($49.99/mo),
+  Field ($89.99/mo), Pro ($189.99/mo)
+
+## Company
+
+- [About](https://norxten.com/about.html): Company information
+- [Contact](https://norxten.com/contact.html): Contact details
+- [Support](https://norxten.com/support.html): Customer support
+
+## Legal
+
+- [Privacy Policy](https://norxten.com/privacy.html)
+- [Terms of Service](https://norxten.com/terms.html)

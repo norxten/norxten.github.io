@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Field Cost Control for General Contractors — Norxten Core</title>
   <meta name="description" content="Field cost control for general contractors. Track receipts, crew hours, and project costs from the field. Real job cost visibility before closeout. Free on iOS and Android.">
+  <link rel="canonical" href="https://norxten.com/" />
+  <link rel="alternate" hreflang="en" href="https://norxten.com/" />
+  <link rel="alternate" hreflang="fr" href="https://norxten.com/fr/" />
+  <link rel="alternate" hreflang="x-default" href="https://norxten.com/" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -856,16 +860,6 @@
 </head>
 <body>
 
-<script>
-// Language persistence
-(function() {
-  var saved = localStorage.getItem('nx-lang');
-  if (saved === 'fr') {
-    var page = window.location.pathname.split('/').pop() || 'index.html';
-    window.location.replace('fr/' + page);
-  }
-})();
-</script>
 
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- NAV                                                        -->
@@ -877,13 +871,13 @@
 </div>
 <nav id="nav">
   <div class="container nav-inner">
-    <a class="nav-brand" href="index.html" style="display:flex;align-items:center;gap:10px;flex-direction:column;align-items:flex-start;gap:1px;">
+    <a class="nav-brand" href="/" style="display:flex;align-items:center;gap:10px;flex-direction:column;align-items:flex-start;gap:1px;">
       <img src="assets/Norxten-Logo-White.png" alt="Norxten" style="height:28px;" onerror="this.style.display='none'">
       <span style="font-size:.6rem;font-weight:500;color:rgba(255,255,255,.4);letter-spacing:.06em;font-family:'DM Sans',sans-serif;">Technologies Inc.</span>
 
     </a>
     <ul class="nav-links">
-      <li><a href="index.html" class="active" data-i18n="nav_home">Home</a></li>
+      <li><a href="/" class="active" data-i18n="nav_home">Home</a></li>
       <li><a href="about.html" data-i18n="nav_about">About Us</a></li>
       <li><a href="norxten-core.html" data-i18n="nav_products">Products</a></li>
       <li><a href="support.html" data-i18n="nav_support">Support</a></li>
@@ -892,7 +886,7 @@
     <div class="nav-right">
       <div class="lang-toggle">
         <button class="lang-btn active" onclick="localStorage.removeItem('nx-lang')">EN</button>
-        <button class="lang-btn" onclick="window.location.href='fr/index.html'">FR</button>
+        <button class="lang-btn" onclick="window.location.href='/fr/'">FR</button>
       </div>
       <button class="hamburger" id="hamburger-btn" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -901,7 +895,7 @@
   </div>
 </nav>
 <div class="mobile-menu" id="mobile-menu">
-  <a href="index.html" class="active">Home</a>
+  <a href="/" class="active">Home</a>
   <a href="about.html">About Us</a>
   <a href="norxten-core.html">Products</a>
   <a href="support.html">Support</a>
@@ -1234,7 +1228,7 @@
       <div class="footer-col">
         <h5>Company</h5>
         <ul>
-          <li><a href="index.html">Home</a></li>
+          <li><a href="/">Home</a></li>
           <li><a href="about.html">About Us</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
@@ -1245,7 +1239,7 @@
           <li><a href="norxten-core.html">Products</a></li>
           <li><a href="norxten-core.html">Norxten Core app</a></li>
           <li><a href="support.html">Support</a></li>
-          <li><a href="index.html#pricing">Pricing</a></li>
+          <li><a href="/#pricing">Pricing</a></li>
         </ul>
       </div>
       <div class="footer-col">
