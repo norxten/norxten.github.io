@@ -179,7 +179,7 @@
     .hero-trial-note { font-size:0.85rem; color:var(--mid); opacity:0.75; margin-top:16px; margin-bottom:8px; letter-spacing:0.02em; }
     .hero-actions {
       display: flex; gap: 12px; flex-wrap: wrap;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
     }
     .btn-primary {
       font-family: 'DM Sans', sans-serif;
@@ -206,6 +206,16 @@
       border-color: rgba(255,255,255,.5);
       background: rgba(255,255,255,.06);
     }
+    .btn-ghost {
+      font-family: 'DM Sans', sans-serif;
+      background: transparent; color: rgba(255,255,255,.6);
+      padding: 8px 0; font-size: .88rem; font-weight: 500;
+      border: none; cursor: pointer;
+      text-decoration: underline; text-underline-offset: 3px;
+      display: inline-block; margin-top: 12px;
+      transition: color .15s;
+    }
+    .btn-ghost:hover { color: #fff; }
     .store-badges { display: flex; gap: 12px; flex-wrap: wrap; }
     .store-badge {
       display: flex; align-items: center; gap: 10px;
@@ -933,8 +943,7 @@
         <h1 data-i18n="hero_h1">Run multiple projects<br>without losing <em>control.</em></h1>
         <p class="hero-sub" data-i18n="hero_sub">Capture receipts and invoices on site.<br>See crew punch-in activity by project.<br>Track budget and schedule status across all your jobs.</p>
         <div class="hero-actions">
-          <a href="https://apps.apple.com/us/app/norxten-core/id6763566449" target="_blank" rel="noopener" class="btn-primary" data-i18n="hero_cta1" onclick="if(window.posthog){posthog.capture('app_store_click', {platform: 'ios', location: 'hero_cta_primary'})}">Start Your Free Trial</a>
-          <a href="norxten-core.html" class="btn-secondary" data-i18n="hero_cta2">See How It Works</a>
+          <a href="https://apps.apple.com/us/app/norxten-core/id6763566449" target="_blank" rel="noopener" class="btn-primary" data-i18n="hero_cta1" onclick="if(window.posthog){posthog.capture('app_store_click', {platform: 'ios', location: 'hero_cta_primary'})}">Start Free Trial in the App</a>
         </div>
         <div class="store-badges">
           <a class="store-badge" href="https://apps.apple.com/us/app/norxten-core/id6763566449" target="_blank" rel="noopener" onclick="if(window.posthog){posthog.capture('app_store_click', {platform: 'ios', location: 'hero_badge'})}">
@@ -953,6 +962,7 @@
           </a>
         </div>
         <p class="hero-trial-note">14-day free trial &nbsp;·&nbsp; No credit card required &nbsp;·&nbsp; iOS &amp; Android &nbsp;·&nbsp; Cancel anytime, no questions</p>
+        <a href="norxten-core.html" class="btn-ghost" data-i18n="hero_cta2">See How It Works</a>
         <div class="hero-mobile-video">
           <iframe src="https://www.youtube.com/embed/1_JpOw9uEQw?autoplay=1&mute=1&loop=1&playlist=1_JpOw9uEQw&controls=0&playsinline=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
@@ -1388,7 +1398,7 @@ document.querySelectorAll('.feature-item, .plan-card').forEach(el => observer.ob
   <!-- Sticky Mobile Download Bar -->
   <div class="sticky-mobile-bar" id="sticky-bar">
     <p><strong>Norxten Core</strong>14-day free trial · No credit card required</p>
-    <a id="sticky-bar-btn" href="https://apps.apple.com/app/id6763566449" class="sticky-bar-btn" onclick="if(window.posthog){posthog.capture('app_store_click', {platform: 'ios', location: 'sticky_bar'})}">Start Free Trial</a>
+    <a id="sticky-bar-btn" href="https://apps.apple.com/app/id6763566449" class="sticky-bar-btn" onclick="if(window.posthog){posthog.capture('app_store_click', {platform: 'ios', location: 'sticky_bar'})}">Download App</a>
   </div>
 </body>
 </html>
