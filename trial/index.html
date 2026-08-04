@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Norxten Core — Free Trial for General Contractors</title>
+  <meta name="description" content="Track receipts, crew hours, and field costs from your phone while the job is running. Free 14-day trial. No credit card.">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+" (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_tFRpFPYPtydbMqpQVYctamjbVKjmSPxBMRYPqiKZZ5yL', {
+      api_host: 'https://us.i.posthog.com',
+      person_profiles: 'always',
+      capture_pageview: false,
+      capture_pageleave: true
+    });
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', Helvetica, sans-serif;
+      background: #0F1A24;
+      color: #F5F8FA;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; height: auto; }
+
+    :root {
+      --bg: #0F1A24;
+      --navy: #314657;
+      --accent: #3B82F6;
+      --orange: #F97316;
+      --text: #F5F8FA;
+      --muted: rgba(245, 248, 250, 0.65);
+      --subtle: rgba(245, 248, 250, 0.45);
+      --border: rgba(255, 255, 255, 0.1);
+      --max: 1080px;
+    }
+
+    .wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+
+    /* Top bar */
+    .topbar {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(15, 26, 36, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 56px;
+    }
+    .wordmark {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700; font-size: 0.85rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text);
+    }
+    .lang-toggle {
+      display: flex; gap: 6px; font-size: 0.78rem; font-weight: 600;
+    }
+    .lang-toggle button {
+      background: none; border: none; cursor: pointer;
+      color: var(--subtle); font-family: inherit; padding: 4px 6px;
+      transition: color 0.15s;
+    }
+    .lang-toggle button.active { color: var(--accent); }
+    .lang-toggle span { color: var(--border); }
+
+    /* Hero */
+    .hero { padding: 32px 0 48px; }
+    .hero-grid {
+      display: flex; flex-direction: column; gap: 32px;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.85rem, 5.5vw, 2.65rem);
+      font-weight: 700; line-height: 1.15;
+      letter-spacing: -0.02em; margin-bottom: 16px;
+    }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero-sub {
+      font-size: 1.05rem; line-height: 1.7;
+      color: var(--muted); margin-bottom: 14px;
+    }
+    .hero-value {
+      font-size: 0.92rem; line-height: 1.65;
+      color: var(--subtle); margin-bottom: 24px;
+    }
+    .cta-group { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
+    .cta-group.equal { flex-direction: row; flex-wrap: wrap; }
+    .cta-group.equal .store-btn { flex: 1; min-width: 140px; }
+    .store-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      width: 100%; padding: 14px 20px; border-radius: 10px;
+      font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 600;
+      border: 1.5px solid transparent; cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+    }
+    .store-btn.primary {
+      background: var(--accent); color: #0F1A24;
+      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.35);
+    }
+    .store-btn.primary:hover { transform: translateY(-1px); box-shadow: 0 8px 28px rgba(59, 130, 246, 0.45); }
+    .store-btn.secondary {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.14);
+      color: var(--text);
+    }
+    .store-btn.secondary:hover { background: rgba(255, 255, 255, 0.1); }
+    .store-btn svg { flex-shrink: 0; width: 20px; height: 20px; }
+    .cta-fine {
+      font-size: 0.8rem; color: var(--subtle); line-height: 1.5;
+    }
+
+    /* Phone frame */
+    .phone-wrap {
+      display: flex; justify-content: center;
+      max-width: 280px; margin: 0 auto;
+    }
+    .phone {
+      width: 100%; background: #1c1c1e; border-radius: 36px;
+      padding: 10px; box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5),
+        0 0 0 1.5px #3a3a3c;
+    }
+    .phone-screen {
+      border-radius: 28px; overflow: hidden;
+      background: #000; aspect-ratio: 9/19.5;
+    }
+    .phone-screen img {
+      width: 100%; height: 100%; object-fit: cover; object-position: top;
+    }
+
+    /* Sections */
+    section { padding: 48px 0; }
+    .section-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 12px; text-align: center;
+    }
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.35rem, 4vw, 1.75rem);
+      font-weight: 700; text-align: center;
+      line-height: 1.3; max-width: 640px; margin: 0 auto;
+    }
+
+    /* Pain cards */
+    .pain-grid { display: flex; flex-direction: column; gap: 16px; margin-top: 28px; }
+    .pain-card {
+      background: rgba(49, 70, 87, 0.35);
+      border: 1px solid var(--border);
+      border-radius: 14px; padding: 22px 20px;
+    }
+    .pain-icon { font-size: 1.5rem; margin-bottom: 10px; line-height: 1; }
+    .pain-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.05rem; font-weight: 700; margin-bottom: 8px;
+    }
+    .pain-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
+
+    /* Solution */
+    .solution { padding: 40px 0; background: rgba(59, 130, 246, 0.06); }
+    .solution .section-title { color: var(--text); }
+
+    /* Steps */
+    .steps { display: flex; flex-direction: column; gap: 20px; margin-top: 28px; }
+    .step {
+      display: flex; gap: 16px; align-items: flex-start;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border); border-radius: 14px;
+      padding: 20px;
+    }
+    .step-num {
+      flex-shrink: 0; width: 36px; height: 36px;
+      border-radius: 10px; background: var(--orange);
+      color: #0F1A24; font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700; font-size: 0.85rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem; font-weight: 700; margin-bottom: 6px;
+    }
+    .step p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+    /* Pricing anchor */
+    .pricing-anchor { text-align: center; }
+    .pricing-anchor p {
+      font-size: 1rem; color: var(--muted); margin-bottom: 8px; line-height: 1.6;
+    }
+    .pricing-anchor .highlight {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.25rem, 4vw, 1.5rem);
+      font-weight: 700; color: var(--text); margin: 12px 0;
+    }
+    .pricing-anchor .fine { font-size: 0.88rem; color: var(--subtle); }
+
+    /* Onboarding box */
+    .onboard-box {
+      max-width: 560px; margin: 0 auto;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(59, 130, 246, 0.04));
+      border: 1px solid rgba(59, 130, 246, 0.28);
+      border-radius: 16px; padding: 28px 24px; text-align: center;
+    }
+    .onboard-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: #10b981; margin-bottom: 10px;
+    }
+    .onboard-box h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.2rem; font-weight: 700; margin-bottom: 10px;
+    }
+    .onboard-box p {
+      font-size: 0.9rem; color: var(--muted); line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .btn-call {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 12px 28px; background: var(--accent); color: #0F1A24;
+      border-radius: 9px; font-weight: 700; font-size: 0.9rem;
+      font-family: 'DM Sans', sans-serif;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-call:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+    }
+
+    /* Final CTA */
+    .final-cta {
+      background: var(--navy);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      text-align: center; padding: 56px 0;
+    }
+    .final-cta h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.5rem, 4.5vw, 2rem);
+      font-weight: 700; line-height: 1.25;
+      max-width: 520px; margin: 0 auto 12px;
+    }
+    .final-cta .sub { font-size: 0.9rem; color: var(--muted); margin-bottom: 24px; }
+    .final-cta .cta-group { max-width: 480px; margin: 0 auto; }
+
+    /* Footer */
+    footer {
+      padding: 28px 0 36px; text-align: center;
+      font-size: 0.78rem; color: var(--subtle); line-height: 1.8;
+    }
+    footer a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
+    footer a:hover { color: var(--text); }
+
+    /* Scroll reveal */
+    [data-reveal] {
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    [data-reveal].visible { opacity: 1; transform: translateY(0); }
+
+    @media (min-width: 768px) {
+      .hero { padding: 48px 0 64px; }
+      .hero-grid {
+        flex-direction: row; align-items: center;
+        gap: 48px;
+      }
+      .hero-copy { flex: 1; min-width: 0; }
+      .phone-wrap { flex: 0 0 280px; margin: 0; }
+      .pain-grid { flex-direction: row; }
+      .pain-card { flex: 1; }
+      .steps { flex-direction: row; }
+      .step { flex: 1; flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      [data-reveal] { opacity: 1; transform: none; transition: none; }
+      .store-btn, .btn-call { transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="wordmark">NORXTEN CORE</div>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" id="lang-en" class="active">EN</button>
+        <span>|</span>
+        <button type="button" id="lang-fr">FR</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="badge" data-i18n="badge"></p>
+          <h1 data-i18n-html="headline"></h1>
+          <p class="hero-sub" data-i18n="subheadline"></p>
+          <p class="hero-value" data-i18n="value"></p>
+          <div class="cta-group" id="hero-cta"></div>
+          <p class="cta-fine" data-i18n="ctaFine"></p>
+        </div>
+        <div class="phone-wrap" data-reveal>
+          <div class="phone">
+            <div class="phone-screen">
+              <img src="../assets/2021-04-07.png" alt="" data-i18n-alt="phoneAlt" onerror="this.onerror=null;this.src='../assets/03_receipt_ai_scan_preview.png';">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pain -->
+    <section class="pain">
+      <div class="wrap">
+        <div class="pain-grid">
+          <article class="pain-card" data-reveal>
+            <div class="pain-icon" aria-hidden="true">🧾</div>
+            <h3 data-i18n="pain1Title"></h3>
+            <p data-i18n="pain1Body"></p>
+          </article>
+          <article class="pain-card" data-reveal>
+            <div class="pain-icon" aria-hidden="true">⏱️</div>
+            <h3 data-i18n="pain2Title"></h3>
+            <p data-i18n="pain2Body"></p>
+          </article>
+          <article class="pain-card" data-reveal>
+            <div class="pain-icon" aria-hidden="true">📉</div>
+            <h3 data-i18n="pain3Title"></h3>
+            <p data-i18n="pain3Body"></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution -->
+    <section class="solution">
+      <div class="wrap">
+        <p class="section-title" data-i18n="solution" data-reveal></p>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="how">
+      <div class="wrap">
+        <p class="section-label" data-i18n="howLabel"></p>
+        <div class="steps">
+          <article class="step" data-reveal>
+            <div class="step-num">1</div>
+            <div>
+              <h3 data-i18n="step1Title"></h3>
+              <p data-i18n="step1Body"></p>
+            </div>
+          </article>
+          <article class="step" data-reveal>
+            <div class="step-num">2</div>
+            <div>
+              <h3 data-i18n="step2Title"></h3>
+              <p data-i18n="step2Body"></p>
+            </div>
+          </article>
+          <article class="step" data-reveal>
+            <div class="step-num">3</div>
+            <div>
+              <h3 data-i18n="step3Title"></h3>
+              <p data-i18n="step3Body"></p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing anchor -->
+    <section class="pricing-anchor">
+      <div class="wrap" data-reveal>
+        <p data-i18n="pricing1"></p>
+        <p class="highlight" data-i18n="pricing2"></p>
+        <p class="fine" data-i18n="pricing3"></p>
+      </div>
+    </section>
+
+    <!-- Onboarding -->
+    <section class="onboard">
+      <div class="wrap">
+        <div class="onboard-box" data-reveal>
+          <p class="onboard-label" data-i18n="onboardLabel"></p>
+          <h2 data-i18n="onboardHeadline"></h2>
+          <p data-i18n="onboardBody"></p>
+          <a class="btn-call" id="call-cta" href="mailto:support@norxten.com?subject=Onboarding Call Request" data-i18n="onboardBtn"></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+      <div class="wrap">
+        <h2 data-i18n="finalHeadline" data-reveal></h2>
+        <p class="sub" data-i18n="finalSub" data-reveal></p>
+        <div class="cta-group" id="final-cta" data-reveal></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p data-i18n-html="footer"></p>
+    </div>
+  </footer>
+
+  <script>
+  (function () {
+    var APP_STORE = 'https://apps.apple.com/ca/app/norxten-core/id6763566449';
+    var PLAY_STORE = 'https://play.google.com/store/apps/details?id=com.norxten.core';
+    var UTM_KEYS = ['utm_source', 'utm_campaign', 'utm_medium', 'utm_content', 'utm_term'];
+
+    var COPY = {
+      en: {
+        badge: 'FOR GENERAL CONTRACTORS',
+        headline: 'Every job has a <em>real number</em>. Don\'t wait until closeout to see it.',
+        subheadline: 'Track receipts, crew hours, and field costs from your phone while the job is running. Not Sunday night. Not at closeout. Now.',
+        value: 'Most GCs spend 2+ hours a week on this. Norxten Core costs less than one of those hours.',
+        ctaFine: 'Free 14-day trial. No credit card. Free onboarding call included.',
+        iosCta: 'Download on the App Store',
+        androidCta: 'Get it on Google Play',
+        phoneAlt: 'Norxten Core receipt scan screenshot',
+        pain1Title: 'Receipts go missing',
+        pain1Body: 'You bought materials on Tuesday. By Friday the receipt is gone. By closeout it never existed.',
+        pain2Title: 'Hours pieced together from texts',
+        pain2Body: 'Who worked Saturday? For how long? You are reconstructing it Sunday night from WhatsApp messages.',
+        pain3Title: 'You find out too late',
+        pain3Body: 'The job felt fine all month. The accountant\'s report said otherwise. Nothing left to fix.',
+        solution: 'Norxten Core connects receipts, crew hours, and field costs to every project — live, from your phone.',
+        howLabel: 'How it works',
+        step1Title: 'Scan',
+        step1Body: 'Point your phone at any receipt. AI reads vendor, amount, and taxes instantly.',
+        step2Title: 'Track',
+        step2Body: 'Crew punches in from the job site. GPS verifies location automatically.',
+        step3Title: 'Know',
+        step3Body: 'Open the app. See what every job is costing you. Right now.',
+        pricing1: 'Starting at only $49.99/month CAD.',
+        pricing2: 'Less than one hour you spend weekly organizing invoices and tracking your crew.',
+        pricing3: '14-day free trial. No credit card required.',
+        onboardLabel: 'Included with every trial',
+        onboardHeadline: 'Free 30-minute setup call with our team',
+        onboardBody: 'We walk you through the app personally on a call so you get real value from day one. No sales pitch. Just setup.',
+        onboardBtn: 'Book Your Free Call',
+        finalHeadline: 'Know what every job costs you. Before the job is done.',
+        finalSub: 'Free 14-day trial. No credit card. Free onboarding call included.',
+        footer: '© 2026 Norxten Technologies Inc. · <a href="mailto:support@norxten.com">support@norxten.com</a><br><a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms</a>'
+      },
+      fr: {
+        badge: 'POUR LES ENTREPRENEURS GÉNÉRAUX',
+        headline: 'Chaque chantier a un <em>vrai chiffre</em>. Attends pas la fin du projet pour le voir.',
+        subheadline: 'Suis tes reçus, les heures de tes gars et tes coûts de chantier depuis ton téléphone pendant que le projet roule. Pas le dimanche soir. Pas à la fin du chantier. Maintenant.',
+        value: 'La plupart des entrepreneurs généraux passent plus de 2 heures par semaine là-dessus. Norxten Core coûte moins cher qu\'une seule de ces heures-là.',
+        ctaFine: 'Essai gratuit de 14 jours. Sans carte de crédit. Appel d\'accompagnement inclus.',
+        iosCta: 'Télécharger sur l\'App Store',
+        androidCta: 'Obtenir sur Google Play',
+        phoneAlt: 'Capture d\'écran de numérisation de reçu Norxten Core',
+        pain1Title: 'Les reçus disparaissent',
+        pain1Body: 'Tu as acheté des matériaux mardi. Vendredi, le reçu est introuvable. À la clôture du chantier, il n\'existe plus.',
+        pain2Title: 'Les heures reconstituées à partir de textos',
+        pain2Body: 'Qui a travaillé samedi? Combien de temps? Tu reconstitues ça le dimanche soir à partir de messages WhatsApp.',
+        pain3Title: 'Tu l\'apprends trop tard',
+        pain3Body: 'Le chantier semblait bien aller tout le mois. Le rapport du comptable a dit le contraire. Plus rien à faire.',
+        solution: 'Norxten Core connecte les reçus, les heures d\'équipe et les coûts de chantier à chaque projet — en direct, depuis ton téléphone.',
+        howLabel: 'Comment ça marche',
+        step1Title: 'Numérise',
+        step1Body: 'Pointe ton téléphone sur n\'importe quel reçu. L\'IA lit le fournisseur, le montant et les taxes instantanément.',
+        step2Title: 'Suis',
+        step2Body: 'Ton équipe pointe depuis le chantier. Le GPS vérifie la localisation automatiquement.',
+        step3Title: 'Sais',
+        step3Body: 'Ouvre l\'app. Vois ce que chaque chantier te coûte. Maintenant.',
+        pricing1: 'À partir de seulement 49,99 $/mois CAD.',
+        pricing2: 'Moins cher qu\'une seule heure passée chaque semaine à classer tes factures et suivre tes gars.',
+        pricing3: 'Essai gratuit de 14 jours. Aucune carte de crédit requise.',
+        onboardLabel: 'Inclus avec chaque essai',
+        onboardHeadline: 'Appel de configuration gratuit de 30 minutes avec notre équipe',
+        onboardBody: 'On te fait faire le tour de l\'application en personne sur un appel pour que tu en tires de la vraie valeur dès le premier jour. Pas de pitch de vente. Juste la configuration.',
+        onboardBtn: 'Réserve ton appel gratuit',
+        finalHeadline: 'Sache ce que chaque chantier te coûte. Avant que le projet soit terminé.',
+        finalSub: 'Essai gratuit de 14 jours. Sans carte de crédit. Appel d\'accompagnement inclus.',
+        footer: '© 2026 Norxten Technologies Inc. · <a href="mailto:support@norxten.com">support@norxten.com</a><br><a href="/privacy">Politique de confidentialité</a> · <a href="/terms">Conditions d\'utilisation</a>'
+      }
+    };
+
+    var APPLE_SVG = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>';
+    var PLAY_SVG = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.18 23.76c.3.17.64.22.99.14l13.24-7.46-2.76-2.77-11.47 10.09zM.48 1.16C.18 1.48 0 1.96 0 2.59v18.82c0 .63.18 1.11.48 1.43l.08.07 10.54-10.54v-.25L.56 1.09l-.08.07zM20.55 10.3l-2.84-1.6-3.1 3.1 3.1 3.1 2.87-1.62c.82-.46.82-1.22-.03-1.98zM3.18.24l13.24 7.46-2.76 2.76L2.19.37c-.3-.17.65-.2.99-.13z"/></svg>';
+
+    var lang = 'en';
+    var platform = 'desktop';
+    var utm = {};
+    var scrollMarks = { 25: false, 50: false, 75: false, 100: false };
+
+    function detectPlatform() {
+      var ua = navigator.userAgent || '';
+      if (/iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) return 'ios';
+      if (/Android/i.test(ua)) return 'android';
+      return 'desktop';
+    }
+
+    function detectLang() {
+      var stored = localStorage.getItem('nx-lang');
+      if (stored === 'fr' || stored === 'en') return stored;
+      var nav = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+      if (nav.indexOf('fr') === 0) return 'fr';
+      return 'en';
+    }
+
+    function readUtms() {
+      var params = new URLSearchParams(window.location.search);
+      var data = {};
+      UTM_KEYS.forEach(function (key) {
+        var val = params.get(key);
+        if (val) {
+          data[key] = val;
+          try { sessionStorage.setItem('nx_' + key, val); } catch (e) {}
+        } else {
+          try {
+            var stored = sessionStorage.getItem('nx_' + key);
+            if (stored) data[key] = stored;
+          } catch (e) {}
+        }
+      });
+      return data;
+    }
+
+    function withUtms(url) {
+      var u = new URL(url);
+      Object.keys(utm).forEach(function (key) {
+        if (utm[key]) u.searchParams.set(key, utm[key]);
+      });
+      return u.toString();
+    }
+
+    function t(key) {
+      return COPY[lang][key] || COPY.en[key] || '';
+    }
+
+    function applyCopy() {
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n');
+        if (COPY[lang][key]) el.textContent = COPY[lang][key];
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-html');
+        if (COPY[lang][key]) el.innerHTML = COPY[lang][key];
+      });
+      document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-alt');
+        if (COPY[lang][key]) el.alt = COPY[lang][key];
+      });
+      document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+      document.getElementById('lang-fr').classList.toggle('active', lang === 'fr');
+      renderCtas(document.getElementById('hero-cta'));
+      renderCtas(document.getElementById('final-cta'));
+    }
+
+    function makeStoreBtn(store, position, variant) {
+      var isIos = store === 'ios';
+      var a = document.createElement('a');
+      a.className = 'store-btn ' + variant;
+      a.href = withUtms(isIos ? APP_STORE : PLAY_STORE);
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.innerHTML = (isIos ? APPLE_SVG : PLAY_SVG) + '<span>' + (isIos ? t('iosCta') : t('androidCta')) + '</span>';
+      a.addEventListener('click', function () {
+        if (window.posthog) {
+          posthog.capture('trial_cta_clicked', {
+            platform: isIos ? 'ios' : 'android',
+            position: position,
+            lang: lang
+          });
+        }
+      });
+      return a;
+    }
+
+    function renderCtas(container) {
+      if (!container) return;
+      container.innerHTML = '';
+      container.classList.remove('equal');
+      if (platform === 'ios') {
+        container.appendChild(makeStoreBtn('ios', 'primary', 'primary'));
+        container.appendChild(makeStoreBtn('android', 'secondary', 'secondary'));
+      } else if (platform === 'android') {
+        container.appendChild(makeStoreBtn('android', 'primary', 'primary'));
+        container.appendChild(makeStoreBtn('ios', 'secondary', 'secondary'));
+      } else {
+        container.classList.add('equal');
+        container.appendChild(makeStoreBtn('ios', 'primary', 'primary'));
+        container.appendChild(makeStoreBtn('android', 'primary', 'primary'));
+      }
+    }
+
+    function initReveal() {
+      if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelectorAll('[data-reveal]').forEach(function (el) { el.classList.add('visible'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -24px 0px' });
+      document.querySelectorAll('[data-reveal]').forEach(function (el) { io.observe(el); });
+    }
+
+    function initScrollDepth() {
+      function check() {
+        var doc = document.documentElement;
+        var scrollTop = window.scrollY || doc.scrollTop;
+        var height = doc.scrollHeight - doc.clientHeight;
+        if (height <= 0) return;
+        var pct = Math.round((scrollTop / height) * 100);
+        [25, 50, 75, 100].forEach(function (mark) {
+          if (!scrollMarks[mark] && pct >= mark) {
+            scrollMarks[mark] = true;
+            if (window.posthog) {
+              posthog.capture('trial_scroll_depth', { depth: mark, lang: lang });
+            }
+          }
+        });
+      }
+      window.addEventListener('scroll', check, { passive: true });
+      check();
+    }
+
+    document.getElementById('lang-en').addEventListener('click', function () {
+      lang = 'en';
+      localStorage.setItem('nx-lang', 'en');
+      applyCopy();
+    });
+    document.getElementById('lang-fr').addEventListener('click', function () {
+      lang = 'fr';
+      localStorage.setItem('nx-lang', 'fr');
+      applyCopy();
+    });
+
+    document.getElementById('call-cta').addEventListener('click', function () {
+      if (window.posthog) {
+        posthog.capture('trial_call_cta_clicked', { lang: lang });
+      }
+    });
+
+    platform = detectPlatform();
+    lang = detectLang();
+    utm = readUtms();
+    applyCopy();
+    initReveal();
+    initScrollDepth();
+
+    if (window.posthog) {
+      posthog.capture('trial_page_viewed', {
+        utm_source: utm.utm_source || null,
+        utm_campaign: utm.utm_campaign || null,
+        utm_medium: utm.utm_medium || null,
+        platform: platform,
+        lang: lang
+      });
+    }
+  })();
+  </script>
+</body>
+</html>
