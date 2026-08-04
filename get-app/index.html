@@ -129,6 +129,15 @@
       h1 { font-size: 1.5rem; }
     }
   </style>
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+" (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_tFRpFPYPtydbMqpQVYctamjbVKjmSPxBMRYPqiKZZ5yL', {
+      api_host: 'https://us.i.posthog.com',
+      person_profiles: 'always',
+      capture_pageview: false,
+      capture_pageleave: false
+    });
+  </script>
 </head>
 <body>
   <div class="container">
@@ -148,6 +157,19 @@
   </div>
 
   <script>
+    const ua = navigator.userAgent || '';
+    const detectedPlatform = (/iPad|iPhone|iPod/.test(ua) && !window.MSStream)
+      ? 'ios'
+      : /Android/.test(ua) ? 'android'
+      : 'desktop';
+
+    if (window.posthog) {
+      posthog.capture('get_app_viewed', {
+        platform: detectedPlatform,
+        referrer: document.referrer || null
+      });
+    }
+
     const IOS_STORE = 'https://apps.apple.com/us/app/norxten-core/id6763566449';
     const ANDROID_STORE = 'https://play.google.com/store/apps/details?id=com.norxten.core';
 
@@ -179,18 +201,48 @@
       headline.textContent = 'Download for iPhone';
       subtitle.textContent = 'Norxten Core is available free on the App Store.';
       btnGroup.innerHTML = iosBtn;
-      // Auto-redirect on mobile
-      window.location.href = IOS_STORE;
+      // Delay redirect to allow PostHog to flush
+      setTimeout(function () {
+        window.location.href = IOS_STORE;
+      }, 300);
     } else if (isAndroid) {
       headline.textContent = 'Download for Android';
       subtitle.textContent = 'Norxten Core is available free on Google Play.';
       btnGroup.innerHTML = androidBtn;
-      // Auto-redirect on mobile
-      window.location.href = ANDROID_STORE;
+      // Delay redirect to allow PostHog to flush
+      setTimeout(function () {
+        window.location.href = ANDROID_STORE;
+      }, 300);
     } else {
       // Desktop — show both buttons
       btnGroup.innerHTML = iosBtn + androidBtn;
       statusMsg.textContent = 'Open this link on your phone to be taken directly to your app store.';
+    }
+
+    // Attach click tracking to whichever buttons are in the DOM
+    const iosBtnEl = document.getElementById('ios-btn');
+    const androidBtnEl = document.getElementById('android-btn');
+
+    if (iosBtnEl) {
+      iosBtnEl.addEventListener('click', function () {
+        if (window.posthog) {
+          posthog.capture('get_app_store_clicked', {
+            platform: detectedPlatform,
+            store: 'ios'
+          });
+        }
+      });
+    }
+
+    if (androidBtnEl) {
+      androidBtnEl.addEventListener('click', function () {
+        if (window.posthog) {
+          posthog.capture('get_app_store_clicked', {
+            platform: detectedPlatform,
+            store: 'android'
+          });
+        }
+      });
     }
   </script>
 </body>

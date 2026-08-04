@@ -289,6 +289,60 @@
       [data-reveal] { opacity: 1; transform: none; transition: none; }
       .store-btn, .btn-call { transition: none; }
     }
+
+    /* Desktop QR block — hidden on mobile */
+    .qr-block {
+      display: none;
+    }
+    @media (min-width: 768px) {
+      .qr-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+        margin-top: 24px;
+        padding: 24px;
+        background: rgba(49, 70, 87, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        text-align: center;
+      }
+      .qr-block .qr-label {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: #F5F8FA;
+        line-height: 1.4;
+      }
+      .qr-block .qr-img {
+        width: 160px;
+        height: 160px;
+        border-radius: 12px;
+        background: #ffffff;
+        padding: 10px;
+      }
+      .qr-block .qr-sub {
+        font-size: 0.78rem;
+        color: rgba(245, 248, 250, 0.5);
+        line-height: 1.5;
+        max-width: 220px;
+      }
+      .qr-block .qr-badges {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .qr-block .qr-badge-pill {
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: rgba(245, 248, 250, 0.55);
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 4px 12px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -315,6 +369,21 @@
           <p class="hero-value" data-i18n="value"></p>
           <div class="cta-group" id="hero-cta"></div>
           <p class="cta-fine" data-i18n="ctaFine"></p>
+          <div class="qr-block" aria-hidden="false" id="desktop-qr">
+            <p class="qr-label" id="qr-label">Scan to download on your phone</p>
+            <img
+              src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://norxten.com/get-app&bgcolor=ffffff&color=0F1A24&margin=10"
+              alt="QR code to download Norxten Core"
+              class="qr-img"
+              width="160"
+              height="160"
+            >
+            <p class="qr-sub" id="qr-sub">Point your phone camera at the code. Opens App Store or Google Play automatically.</p>
+            <div class="qr-badges">
+              <span class="qr-badge-pill" id="qr-badge1">No credit card required</span>
+              <span class="qr-badge-pill" id="qr-badge2">Free onboarding call included</span>
+            </div>
+          </div>
         </div>
         <div class="phone-wrap" data-reveal>
           <div class="phone">
@@ -571,6 +640,22 @@
       document.getElementById('lang-fr').classList.toggle('active', lang === 'fr');
       renderCtas(document.getElementById('hero-cta'));
       renderCtas(document.getElementById('final-cta'));
+      // QR block copy
+      var qrLabel = document.getElementById('qr-label');
+      var qrSub = document.getElementById('qr-sub');
+      var qrBadge1 = document.getElementById('qr-badge1');
+      var qrBadge2 = document.getElementById('qr-badge2');
+      if (lang === 'fr') {
+        if (qrLabel) qrLabel.textContent = 'Scannez pour télécharger sur votre téléphone';
+        if (qrSub) qrSub.textContent = 'Pointez votre caméra sur le code. Ouvre l\'App Store ou Google Play automatiquement.';
+        if (qrBadge1) qrBadge1.textContent = 'Sans carte de crédit';
+        if (qrBadge2) qrBadge2.textContent = 'Appel d\'accompagnement inclus';
+      } else {
+        if (qrLabel) qrLabel.textContent = 'Scan to download on your phone';
+        if (qrSub) qrSub.textContent = 'Point your phone camera at the code. Opens App Store or Google Play automatically.';
+        if (qrBadge1) qrBadge1.textContent = 'No credit card required';
+        if (qrBadge2) qrBadge2.textContent = 'Free onboarding call included';
+      }
     }
 
     function makeStoreBtn(store, position, variant) {
