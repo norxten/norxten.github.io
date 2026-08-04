@@ -11,7 +11,7 @@
   <link rel="alternate" hreflang="x-default" href="https://norxten.com/" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     /* ── Reset & Base ─────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -150,11 +150,15 @@
     }
     .hero-grid {
       display: grid;
-      grid-template-columns: 1fr 380px;
-      gap: 64px;
+      grid-template-columns: minmax(0, 1fr) 280px;
+      gap: 80px;
       align-items: center;
       position: relative;
       z-index: 1;
+    }
+    .hero-copy {
+      container-type: inline-size;
+      min-width: 0;
     }
     .hero-eyebrow {
       font-size: .72rem; font-weight: 600;
@@ -162,13 +166,20 @@
       color: var(--accent); margin-bottom: 20px;
     }
     .hero h1 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+      font-family: 'Geist', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 3.75rem);
+      font-size: clamp(2.5rem, 6cqi, 3.75rem);
       font-weight: 800;
       color: #ffffff;
-      line-height: 1.1;
+      line-height: 1.15;
       letter-spacing: -0.03em;
       margin-bottom: 22px;
+    }
+    .hero h1 .hero-h1-line {
+      display: block;
+    }
+    .hero h1 .hero-h1-line + .hero-h1-line {
+      margin-top: 0.45em;
     }
     .hero h1 em { font-style: normal; color: var(--accent); }
     .hero-sub {
@@ -354,7 +365,7 @@
       border-left: 1px solid rgba(255,255,255,.07);
     }
     .stat-num {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-size: 1.8rem; font-weight: 800;
       color: #fff; line-height: 1;
       flex-shrink: 0;
@@ -375,7 +386,7 @@
       align-items: center;
     }
     .product-section h2 {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-size: clamp(1.8rem, 3vw, 2.4rem);
       font-weight: 800; letter-spacing: -0.03em;
       color: #1a2630; margin-bottom: 12px;
@@ -395,7 +406,7 @@
     .feature-item.visible { opacity: 1; transform: translateY(0); }
     .feature-item:last-child { border-bottom: none; }
     .feat-num {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-size: .78rem; font-weight: 800;
       color: var(--accent); opacity: .7;
       flex-shrink: 0; width: 28px; margin-top: 2px;
@@ -446,7 +457,7 @@
     /* ── PRICING ──────────────────────────────────────────────── */
     .pricing-section { background: #fff; padding: 100px 0; }
     .pricing-section h2 {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-size: clamp(1.8rem, 3vw, 2.4rem);
       font-weight: 800; letter-spacing: -0.03em;
       color: #1a2630; margin-bottom: 10px; text-align: center;
@@ -525,7 +536,7 @@
       font-family: 'DM Sans', sans-serif;
     }
     .plan-card h3 {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-size: 1.25rem; font-weight: 700;
       color: #1a2630; margin-bottom: 8px;
     }
@@ -536,7 +547,7 @@
       vertical-align: top; margin-top: 5px; display: inline-block;
     }
     .plan-price .amt {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-size: 2.4rem; font-weight: 800;
       color: #1a2630; line-height: 1;
     }
@@ -591,7 +602,7 @@
       gap: 80px; align-items: start;
     }
     .about-section h2 {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-size: clamp(1.8rem, 3vw, 2.4rem);
       font-weight: 800; letter-spacing: -0.03em;
       color: #fff; margin-bottom: 20px;
@@ -632,7 +643,7 @@
       box-shadow: 0 4px 24px rgba(0,0,0,.07);
     }
     .support-cta-box h2 {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-size: 1.7rem; font-weight: 800;
       letter-spacing: -0.02em; color: #1a2630;
       margin-bottom: 12px;
@@ -881,9 +892,9 @@
 </div>
 <nav id="nav">
   <div class="container nav-inner">
-    <a class="nav-brand" href="/" style="display:flex;align-items:center;gap:10px;flex-direction:column;align-items:flex-start;gap:1px;">
-      <img src="assets/Norxten-Logo-White.png" alt="Norxten" style="height:28px;" onerror="this.style.display='none'">
-      <span style="font-size:.6rem;font-weight:500;color:rgba(255,255,255,.4);letter-spacing:.06em;font-family:'DM Sans',sans-serif;">Technologies Inc.</span>
+    <a class="nav-brand" href="/" style="display:flex;align-items:center;gap:10px;flex-direction:row;">
+      <img src="assets/Norxten 3D Extrude Transparent.png" alt="Norxten Core" style="height:46px;" onerror="this.style.display:'none'">
+      <span style="font-family:'Geist',sans-serif;font-weight:700;font-size:0.85rem;letter-spacing:0.1em;color:white;text-transform:uppercase;">NORXTEN CORE</span>
 
     </a>
     <ul class="nav-links">
@@ -938,12 +949,27 @@
   <div class="container">
     <div class="hero-grid">
       <!-- Left -->
-      <div>
-        <p class="hero-eyebrow" data-i18n="hero_eyebrow">Built for General Contractors</p>
-        <h1 data-i18n="hero_h1">Run multiple projects<br>without losing <em>control.</em></h1>
-        <p class="hero-sub" data-i18n="hero_sub">Capture receipts and invoices on site.<br>See crew punch-in activity by project.<br>Track budget and schedule status across all your jobs.</p>
+      <div class="hero-copy">
+        <p class="badge" style="color:#60A5FA;font-size:.75rem;font-weight:700;
+letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px;
+display:block;">For General Contractors</p>
+        <h1 data-i18n="hero_h1">
+          <span class="hero-h1-line">Every job has a <em style="font-style:normal;color:#3B82F6;">real number</em>.</span>
+          <span class="hero-h1-line">Don't wait until closeout to see it.</span>
+        </h1>
+        <p class="hero-sub" style="font-size:1.15rem;line-height:1.7;
+color:rgba(255,255,255,0.75);margin-bottom:1.25rem;max-width:520px;">
+Track receipts, crew hours, and field costs from your phone 
+while the job is running. Not Sunday night. Not at closeout. Now.
+</p>
+
+<p style="font-size:1.15rem;line-height:1.6;
+color:rgba(255,255,255,0.55);margin-bottom:1.75rem;max-width:480px;">
+Most GCs spend 2+ hours a week on this. 
+Norxten Core costs less than one of those hours.
+</p>
         <div class="hero-actions">
-          <a href="https://apps.apple.com/us/app/norxten-core/id6763566449" target="_blank" rel="noopener" class="btn-primary" data-i18n="hero_cta1" onclick="if(window.posthog){posthog.capture('app_store_click', {platform: 'ios', location: 'hero_cta_primary'})}">Start Free Trial in the App</a>
+          <a href="https://apps.apple.com/us/app/norxten-core/id6763566449" target="_blank" rel="noopener" class="btn-primary" data-i18n="hero_cta1" onclick="if(window.posthog){posthog.capture('app_store_click', {platform: 'ios', location: 'hero_cta_primary'})}">Try Free for 14 Days — No Credit Card</a>
         </div>
         <div class="store-badges">
           <a class="store-badge" href="https://apps.apple.com/us/app/norxten-core/id6763566449" target="_blank" rel="noopener" onclick="if(window.posthog){posthog.capture('app_store_click', {platform: 'ios', location: 'hero_badge'})}">
@@ -964,7 +990,16 @@
         <p class="hero-trial-note">14-day free trial &nbsp;·&nbsp; No credit card required &nbsp;·&nbsp; iOS &amp; Android &nbsp;·&nbsp; Cancel anytime, no questions</p>
         <a href="norxten-core.html" class="btn-ghost" data-i18n="hero_cta2">See How It Works</a>
         <div class="hero-mobile-video">
-          <iframe src="https://www.youtube.com/embed/1_JpOw9uEQw?autoplay=1&mute=1&loop=1&playlist=1_JpOw9uEQw&controls=0&playsinline=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          <video 
+  autoplay 
+  muted 
+  loop 
+  playsinline
+  preload="metadata"
+  style="width:100%;border-radius:12px;display:block;"
+  aria-label="Norxten Core app demo">
+  <source src="assets/Demo_1.mp4" type="video/mp4">
+</video>
         </div>
       </div>
 
@@ -974,7 +1009,16 @@
           <div class="iphone-body">
             <div class="iphone-screen-wrap">
               <div class="iphone-screen">
-                <iframe src="https://www.youtube.com/embed/1_JpOw9uEQw?autoplay=1&mute=1&loop=1&playlist=1_JpOw9uEQw&controls=0&playsinline=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;"></iframe>
+                <video 
+  autoplay 
+  muted 
+  loop 
+  playsinline
+  preload="metadata"
+  style="width:100%;border-radius:12px;display:block;"
+  aria-label="Norxten Core app demo">
+  <source src="assets/Demo_1.mp4" type="video/mp4">
+</video>
               </div>
               <div class="dynamic-island"></div>
               <div class="iphone-statusbar"></div>
@@ -998,8 +1042,7 @@
         <div class="stat-label" data-i18n="stat1">Day free trial<br>No credit card required</div>
       </div>
       <div class="stat-item">
-        <div class="stat-num">92%</div>
-        <div class="stat-label" data-i18n="stat2">OCR accuracy<br>on receipts &amp; invoices</div>
+        <div class="stat-num" style="font-size:1.3rem;">AI-powered</div><div class="stat-label">receipt &amp; invoice<br>scanning</div>
       </div>
       <div class="stat-item">
         <div class="stat-num" style="font-size:1.3rem;">iOS + Android</div>
@@ -1097,6 +1140,11 @@
         </div>
       </div>
     </div>
+    <div style="margin-top:3rem;padding:2rem;background:#1a2633;border:1px solid rgba(59,130,246,0.3);border-radius:16px;max-width:640px;">
+  <p style="font-family:'Geist',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#60A5FA;margin-bottom:0.75rem;">Who is this for?</p>
+  <h3 style="font-family:'Geist',sans-serif;font-size:1.25rem;font-weight:700;color:#ffffff;line-height:1.4;margin-bottom:0.5rem;">Built for GCs running crews and buying materials</h3>
+  <p style="font-size:0.95rem;color:rgba(255,255,255,0.65);line-height:1.7;">If you have more than one crew member and purchase materials for your projects — this app was built for you.</p>
+</div>
   </div>
 </section>
 
@@ -1105,6 +1153,10 @@
 <!-- ══════════════════════════════════════════════════════════ -->
 <section class="pricing-section" id="pricing">
   <div class="container">
+    <p style="font-size:1rem;color:#314657;
+text-align:center;margin-bottom:1rem;line-height:1.6;">
+Starting at only $49.99/month CAD.<br>Less than one hour you spend weekly organizing invoices and tracking your crew.
+</p>
     <span class="label" style="display:block;text-align:center;">Pricing</span>
     <h2>Straightforward pricing</h2>
     <p class="section-sub">Simple plans. No contracts. Cancel anytime.</p>
@@ -1186,6 +1238,30 @@
       </div>
     </div>
 
+    <div style="max-width:640px;margin:2.5rem auto 0;
+background:#1a2633;
+border:1px solid rgba(59,130,246,0.3);
+border-radius:16px;padding:2rem;text-align:center;">
+  <p style="font-size:.75rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:#10b981;margin-bottom:.75rem;">
+  Included with every free trial</p>
+  <h3 style="font-family:'Geist',sans-serif;font-size:1.2rem;
+font-weight:700;margin-bottom:0.75rem;color:#F5F8FA;">
+Free 30-minute setup call with our team</h3>
+
+<p style="color:rgba(245,248,250,0.65);font-size:0.9rem;
+line-height:1.7;margin-bottom:1.25rem;">
+When you start your free trial, we will walk you through 
+the app personally so you get real value from day one. 
+No sales pitch. Just setup.</p>
+  <a href="mailto:support@norxten.com?subject=Onboarding Call Request" 
+  style="display:inline-flex;align-items:center;justify-content:center;
+  padding:12px 28px;background:#3B82F6;color:#0F1A24;
+  border-radius:9px;font-weight:700;font-size:.9rem;
+  font-family:'DM Sans',sans-serif;text-decoration:none;">
+  Book Your Free Call</a>
+</div>
+
     <div class="pricing-faq">
       <div class="faq-item">
         <h4>What's an active employee?</h4>
@@ -1232,8 +1308,11 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="assets/Norxten-Logo-White.png" alt="Norxten" style="height:36px;opacity:.8;" onerror="this.outerHTML='<span style=&quot;font-size:1.1rem;font-weight:700;color:#fff;font-family:Space Grotesk,sans-serif;&quot;>Norxten</span>'">
-        <p>Building foundational technology platforms for the construction industry.</p>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+  <img src="assets/Norxten 3D Extrude Transparent.png" alt="Norxten Core" style="height:44px;">
+  <span style="font-family:'Geist',sans-serif;font-weight:700;font-size:1rem;letter-spacing:0.1em;color:white;text-transform:uppercase;">NORXTEN CORE</span>
+</div>
+<p>Field cost control for general contractors.</p>
       </div>
       <div class="footer-col">
         <h5>Company</h5>
@@ -1260,6 +1339,80 @@
         </ul>
       </div>
     </div>
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;
+justify-content:center;margin-bottom:1.5rem;align-items:center;">
+  <a href="https://www.instagram.com/norxtencore.app" 
+  target="_blank" rel="noopener" 
+  style="color:rgba(245,248,250,.5);font-size:.8rem;
+  font-family:'DM Sans',sans-serif;transition:color .2s;"
+  onmouseover="this.style.color='#F5F8FA'" 
+  onmouseout="this.style.color='rgba(245,248,250,.5)'">Instagram</a>
+  <span style="color:rgba(245,248,250,.2);">·</span>
+  <a href="https://www.facebook.com/norxtencore" 
+  target="_blank" rel="noopener"
+  style="color:rgba(245,248,250,.5);font-size:.8rem;
+  font-family:'DM Sans',sans-serif;transition:color .2s;"
+  onmouseover="this.style.color='#F5F8FA'" 
+  onmouseout="this.style.color='rgba(245,248,250,.5)'">Facebook</a>
+  <span style="color:rgba(245,248,250,.2);">·</span>
+  <a href="https://www.tiktok.com/@norxtencore" 
+  target="_blank" rel="noopener"
+  style="color:rgba(245,248,250,.5);font-size:.8rem;
+  font-family:'DM Sans',sans-serif;transition:color .2s;"
+  onmouseover="this.style.color='#F5F8FA'" 
+  onmouseout="this.style.color='rgba(245,248,250,.5)'">TikTok</a>
+  <span style="color:rgba(245,248,250,.2);">·</span>
+  <a href="https://www.linkedin.com/company/norxten" 
+  target="_blank" rel="noopener"
+  style="color:rgba(245,248,250,.5);font-size:.8rem;
+  font-family:'DM Sans',sans-serif;transition:color .2s;"
+  onmouseover="this.style.color='#F5F8FA'" 
+  onmouseout="this.style.color='rgba(245,248,250,.5)'">LinkedIn</a>
+  <span style="color:rgba(245,248,250,.2);">·</span>
+  <a href="https://www.x.com/norxtencore" 
+  target="_blank" rel="noopener"
+  style="color:rgba(245,248,250,.5);font-size:.8rem;
+  font-family:'DM Sans',sans-serif;transition:color .2s;"
+  onmouseover="this.style.color='#F5F8FA'" 
+  onmouseout="this.style.color='rgba(245,248,250,.5)'">X</a>
+  <span style="color:rgba(245,248,250,.2);">·</span>
+  <a href="https://www.youtube.com/@norxtencore" 
+  target="_blank" rel="noopener"
+  style="color:rgba(245,248,250,.5);font-size:.8rem;
+  font-family:'DM Sans',sans-serif;transition:color .2s;"
+  onmouseover="this.style.color='#F5F8FA'" 
+  onmouseout="this.style.color='rgba(245,248,250,.5)'">YouTube</a>
+</div>
+
+<div style="display:flex;gap:1rem;justify-content:center;
+margin-bottom:1.5rem;flex-wrap:wrap;">
+  <a href="https://apps.apple.com/ca/app/norxten-core/id6763566449" 
+  target="_blank" rel="noopener"
+  style="display:inline-flex;align-items:center;gap:.5rem;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+  border-radius:9px;padding:.6rem 1.1rem;text-decoration:none;
+  color:#F5F8FA;font-family:'DM Sans',sans-serif;font-size:.8rem;
+  transition:border-color .2s;"
+  onmouseover="this.style.borderColor='#3B82F6'" 
+  onmouseout="this.style.borderColor='rgba(255,255,255,.12)'">
+  &#xF8FF; &nbsp;<span><span style="display:block;font-size:.65rem;
+  color:rgba(245,248,250,.5);">Download on the</span>
+  <span style="font-weight:700;">App Store</span></span></a>
+  
+  <a href="https://play.google.com/store/apps/details?id=com.norxten.core" 
+  target="_blank" rel="noopener"
+  style="display:inline-flex;align-items:center;gap:.5rem;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+  border-radius:9px;padding:.6rem 1.1rem;text-decoration:none;
+  color:#F5F8FA;font-family:'DM Sans',sans-serif;font-size:.8rem;
+  transition:border-color .2s;"
+  onmouseover="this.style.borderColor='#3B82F6'" 
+  onmouseout="this.style.borderColor='rgba(255,255,255,.12)'">
+  &#x25B6; &nbsp;<span><span style="display:block;font-size:.65rem;
+  color:rgba(245,248,250,.5);">Get it on</span>
+  <span style="font-weight:700;">Google Play</span></span></a>
+</div>
+
     <div class="footer-bottom">
       © 2026 Norxten Technologies Inc. All rights reserved.
     </div>

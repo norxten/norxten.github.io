@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contrôle des coûts de chantier pour entrepreneurs généraux — Norxten Core</title>
-  <meta name="description" content="Contrôle des coûts de chantier pour entrepreneurs généraux. Suis les reçus, les heures de l'équipe et les coûts de projet depuis le terrain. Essai gratuit sur iOS et Android.">
+  <title>Norxten Core — Contrôle des coûts de chantier pour entrepreneurs généraux</title>
+  <meta name="description" content="Le contrôle des coûts de chantier pour entrepreneurs généraux. Track receipts, crew hours, and project costs from the field. Real job cost visibility before closeout. Free on iOS and Android.">
   <link rel="canonical" href="https://norxten.com/fr/" />
   <link rel="alternate" hreflang="en" href="https://norxten.com/" />
   <link rel="alternate" hreflang="fr" href="https://norxten.com/fr/" />
   <link rel="alternate" hreflang="x-default" href="https://norxten.com/" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     /* ── Reset & Base ─────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -150,11 +150,15 @@
     }
     .hero-grid {
       display: grid;
-      grid-template-columns: 1fr 380px;
-      gap: 64px;
+      grid-template-columns: minmax(0, 1fr) 280px;
+      gap: 80px;
       align-items: center;
       position: relative;
       z-index: 1;
+    }
+    .hero-copy {
+      container-type: inline-size;
+      min-width: 0;
     }
     .hero-eyebrow {
       font-size: .72rem; font-weight: 600;
@@ -162,13 +166,20 @@
       color: var(--accent); margin-bottom: 20px;
     }
     .hero h1 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+      font-family: 'Geist', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 3.75rem);
+      font-size: clamp(2.5rem, 6cqi, 3.75rem);
       font-weight: 800;
       color: #ffffff;
-      line-height: 1.1;
+      line-height: 1.15;
       letter-spacing: -0.03em;
       margin-bottom: 22px;
+    }
+    .hero h1 .hero-h1-line {
+      display: block;
+    }
+    .hero h1 .hero-h1-line + .hero-h1-line {
+      margin-top: 0.45em;
     }
     .hero h1 em { font-style: normal; color: var(--accent); }
     .hero-sub {
@@ -354,7 +365,7 @@
       border-left: 1px solid rgba(255,255,255,.07);
     }
     .stat-num {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-size: 1.8rem; font-weight: 800;
       color: #fff; line-height: 1;
       flex-shrink: 0;
@@ -375,7 +386,7 @@
       align-items: center;
     }
     .product-section h2 {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-size: clamp(1.8rem, 3vw, 2.4rem);
       font-weight: 800; letter-spacing: -0.03em;
       color: #1a2630; margin-bottom: 12px;
@@ -395,7 +406,7 @@
     .feature-item.visible { opacity: 1; transform: translateY(0); }
     .feature-item:last-child { border-bottom: none; }
     .feat-num {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-size: .78rem; font-weight: 800;
       color: var(--accent); opacity: .7;
       flex-shrink: 0; width: 28px; margin-top: 2px;
@@ -446,7 +457,7 @@
     /* ── PRICING ──────────────────────────────────────────────── */
     .pricing-section { background: #fff; padding: 100px 0; }
     .pricing-section h2 {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-size: clamp(1.8rem, 3vw, 2.4rem);
       font-weight: 800; letter-spacing: -0.03em;
       color: #1a2630; margin-bottom: 10px; text-align: center;
@@ -525,7 +536,7 @@
       font-family: 'DM Sans', sans-serif;
     }
     .plan-card h3 {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-size: 1.25rem; font-weight: 700;
       color: #1a2630; margin-bottom: 8px;
     }
@@ -536,7 +547,7 @@
       vertical-align: top; margin-top: 5px; display: inline-block;
     }
     .plan-price .amt {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-size: 2.4rem; font-weight: 800;
       color: #1a2630; line-height: 1;
     }
@@ -591,7 +602,7 @@
       gap: 80px; align-items: start;
     }
     .about-section h2 {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-size: clamp(1.8rem, 3vw, 2.4rem);
       font-weight: 800; letter-spacing: -0.03em;
       color: #fff; margin-bottom: 20px;
@@ -632,7 +643,7 @@
       box-shadow: 0 4px 24px rgba(0,0,0,.07);
     }
     .support-cta-box h2 {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-size: 1.7rem; font-weight: 800;
       letter-spacing: -0.02em; color: #1a2630;
       margin-bottom: 12px;
@@ -715,6 +726,25 @@
       .hero { padding: calc(var(--nav-h) + 48px) 0 48px; }
       .hero h1 { font-size: 2rem; }
     }
+    .hero-mobile-video { display:none; }
+    @media(max-width:900px) {
+      .hero-mobile-video {
+        display:block;
+        margin:24px 0 0;
+        border-radius:16px;
+        overflow:hidden;
+        position:relative;
+        padding-bottom:177.78%;
+        height:0;
+        background:#000;
+      }
+      .hero-mobile-video iframe {
+        position:absolute;
+        top:0; left:0;
+        width:100%; height:100%;
+        border:none;
+      }
+    }
     /* ── Sticky Mobile Bar ───────────────────────────────────── */
     .sticky-mobile-bar {
       display: none;
@@ -791,25 +821,47 @@
     @media (max-width: 768px) {
       #announce-bar { display: none; }
     }
+    @media(max-width:640px) { .nav-links { display:none; } .container { padding:0 20px; } .footer-grid { grid-template-columns:1fr; } .feat-grid { grid-template-columns:1fr; } .hero-actions { flex-direction:column; } }
     .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:6px; }
     .hamburger span { display:block; width:22px; height:2px; background:#fff; border-radius:2px; transition:all .25s; }
     .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
     .hamburger.open span:nth-child(2) { opacity:0; }
     .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
-    .mobile-menu { display:none; position:fixed; top:calc(var(--nav-h) + 40px); left:0; right:0; background:var(--navy-dk); z-index:1001; padding:16px 0; border-bottom:1px solid var(--border); box-shadow:0 8px 24px rgba(0,0,0,.3); }
+    .mobile-menu {
+      display:none;
+      position:fixed;
+      top:calc(var(--nav-h) + 40px); left:0; right:0;
+      background:var(--navy-dk);
+      z-index:1001;
+      padding:16px 0;
+      border-bottom:1px solid var(--border);
+      box-shadow:0 8px 24px rgba(0,0,0,.3);
+    }
     .mobile-menu.open { display:block; }
-    .mobile-menu a { display:block; padding:12px 24px; font-size:.95rem; font-weight:500; color:var(--mid); transition:color .15s, background .15s; }
+    .mobile-menu a {
+      display:block;
+      padding:12px 24px;
+      font-size:.95rem;
+      font-weight:500;
+      color:var(--mid);
+      transition:color .15s, background .15s;
+    }
     .mobile-menu a:hover, .mobile-menu a.active { color:#fff; background:rgba(255,255,255,.06); }
-    .mobile-menu .mobile-menu-cta { margin:12px 24px 0; display:block; background:var(--accent); color:#fff; padding:12px 20px; border-radius:9px; font-weight:700; font-size:.9rem; text-align:center; }
+    .mobile-menu .mobile-menu-cta {
+      margin:12px 24px 0;
+      display:block;
+      background:var(--accent);
+      color:#fff;
+      padding:12px 20px;
+      border-radius:9px;
+      font-weight:700;
+      font-size:.9rem;
+      text-align:center;
+    }
     @media(max-width:760px) { .hamburger { display:flex; } }
     @media (max-width: 768px) {
       #nav { top: 0; }
       .mobile-menu { top: var(--nav-h); }
-    }
-    .hero-mobile-video { display:none; }
-    @media(max-width:900px) {
-      .hero-mobile-video { display:block; margin:24px 0 0; border-radius:16px; overflow:hidden; position:relative; padding-bottom:177.78%; height:0; background:#000; }
-      .hero-mobile-video iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:none; }
     }
   </style>
     <!-- PostHog Web Analytics -->
@@ -829,10 +881,6 @@
 </head>
 <body>
 
-<script>
-// Language persistence
-localStorage.setItem('nx-lang', 'fr');
-</script>
 
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- NAV                                                        -->
@@ -840,26 +888,26 @@ localStorage.setItem('nx-lang', 'fr');
 <div id="announce-bar">
   <a href="https://apps.apple.com/app/id6763566449" onclick="if(window.posthog){posthog.capture('app_store_click', {platform: 'ios', location: 'announce_bar'})}">Commence ton essai gratuit de 14 jours</a>
   &nbsp;·&nbsp; Aucune carte de crédit requise &nbsp;·&nbsp; iOS et Android &nbsp;·&nbsp; Annule en tout temps, sans questions
-  <button class="announce-close" id="announce-close-btn" aria-label="Fermer">&#x2715;</button>
+  <button class="announce-close" id="announce-close-btn" aria-label="Close">&#x2715;</button>
 </div>
 <nav id="nav">
   <div class="container nav-inner">
-    <a class="nav-brand" href="/fr/" style="display:flex;align-items:center;gap:10px;flex-direction:column;align-items:flex-start;gap:1px;">
-      <img src="../assets/Norxten-Logo-White.png" alt="Norxten" style="height:28px;" onerror="this.style.display='none'">
-      <span style="font-size:.6rem;font-weight:500;color:rgba(255,255,255,.4);letter-spacing:.06em;font-family:'DM Sans',sans-serif;">Technologies Inc.</span>
+    <a class="nav-brand" href="/fr/" style="display:flex;align-items:center;gap:10px;flex-direction:row;">
+      <img src="../assets/Norxten 3D Extrude Transparent.png" alt="Norxten Core" style="height:46px;" onerror="this.style.display:'none'">
+      <span style="font-family:'Geist',sans-serif;font-weight:700;font-size:0.85rem;letter-spacing:0.1em;color:white;text-transform:uppercase;">NORXTEN CORE</span>
 
     </a>
     <ul class="nav-links">
-      <li><a href="/fr/" class="active">Accueil</a></li>
-      <li><a href="about.html">À propos</a></li>
-      <li><a href="norxten-core.html">Produits</a></li>
-      <li><a href="support.html">Support</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="/fr/" class="active" data-i18n="nav_home">Accueil</a></li>
+      <li><a href="about.html" data-i18n="nav_about">À propos</a></li>
+      <li><a href="norxten-core.html" data-i18n="nav_products">Produits</a></li>
+      <li><a href="support.html" data-i18n="nav_support">Support</a></li>
+      <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
     </ul>
     <div class="nav-right">
       <div class="lang-toggle">
-        <button class="lang-btn" onclick="localStorage.removeItem('nx-lang');window.location.href='/'">EN</button>
-        <button class="lang-btn active">FR</button>
+        <button class="lang-btn" onclick="window.location.href='/'">EN</button>
+        <button class="lang-btn active" onclick="localStorage.removeItem('nx-lang')">FR</button>
       </div>
       <button class="hamburger" id="hamburger-btn" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -869,11 +917,11 @@ localStorage.setItem('nx-lang', 'fr');
 </nav>
 <div class="mobile-menu" id="mobile-menu">
   <a href="/fr/" class="active">Accueil</a>
-  <a href="about.html">A propos</a>
+  <a href="about.html">À propos</a>
   <a href="norxten-core.html">Produits</a>
   <a href="support.html">Support</a>
   <a href="contact.html">Contact</a>
-  <a href="https://apps.apple.com/app/id6763566449" class="mobile-menu-cta">Commence ton essai gratuit</a>
+  <a href="https://apps.apple.com/app/id6763566449" class="mobile-menu-cta" onclick="if(window.posthog){posthog.capture('app_store_click', {platform: 'ios', location: 'mobile_menu'})}">Commence ton essai gratuit</a>
 </div>
 
 <!-- ══════════════════════════════════════════════════════════ -->
@@ -901,33 +949,55 @@ localStorage.setItem('nx-lang', 'fr');
   <div class="container">
     <div class="hero-grid">
       <!-- Left -->
-      <div>
-        <p class="hero-eyebrow">Conçu pour les entrepreneurs généraux</p>
-        <h1>Gère plusieurs chantiers<br>sans perdre le <em>contrôle.</em></h1>
-        <p class="hero-sub">Capture les reçus et les factures directement sur le terrain.<br>Suis les punchs de ton équipe par projet.<br>Suis tes budgets et l'avancement des travaux pour tous tes chantiers.</p>
+      <div class="hero-copy">
+        <p class="badge" style="color:#60A5FA;font-size:.75rem;font-weight:700;
+letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px;
+display:block;">Pour les entrepreneurs généraux</p>
+        <h1 data-i18n="hero_h1">
+          <span class="hero-h1-line">Chaque chantier a un <em style="font-style:normal;color:#3B82F6;">vrai chiffre</em>.</span>
+          <span class="hero-h1-line">Attends pas la fin du projet pour le voir.</span>
+        </h1>
+        <p class="hero-sub" style="font-size:1.15rem;line-height:1.7;
+color:rgba(255,255,255,0.75);margin-bottom:1.25rem;max-width:520px;">
+Suis tes reçus, les heures de tes gars et tes coûts de chantier depuis ton téléphone pendant que le projet roule. Pas le dimanche soir. Pas à la fin du chantier. Maintenant.
+</p>
+
+<p style="font-size:1.15rem;line-height:1.6;
+color:rgba(255,255,255,0.55);margin-bottom:1.75rem;max-width:480px;">
+La plupart des entrepreneurs généraux passent plus de 2 heures par semaine là-dessus. Norxten Core coûte moins cher qu'une seule de ces heures-là.
+</p>
         <div class="hero-actions">
-          <a href="https://apps.apple.com/app/id6763566449" target="_blank" rel="noopener" class="btn-primary" onclick="if(window.posthog){posthog.capture('app_store_click', {platform: 'ios', location: 'hero_cta_primary'})}">Démarrer l'essai dans l'app</a>
+          <a href="https://apps.apple.com/us/app/norxten-core/id6763566449" target="_blank" rel="noopener" class="btn-primary" data-i18n="hero_cta1" onclick="if(window.posthog){posthog.capture('app_store_click', {platform: 'ios', location: 'hero_cta_primary'})}">Essaie gratuitement pendant 14 jours, sans carte de crédit</a>
         </div>
         <div class="store-badges">
-          <a class="store-badge" href="https://apps.apple.com/app/id6763566449" target="_blank" rel="noopener" onclick="if(window.posthog){posthog.capture('app_store_click', {platform: 'ios', location: 'hero_badge'})}">
+          <a class="store-badge" href="https://apps.apple.com/us/app/norxten-core/id6763566449" target="_blank" rel="noopener" onclick="if(window.posthog){posthog.capture('app_store_click', {platform: 'ios', location: 'hero_badge'})}">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
             <div class="store-text">
-              <span class="store-sub">Télécharger dans l'</span>
+              <span class="store-sub" data-i18n="store_download">Télécharger sur l'</span>
               <span class="store-name">App Store</span>
             </div>
           </a>
           <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.norxten.core" target="_blank" rel="noopener" onclick="if(window.posthog){posthog.capture('app_store_click', {platform: 'android', location: 'hero_badge'})}">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M3.18 23.76c.3.17.64.22.99.14l13.24-7.46-2.76-2.77-11.47 10.09zM.48 1.16C.18 1.48 0 1.96 0 2.59v18.82c0 .63.18 1.11.48 1.43l.08.07 10.54-10.54v-.25L.56 1.09l-.08.07zM20.55 10.3l-2.84-1.6-3.1 3.1 3.1 3.1 2.87-1.62c.82-.46.82-1.22-.03-1.98zM3.18.24l13.24 7.46-2.76 2.76L2.19.37c.3-.17.65-.2.99-.13z"/></svg>
             <div class="store-text">
-              <span class="store-sub">Disponible sur</span>
+              <span class="store-sub" data-i18n="store_download">Obtenir sur</span>
               <span class="store-name">Google Play</span>
             </div>
           </a>
         </div>
         <p class="hero-trial-note">Essai gratuit de 14 jours &nbsp;·&nbsp; Aucune carte de crédit requise &nbsp;·&nbsp; iOS et Android &nbsp;·&nbsp; Annule en tout temps, sans questions</p>
-        <a href="norxten-core.html" class="btn-ghost">Voir comment ça fonctionne</a>
+        <a href="norxten-core.html" class="btn-ghost" data-i18n="hero_cta2">Voir comment ça fonctionne</a>
         <div class="hero-mobile-video">
-          <iframe src="https://www.youtube.com/embed/1_JpOw9uEQw?autoplay=1&mute=1&loop=1&playlist=1_JpOw9uEQw&controls=0&playsinline=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          <video 
+  autoplay 
+  muted 
+  loop 
+  playsinline
+  preload="metadata"
+  style="width:100%;border-radius:12px;display:block;"
+  aria-label="Norxten Core app demo">
+  <source src="../assets/Demo_1.mp4" type="video/mp4">
+</video>
         </div>
       </div>
 
@@ -937,7 +1007,16 @@ localStorage.setItem('nx-lang', 'fr');
           <div class="iphone-body">
             <div class="iphone-screen-wrap">
               <div class="iphone-screen">
-                <iframe src="https://www.youtube.com/embed/1_JpOw9uEQw?autoplay=1&mute=1&loop=1&playlist=1_JpOw9uEQw&controls=0&playsinline=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;"></iframe>
+                <video 
+  autoplay 
+  muted 
+  loop 
+  playsinline
+  preload="metadata"
+  style="width:100%;border-radius:12px;display:block;"
+  aria-label="Norxten Core app demo">
+  <source src="../assets/Demo_1.mp4" type="video/mp4">
+</video>
               </div>
               <div class="dynamic-island"></div>
               <div class="iphone-statusbar"></div>
@@ -958,15 +1037,15 @@ localStorage.setItem('nx-lang', 'fr');
     <div class="stats-inner">
       <div class="stat-item">
         <div class="stat-num">14</div>
-        <div class="stat-label">Essai gratuit de 14 jours<br>Aucune carte de crédit</div>
+        <div class="stat-label" data-i18n="stat1">Essai gratuit de 14 jours<br>Aucune carte de crédit requise</div>
       </div>
       <div class="stat-item">
-        <div class="stat-num">92%</div>
-        <div class="stat-label">Précision OCR<br>sur les reçus et factures</div>
+        <div class="stat-num" style="font-size:1.3rem;">IA</div>
+        <div class="stat-label">numérisation des<br>reçus et factures</div>
       </div>
       <div class="stat-item">
-        <div class="stat-num" style="font-size:1.3rem;">iOS + Android</div>
-        <div class="stat-label">Les deux plateformes<br>Un seul abonnement</div>
+        <div class="stat-num" style="font-size:1.3rem;">iOS et Android</div>
+        <div class="stat-label" data-i18n="stat3">Les deux plateformes<br>Un seul abonnement</div>
       </div>
     </div>
   </div>
@@ -982,51 +1061,51 @@ localStorage.setItem('nx-lang', 'fr');
       <div>
         <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px;">
           <img src="../assets/norxten-core-icon-light.png" alt="Norxten Core" style="width:52px;height:52px;border-radius:13px;object-fit:cover;box-shadow:0 4px 12px rgba(0,0,0,.15);">
-          <span class="label label-dark" style="margin-bottom:0;">L'application Norxten Core</span>
+          <span class="label label-dark" style="margin-bottom:0;">The Norxten Core app</span>
         </div>
         <h2>Conçu pour la façon dont<br>les entrepreneurs travaillent</h2>
-        <p class="section-sub">Six fonctionnalités, une seule app. Tout est connecté du premier punch au rapport final.</p>
+        <p class="section-sub">Six fonctionnalités, une seule app. Tout est connecté du premier pointage jusqu'au rapport final.</p>
         <div class="feature-list">
           <div class="feature-item">
             <div class="feat-num">01</div>
             <div class="feat-text">
-              <h4>Suivi des coûts de chantier</h4>
-              <p>Vois exactement ce que coûte chaque chantier au fur et à mesure — main-d'œuvre, matériaux et sous-traitants, en un seul endroit.</p>
+              <h4 data-i18n="feat1_title">Suivi des coûts de chantier</h4>
+              <p data-i18n="feat1_desc">See exactly what every job costs as it happens — labour, materials, and subcontractors in one place.</p>
             </div>
           </div>
           <div class="feature-item">
             <div class="feat-num">02</div>
             <div class="feat-text">
-              <h4>Visibilité des coûts d'équipe</h4>
-              <p>Connais ton vrai coût de main-d'œuvre par projet, pas seulement les heures travaillées. Suis automatiquement par rapport à ton budget.</p>
+              <h4 data-i18n="feat2_title">Visibilité sur les coûts d'équipe</h4>
+              <p data-i18n="feat2_desc">Know your real labour cost per project, not just hours worked. Track against your budget automatically.</p>
             </div>
           </div>
           <div class="feature-item">
             <div class="feat-num">03</div>
             <div class="feat-text">
-              <h4>Capture de reçus et factures</h4>
-              <p>Prends une photo. L'OCR lit le fournisseur, le montant et la date. Le coût est immédiatement attribué au bon projet.</p>
+              <h4 data-i18n="feat3_title">Capture de reçus et factures</h4>
+              <p data-i18n="feat3_desc">Snap a photo. OCR reads the vendor, amount, and date. Cost lands in the right project immediately.</p>
             </div>
           </div>
           <div class="feature-item">
             <div class="feat-num">04</div>
             <div class="feat-text">
-              <h4>Feuilles de temps en temps réel</h4>
-              <p>Chaque punch-in et punch-out est enregistré instantanément. Vois les heures en direct par employé, par projet, mises à jour au fur et à mesure.</p>
+              <h4 data-i18n="feat4_title">Feuilles de temps en temps réel</h4>
+              <p data-i18n="feat4_desc">Every punch-in and punch-out recorded instantly. See live hours per employee, per project, updated as work happens.</p>
             </div>
           </div>
           <div class="feature-item">
             <div class="feat-num">05</div>
             <div class="feat-text">
-              <h4>Punch-in/out d'équipe avec vérification GPS</h4>
-              <p>Les membres de l'équipe pointent depuis l'app, avec vérification GPS à chaque événement. Vois qui est en service, sur quel projet, et quand les heures sont enregistrées.</p>
+              <h4 data-i18n="feat5_title">Pointage avec vérification GPS</h4>
+              <p data-i18n="feat5_desc">Crew members punch in and out from the app, with GPS verification at every punch event. See who is clocked in, which project they are on, and when hours are recorded.</p>
             </div>
           </div>
           <div class="feature-item">
             <div class="feat-num">06</div>
             <div class="feat-text">
-              <h4>Rapports de clôture de projet</h4>
-              <p>Quand un chantier se termine, obtiens un résumé PDF propre de tous les coûts, heures et performance par rapport au budget (plan Pro).</p>
+              <h4 data-i18n="feat6_title">Rapports de clôture de projet</h4>
+              <p data-i18n="feat6_desc">When a job closes, get a clean PDF summary of all costs, hours, and performance vs. budget (Pro plan).</p>
             </div>
           </div>
         </div>
@@ -1039,7 +1118,7 @@ localStorage.setItem('nx-lang', 'fr');
           <div class="iphone-body">
             <div class="iphone-screen-wrap">
               <div class="iphone-screen" style="aspect-ratio:393/852;">
-                <img src="../assets/screenshot-punch.png" alt="Punch Norxten Core" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:top;" onerror="this.style.display='none'">
+                <img src="../assets/screenshot-punch.png" alt="Norxten Core punch" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:top;" onerror="this.style.display='none'">
               </div>
               <div class="dynamic-island"></div>
               <div class="iphone-sheen"></div>
@@ -1051,7 +1130,7 @@ localStorage.setItem('nx-lang', 'fr');
           <div class="iphone-body">
             <div class="iphone-screen-wrap">
               <div class="iphone-screen" style="aspect-ratio:393/852;">
-                <img src="../assets/screenshot-crew.png" alt="Équipe Norxten Core" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:top;" onerror="this.style.display='none'">
+                <img src="../assets/screenshot-crew.png" alt="Norxten Core crew" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:top;" onerror="this.style.display='none'">
               </div>
               <div class="dynamic-island"></div>
               <div class="iphone-sheen"></div>
@@ -1060,6 +1139,11 @@ localStorage.setItem('nx-lang', 'fr');
         </div>
       </div>
     </div>
+    <div style="margin-top:3rem;padding:2rem;background:#1a2633;border:1px solid rgba(59,130,246,0.3);border-radius:16px;max-width:640px;">
+  <p style="font-family:'Geist',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#60A5FA;margin-bottom:0.75rem;">C'est pour qui?</p>
+  <h3 style="font-family:'Geist',sans-serif;font-size:1.25rem;font-weight:700;color:#ffffff;line-height:1.4;margin-bottom:0.5rem;">Conçu pour les entrepreneurs généraux qui gèrent des équipes et achètent des matériaux</h3>
+  <p style="font-size:0.95rem;color:rgba(255,255,255,0.65);line-height:1.7;">Si tu as plus d'un employé dans ton équipe et que tu achètes des matériaux pour tes projets, cette application a été conçue pour toi.</p>
+</div>
   </div>
 </section>
 
@@ -1068,99 +1152,125 @@ localStorage.setItem('nx-lang', 'fr');
 <!-- ══════════════════════════════════════════════════════════ -->
 <section class="pricing-section" id="pricing">
   <div class="container">
-    <span class="label" style="display:block;text-align:center;">Tarification transparente</span>
-    <h2>Tarification transparente</h2>
-    <p class="section-sub">Plans simples. Pas de contrat. Annule à tout moment.</p>
+    <p style="font-size:1rem;color:#314657;
+text-align:center;margin-bottom:1rem;line-height:1.6;">
+À partir de seulement 49,99 $/mois CAD.<br>Moins cher qu'une seule heure passée chaque semaine à classer tes factures et suivre tes gars.
+</p>
+    <span class="label" style="display:block;text-align:center;">Pricing</span>
+    <h2>Tarification simple</h2>
+    <p class="section-sub">Des forfaits simples. Sans contrat. Annule en tout temps.</p>
 
     <div class="pricing-controls">
       <div class="toggle-group" id="billing-toggle">
-        <button class="active" data-val="mo">Mensuel</button>
+        <button class="active" data-val="mo" data-i18n="billing_mo">Mensuel</button>
         <button data-val="yr">Annuel <span class="save-pill">2 mois gratuits</span></button>
       </div>
 
     </div>
 
     <div class="pricing-roi">
-      <p>La plupart des entrepreneurs commencent avec <strong>Field</strong>. Si ça te fait économiser quelques heures manquées ou un reçu perdu, le plan se rembourse rapidement.</p>
+      <p>La plupart des entrepreneurs commencent avec <strong>Chantier</strong>. Si ça permet de récupérer quelques heures manquées ou un reçu perdu, le forfait se paye tout seul rapidement.</p>
     </div>
 
     <div class="pricing-grid">
-      <!-- Starter -->
+      <!-- Débutant -->
       <div class="plan-card" data-delay="0">
-        <div class="plan-tier">Starter</div>
-        <h3>Starter</h3>
-        <p class="plan-desc">Pour les petites équipes qui débutent avec le contrôle des coûts numérique.</p>
+        <div class="plan-tier">Débutant</div>
+        <h3>Débutant</h3>
+        <p class="plan-desc">For small crews starting with digital cost control.</p>
         <div class="plan-price">
-          <span class="sym" id="s-sym">$</span><span class="amt" id="s-amt">49.99</span><span class="per" id="s-per">CAD/mo</span>
+          <span class="sym" id="s-sym">$</span><span class="amt" id="s-amt">49.99</span><span class="per" id="s-per">/mo</span>
         </div>
         <div class="plan-annual" id="s-ann"> </div>
         <hr class="plan-divider">
         <ul class="plan-features">
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Jusqu'à 5 employés et 3 projets actifs</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>30 scans OCR de reçus / mois</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Punch-in/out par QR avec vérification GPS</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Suivi des coûts et budgets de projet</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Feuilles de temps de base et CSV récapitulatif</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Up to 5 employees &amp; 3 active projects</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>30 OCR receipt scans / month</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>QR punch-in/out with GPS verify</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Project cost &amp; budget tracking</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Basic timesheets &amp; summary CSV</li>
         </ul>
-        <a class="plan-cta plan-cta-outline" href="https://apps.apple.com/app/id6763566449" target="_blank" rel="noopener" onclick="if(window.posthog){posthog.capture('app_store_click', {platform: 'ios', location: 'pricing_starter'})}">Commencer</a>
+        <a class="plan-cta plan-cta-outline" href="https://apps.apple.com/us/app/norxten-core/id6763566449" target="_blank" rel="noopener" onclick="if(window.posthog){posthog.capture('app_store_click', {platform: 'ios', location: 'pricing_starter'})}">Commencer</a>
       </div>
 
-      <!-- Field -->
+      <!-- Chantier -->
       <div class="plan-card featured" data-delay="100">
         <div class="plan-badge">Le plus populaire</div>
-        <div class="plan-tier">Field</div>
-        <h3>Field</h3>
-        <p class="plan-desc">Le plan principal pour les chantiers actifs et les équipes en croissance.</p>
+        <div class="plan-tier">Chantier</div>
+        <h3>Chantier</h3>
+        <p class="plan-desc">The primary tier for active job sites and growing teams.</p>
         <div class="plan-price">
-          <span class="sym" id="f-sym">$</span><span class="amt" id="f-amt">89.99</span><span class="per" id="f-per">CAD/mo</span>
+          <span class="sym" id="f-sym">$</span><span class="amt" id="f-amt">89.99</span><span class="per" id="f-per">/mo</span>
         </div>
         <div class="plan-annual" id="f-ann"> </div>
         <hr class="plan-divider">
         <ul class="plan-features">
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Jusqu'à 15 employés et 8 projets actifs</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Scans OCR de reçus illimités</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Suivi des déplacements entre chantiers</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Ventilation des heures supplémentaires et export CSV des feuilles de temps</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Détails des reçus archivés après clôture</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>CSV de clôture détaillé et alertes budgétaires</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Up to 15 employees &amp; 8 active projects</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Unlimited OCR receipt scans</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Travel tracking between job sites</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>OT breakdown &amp; timesheet CSV export</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Archived receipt details after closeout</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Detailed closeout CSV &amp; budget alerts</li>
         </ul>
-        <a class="plan-cta plan-cta-solid" href="https://apps.apple.com/app/id6763566449" target="_blank" rel="noopener" onclick="if(window.posthog){posthog.capture('app_store_click', {platform: 'ios', location: 'pricing_field'})}">Commencer</a>
+        <a class="plan-cta plan-cta-solid" href="https://apps.apple.com/us/app/norxten-core/id6763566449" target="_blank" rel="noopener" onclick="if(window.posthog){posthog.capture('app_store_click', {platform: 'ios', location: 'pricing_field'})}">Commencer</a>
       </div>
 
       <!-- Pro -->
       <div class="plan-card" data-delay="200">
         <div class="plan-tier">Pro</div>
         <h3>Pro</h3>
-        <p class="plan-desc">Pour les opérations plus importantes qui ont besoin d'une échelle illimitée et d'exports avancés.</p>
+        <p class="plan-desc">For larger operations that need unlimited scale and advanced exports.</p>
         <div class="plan-price">
-          <span class="sym" id="p-sym">$</span><span class="amt" id="p-amt">189.99</span><span class="per" id="p-per">CAD/mo</span>
+          <span class="sym" id="p-sym">$</span><span class="amt" id="p-amt">189.99</span><span class="per" id="p-per">/mo</span>
         </div>
         <div class="plan-annual" id="p-ann"> </div>
         <hr class="plan-divider">
         <ul class="plan-features">
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Employés et projets actifs illimités</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Scans OCR de reçus illimités</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Rapports PDF de clôture professionnels</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>CSV de clôture détaillé et reçus archivés</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Suivi des déplacements et ventilation des heures supplémentaires</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Support prioritaire</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Unlimited employees &amp; active projects</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Unlimited OCR receipt scans</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Professional PDF closeout reports</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Detailed closeout CSV &amp; archived receipts</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Travel tracking &amp; OT breakdown</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Priority support</li>
         </ul>
-        <a class="plan-cta plan-cta-outline" href="https://apps.apple.com/app/id6763566449" target="_blank" rel="noopener" onclick="if(window.posthog){posthog.capture('app_store_click', {platform: 'ios', location: 'pricing_pro'})}">Commencer</a>
+        <a class="plan-cta plan-cta-outline" href="https://apps.apple.com/us/app/norxten-core/id6763566449" target="_blank" rel="noopener" onclick="if(window.posthog){posthog.capture('app_store_click', {platform: 'ios', location: 'pricing_pro'})}">Commencer</a>
       </div>
     </div>
 
+    <div style="max-width:640px;margin:2.5rem auto 0;
+background:#1a2633;
+border:1px solid rgba(59,130,246,0.3);
+border-radius:16px;padding:2rem;text-align:center;">
+  <p style="font-size:.75rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:#10b981;margin-bottom:.75rem;">
+  Inclus avec chaque essai gratuit</p>
+  <h3 style="font-family:'Geist',sans-serif;font-size:1.2rem;
+font-weight:700;margin-bottom:0.75rem;color:#F5F8FA;">
+Appel de configuration gratuit de 30 minutes avec notre équipe</h3>
+
+<p style="color:rgba(245,248,250,0.65);font-size:0.9rem;
+line-height:1.7;margin-bottom:1.25rem;">
+Quand tu commences ton essai gratuit, on te fait faire le tour de l'application en personne pour que tu en tires de la vraie valeur dès le premier jour. Pas de pitch de vente. Juste la configuration.</p>
+  <a href="mailto:support@norxten.com?subject=Onboarding Call Request" 
+  style="display:inline-flex;align-items:center;justify-content:center;
+  padding:12px 28px;background:#3B82F6;color:#0F1A24;
+  border-radius:9px;font-weight:700;font-size:.9rem;
+  font-family:'DM Sans',sans-serif;text-decoration:none;">
+  Réserve ton appel gratuit</a>
+</div>
+
     <div class="pricing-faq">
       <div class="faq-item">
-        <h4>Qu'est-ce qu'un employé actif ?</h4>
-        <p>Toute personne qui pointe au moins une fois pendant le mois de facturation. Ajoute ou retire des travailleurs à tout moment.</p>
+        <h4>C'est quoi un employé actif?</h4>
+        <p>Anyone who clocks in at least once during the billing month. Add or remove workers anytime.</p>
       </div>
       <div class="faq-item">
-        <h4>Puis-je changer de plan ?</h4>
-        <p>Oui, passe à un plan supérieur ou inférieur à tout moment. Les changements prennent effet au début du prochain cycle de facturation. Sans pénalité.</p>
+        <h4>Puis-je changer de forfait?</h4>
+        <p>Yes, upgrade or downgrade anytime. Changes take effect at the start of your next billing cycle. No penalties.</p>
       </div>
       <div class="faq-item">
-        <h4>Qu'est-ce qui est inclus dans l'essai gratuit ?</h4>
-        <p>Accès complet aux fonctionnalités du plan Field pendant 14 jours. Aucune carte de crédit requise pour commencer.</p>
+        <h4>Qu'est-ce qui est inclus dans l'essai gratuit?</h4>
+        <p>Accès complet aux fonctionnalités du forfait Chantier pendant 14 jours. Aucune carte de crédit requise pour commencer.</p>
       </div>
     </div>
 
@@ -1181,8 +1291,8 @@ localStorage.setItem('nx-lang', 'fr');
 <section class="support-cta">
   <div class="container">
     <div class="support-cta-box">
-      <h2>Besoin d'aide ?</h2>
-      <p>Notre équipe est là pour tous les utilisateurs de l'application Norxten Core. Questions sur ton compte, la facturation ou une fonctionnalité — écris-nous simplement.</p>
+      <h2>Besoin d'aide?</h2>
+      <p>Notre équipe est là pour tous les utilisateurs de l'app Norxten Core. Questions sur ton compte, la facturation ou une fonctionnalité — écris-nous simplement.</p>
       <a href="mailto:support@norxten.com">support@norxten.com</a>
     </div>
   </div>
@@ -1195,8 +1305,11 @@ localStorage.setItem('nx-lang', 'fr');
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="../assets/Norxten-Logo-White.png" alt="Norxten" style="height:36px;opacity:.8;" onerror="this.outerHTML='<span style=&quot;font-size:1.1rem;font-weight:700;color:#fff;font-family:Space Grotesk,sans-serif;&quot;>Norxten</span>'">
-        <p>Développer des logiciels pratiques pour les entrepreneurs généraux et les entreprises de terrain.</p>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+  <img src="../assets/Norxten 3D Extrude Transparent.png" alt="Norxten Core" style="height:44px;">
+  <span style="font-family:'Geist',sans-serif;font-weight:700;font-size:1rem;letter-spacing:0.1em;color:white;text-transform:uppercase;">NORXTEN CORE</span>
+</div>
+<p>Le contrôle des coûts de chantier pour entrepreneurs généraux.</p>
       </div>
       <div class="footer-col">
         <h5>Entreprise</h5>
@@ -1210,9 +1323,9 @@ localStorage.setItem('nx-lang', 'fr');
         <h5>Produit</h5>
         <ul>
           <li><a href="norxten-core.html">Produits</a></li>
-          <li><a href="norxten-core.html">Application Norxten Core</a></li>
+          <li><a href="norxten-core.html">Norxten Core app</a></li>
           <li><a href="support.html">Support</a></li>
-          <li><a href="/fr/#pricing">Tarification</a></li>
+          <li><a href="/fr/#pricing">Pricing</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -1223,8 +1336,82 @@ localStorage.setItem('nx-lang', 'fr');
         </ul>
       </div>
     </div>
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;
+justify-content:center;margin-bottom:1.5rem;align-items:center;">
+  <a href="https://www.instagram.com/norxtencore.app" 
+  target="_blank" rel="noopener" 
+  style="color:rgba(245,248,250,.5);font-size:.8rem;
+  font-family:'DM Sans',sans-serif;transition:color .2s;"
+  onmouseover="this.style.color='#F5F8FA'" 
+  onmouseout="this.style.color='rgba(245,248,250,.5)'">Instagram</a>
+  <span style="color:rgba(245,248,250,.2);">·</span>
+  <a href="https://www.facebook.com/norxtencore" 
+  target="_blank" rel="noopener"
+  style="color:rgba(245,248,250,.5);font-size:.8rem;
+  font-family:'DM Sans',sans-serif;transition:color .2s;"
+  onmouseover="this.style.color='#F5F8FA'" 
+  onmouseout="this.style.color='rgba(245,248,250,.5)'">Facebook</a>
+  <span style="color:rgba(245,248,250,.2);">·</span>
+  <a href="https://www.tiktok.com/@norxtencore" 
+  target="_blank" rel="noopener"
+  style="color:rgba(245,248,250,.5);font-size:.8rem;
+  font-family:'DM Sans',sans-serif;transition:color .2s;"
+  onmouseover="this.style.color='#F5F8FA'" 
+  onmouseout="this.style.color='rgba(245,248,250,.5)'">TikTok</a>
+  <span style="color:rgba(245,248,250,.2);">·</span>
+  <a href="https://www.linkedin.com/company/norxten" 
+  target="_blank" rel="noopener"
+  style="color:rgba(245,248,250,.5);font-size:.8rem;
+  font-family:'DM Sans',sans-serif;transition:color .2s;"
+  onmouseover="this.style.color='#F5F8FA'" 
+  onmouseout="this.style.color='rgba(245,248,250,.5)'">LinkedIn</a>
+  <span style="color:rgba(245,248,250,.2);">·</span>
+  <a href="https://www.x.com/norxtencore" 
+  target="_blank" rel="noopener"
+  style="color:rgba(245,248,250,.5);font-size:.8rem;
+  font-family:'DM Sans',sans-serif;transition:color .2s;"
+  onmouseover="this.style.color='#F5F8FA'" 
+  onmouseout="this.style.color='rgba(245,248,250,.5)'">X</a>
+  <span style="color:rgba(245,248,250,.2);">·</span>
+  <a href="https://www.youtube.com/@norxtencore" 
+  target="_blank" rel="noopener"
+  style="color:rgba(245,248,250,.5);font-size:.8rem;
+  font-family:'DM Sans',sans-serif;transition:color .2s;"
+  onmouseover="this.style.color='#F5F8FA'" 
+  onmouseout="this.style.color='rgba(245,248,250,.5)'">YouTube</a>
+</div>
+
+<div style="display:flex;gap:1rem;justify-content:center;
+margin-bottom:1.5rem;flex-wrap:wrap;">
+  <a href="https://apps.apple.com/ca/app/norxten-core/id6763566449" 
+  target="_blank" rel="noopener"
+  style="display:inline-flex;align-items:center;gap:.5rem;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+  border-radius:9px;padding:.6rem 1.1rem;text-decoration:none;
+  color:#F5F8FA;font-family:'DM Sans',sans-serif;font-size:.8rem;
+  transition:border-color .2s;"
+  onmouseover="this.style.borderColor='#3B82F6'" 
+  onmouseout="this.style.borderColor='rgba(255,255,255,.12)'">
+  &#xF8FF; &nbsp;<span><span style="display:block;font-size:.65rem;
+  color:rgba(245,248,250,.5);">Télécharger sur l'</span>
+  <span style="font-weight:700;">App Store</span></span></a>
+  
+  <a href="https://play.google.com/store/apps/details?id=com.norxten.core" 
+  target="_blank" rel="noopener"
+  style="display:inline-flex;align-items:center;gap:.5rem;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+  border-radius:9px;padding:.6rem 1.1rem;text-decoration:none;
+  color:#F5F8FA;font-family:'DM Sans',sans-serif;font-size:.8rem;
+  transition:border-color .2s;"
+  onmouseover="this.style.borderColor='#3B82F6'" 
+  onmouseout="this.style.borderColor='rgba(255,255,255,.12)'">
+  &#x25B6; &nbsp;<span><span style="display:block;font-size:.65rem;
+  color:rgba(245,248,250,.5);">Obtenir sur</span>
+  <span style="font-weight:700;">Google Play</span></span></a>
+</div>
+
     <div class="footer-bottom">
-      © 2026 Technologies Norxten Inc. Tous droits réservés.
+      © 2026 Norxten Technologies Inc. Tous droits réservés.
     </div>
   </div>
 </footer>
@@ -1234,7 +1421,7 @@ localStorage.setItem('nx-lang', 'fr');
 <!-- ══════════════════════════════════════════════════════════ -->
 <script>
 // ── Translations ─────────────────────────────────────────────
-// FR page
+// EN page
 
 // ── Nav scroll ────────────────────────────────────────────────
 window.addEventListener('scroll', () => {
@@ -1266,11 +1453,11 @@ function updatePrices() {
     if (symEl) symEl.textContent = '$';
     if (isYr) {
       amtEl.textContent = p.yr.toFixed(2);
-      if (perEl) perEl.textContent = 'CAD/yr';
-      if (annEl) annEl.textContent = 'Économise $' + ((p.mo*12)-p.yr).toFixed(2) + ' — 2 mois gratuits';
+      if (perEl) perEl.textContent = '/yr';
+      if (annEl) annEl.textContent = 'Save $' + ((p.mo*12)-p.yr).toFixed(2) + ' — 2 mois gratuits';
     } else {
       amtEl.textContent = p.mo.toFixed(2);
-      if (perEl) perEl.textContent = 'CAD/mo';
+      if (perEl) perEl.textContent = '/mo';
       if (annEl) annEl.textContent = ' ';
     }
   });
@@ -1360,8 +1547,8 @@ document.querySelectorAll('.feature-item, .plan-card').forEach(el => observer.ob
 </script>
   <!-- Sticky Mobile Download Bar -->
   <div class="sticky-mobile-bar" id="sticky-bar">
-    <p><strong>Norxten Core</strong>Essai de 14 jours · Aucune carte de crédit</p>
-    <a id="sticky-bar-btn" href="https://apps.apple.com/app/id6763566449" class="sticky-bar-btn" onclick="if(window.posthog){posthog.capture('app_store_click', {platform: 'ios', location: 'sticky_bar'})}">Télécharger l'app</a>
+    <p><strong>Norxten Core</strong>Essai gratuit de 14 jours · Aucune carte de crédit requise</p>
+    <a id="sticky-bar-btn" href="https://apps.apple.com/app/id6763566449" class="sticky-bar-btn" onclick="if(window.posthog){posthog.capture('app_store_click', {platform: 'ios', location: 'sticky_bar'})}">Download App</a>
   </div>
 </body>
 </html>
