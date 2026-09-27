@@ -81,12 +81,22 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://norxten.com/blog/norxten-core-vs-workyard.html</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://norxten.com/fr/blog/</loc>
     <lastmod>2026-09-27</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://norxten.com/fr/blog/logiciel-controle-couts-chantier.html</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://norxten.com/fr/blog/norxten-core-vs-workyard.html</loc>
     <lastmod>2026-09-27</lastmod>
     <changefreq>monthly</changefreq>
   </url>
