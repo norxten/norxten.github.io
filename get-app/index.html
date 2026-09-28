@@ -157,6 +157,14 @@
   </div>
 
   <script>
+    const params = new URLSearchParams(window.location.search);
+    const utmData = {
+      utm_source: params.get('utm_source') || undefined,
+      utm_medium: params.get('utm_medium') || undefined,
+      utm_campaign: params.get('utm_campaign') || undefined,
+      utm_content: params.get('utm_content') || undefined
+    };
+
     const ua = navigator.userAgent || '';
     const detectedPlatform = (/iPad|iPhone|iPod/.test(ua) && !window.MSStream)
       ? 'ios'
@@ -164,13 +172,13 @@
       : 'desktop';
 
     if (window.posthog) {
-      posthog.capture('get_app_viewed', {
+      posthog.capture('get_app_viewed', Object.assign({
         platform: detectedPlatform,
         referrer: document.referrer || null
-      });
+      }, utmData));
     }
 
-    const IOS_STORE = 'https://apps.apple.com/us/app/norxten-core/id6763566449';
+    const IOS_STORE = 'https://apps.apple.com/app/norxten-core/id6763566449';
     const ANDROID_STORE = 'https://play.google.com/store/apps/details?id=com.norxten.core';
 
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
@@ -226,10 +234,10 @@
     if (iosBtnEl) {
       iosBtnEl.addEventListener('click', function () {
         if (window.posthog) {
-          posthog.capture('get_app_store_clicked', {
+          posthog.capture('get_app_store_clicked', Object.assign({
             platform: detectedPlatform,
             store: 'ios'
-          });
+          }, utmData));
         }
       });
     }
@@ -237,10 +245,10 @@
     if (androidBtnEl) {
       androidBtnEl.addEventListener('click', function () {
         if (window.posthog) {
-          posthog.capture('get_app_store_clicked', {
+          posthog.capture('get_app_store_clicked', Object.assign({
             platform: detectedPlatform,
             store: 'android'
-          });
+          }, utmData));
         }
       });
     }
